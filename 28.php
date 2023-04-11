@@ -7,12 +7,6 @@ if($_POST['mono']!=""){
 if($_COOKIE['mono']==$_POST['mono']){$mono="x";}
 setcookie('mono',$_POST['mono'],time()+19999);}
 
-if($_GET['t']!=""){include('dirty.php');
-$rt = $_POST['comment'] . $_POST['name'];
-$xx = strtr($rt,'@43105$7|!','aaeiosstli');
-foreach($filter as $f){
-if(stripos($f, $xx)!== false){exit('<mark style="color:#dfd">Error.</mark>');}}}
-
 function process($comment)
 {$comment = htmlspecialchars($comment);
 $comment = str_replace('&lt;i&gt;','<i>',$comment);
