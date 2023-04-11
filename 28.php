@@ -1,7 +1,7 @@
 
 <?php
 if($_COOKIE['o']<time() && crc32(base64_encode($_SERVER['REMOTE_ADDR'].$_COOKIE['o']))==$_COOKIE['crc']){}
-else{header('Location: g3.php?next=28.php');exit;}
+else{header('Location: g3.php?next=28.php&name='.$_REQUEST['name'].'&comment='.$_REQUEST['name']);exit;}
 date_default_timezone_set('Australia/Adelaide');
 if($_POST['mono']!=""){
 if($_COOKIE['mono']==$_POST['mono']){$mono="x";}
