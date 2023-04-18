@@ -1,11 +1,13 @@
 # -
 This is where I can share code from my site
 
-In particular, it contains the script for the chat page and the CAPTCHA
+In particular, it contains the script for the chat page, "creation stopwatch" and the CAPTCHA
+Note that the stopwatch counts time since it was installed. To reset it, delete time2.txt
 
 # Installation
-Just copy the files into the directory you want to. Needs PHP, and should work with default settings.
-You do not need MySQL.
+* Just copy the files into the directory you want to. 
+* Needs PHP, and should work with default settings.
+* You do not need MySQL.
 
 # Extra
 If you need to kick a user, you could modify the script live to include
