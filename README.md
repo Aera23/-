@@ -14,7 +14,7 @@ If you need to kick a user, you could modify the script live to include
   
 To clear the chat, delete the file prvt.txt
 
-# detail
+# Hosting
 * If you are using an external hosting, create an account and follow their instructions. Navigate to the www,htdocs,public or similar using their tools.
 * If you want to host on your own machine, try downloading Uniserver XV on your machine. Start it up, Run Apache, and go to the www directory.
-* Then, copy the files from this page into that directory, and type localhost/g3.php into your browser.
+* Then, copy the files from this page into that directory, and type yuor server's web address. For Uniserver, it's localhost/g3.php .
