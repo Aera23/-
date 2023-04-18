@@ -1,4 +1,4 @@
-# -
+# Aera23's repo :)
 This is where I can share code from my site
 
 In particular, it contains the script for the chat page, "creation stopwatch" and the CAPTCHA
@@ -20,3 +20,5 @@ To clear the chat, delete the file prvt.txt
 * If you are using an external hosting, create an account and follow their instructions. Navigate to the www,htdocs,public or similar using their tools.
 * If you want to host on your own machine, try downloading Uniserver XV on your machine. Start it up, Run Apache, and go to the www directory.
 * Then, copy the files from this page into that directory, and type yuor server's web address. For Uniserver, it's localhost/g3.php .
+
+To view more source code, go to http://101.174.15.188/source.php?f=index.php or https://fern.rf.gd/source.php?f=index.php (change the filename to browse source)
