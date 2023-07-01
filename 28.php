@@ -39,7 +39,7 @@ echo "<br><mark>".str_replace(".visit"," | ",$name).str_replace(date("jS"),"",st
 $em = (htmlspecialchars($_REQUEST['e']) ?: '1');
 if($em>2){$em=2;}
 if($em<0.5){$em=0.5;}
-if($_COOKIE['o']+36000>time()  && $_COOKIE['o']<time() && crc32(base64_encode($_SERVER['REMOTE_ADDR'].$_COOKIE['o']))==$_COOKIE['crc']){}
+if($_COOKIE['o']+36000>time()  && $_COOKIE['o']<time() && crc32(base64_encode($salt.$_SERVER['REMOTE_ADDR'].$_COOKIE['o']))==$_COOKIE['crc']){}
 else{if($_GET['a']!="a"){header('Location: g3.php?next=28.php');}else{header('Location: g3.php?next=28.php?a=a');}exit;}
 #  Filters
 include('dirty.php');
