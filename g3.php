@@ -13,7 +13,7 @@ exit;}
 echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 echo'<!DOCTYPE html><html style="background:#000"><h1 id="a" style="margin:2em;color:#fff;font-family:sans-serif;border:2px solid #bbb;border-radius:5px;padding:0.2em;width:6em">Type ';
 $a = base_convert(mt_rand(1296,46655),10,36); echo strrev($a).' below. <mark style="font-size:18px;color:#000">After submitting, refresh</span>:';
-$r = time()%10;
+$r = mt_rand(0,99);
 $old = glob('*eep*');foreach($old as $eep){if(170+filectime($eep)<time()){unlink($eep);}}
 
 file_put_contents($r.'eep.txt',strrev($a));
