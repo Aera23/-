@@ -14,7 +14,7 @@ $token = crc32($_REQUEST['t'].$salt);
     }
   }
 }
-if($_SERVER['PHP_SELF']=='g3.php'){exit;}
+if($_SERVER['PHP_SELF']=='/g3.php'){exit;}
 
 //if($_REQUEST['invite']!="eee"){exit("<mark>Invite only. Enter code as: ?invite=code in URL</mark>");}
 //else{setcookie("invite",$_GET['invite'],time()+36000);}
