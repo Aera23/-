@@ -1,13 +1,13 @@
 # Chat and stopwatch
-New: Delete messages! (Change the $_COOKIE['in'] to your cookie, and the != to == if you want exclusive access to delete)
+New: Admin can delete messages with one click! (Click the number button)
 
-In particular, it contains the script for the chat page, "creation stopwatch" and the CAPTCHA
-Note that the stopwatch counts time since it was run. To reset it, delete time2.txt
+Included are the chat script, "creation stopwatch" and the CAPTCHA.
+The stopwatch counts time since it was first run. To reset it, delete time2.txt
 
 # Installation
-* Just copy the files into the directory you want to. 
-* Needs PHP, and should work with default settings.
-* You do not need MySQL.
+* Copy the files into the directory you want to.
+* Change the secrets in 28.php
+* Set a cookie with the name you set, with any non-blank value.
 
 # Extra
 If you need to kick/shadowkick a user, you could modify the script live to include an error
@@ -21,8 +21,7 @@ Error ideas:
 * Blank error
 * I/O or permission error
 
-
 # Hosting
-* If you are using an external hosting, create an account and follow their instructions. Navigate to the www,htdocs,public or similar using their tools.
+* If you are using an external hosting, create an account and follow their instructions. Navigate to the www/htdocs/public or similar using their tools and then start installation.
 * If you want to host on your own machine, try downloading Uniserver XV on your machine. Start it up, Run Apache, and go to the www directory.
 * Then, copy the files from this page into that directory, and type yuor server's web address. For Uniserver, it's localhost/g3.php
