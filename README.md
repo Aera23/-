@@ -10,7 +10,7 @@ The stopwatch counts time since it was first run. To reset it, delete time2.txt
 * Set a cookie with the name you set, with any non-blank value.
 * Remove the code you used to set the cookie
 
-    setcookie("(Your Cookie name)", $value, time()+9000000);
+        setcookie("(Your Cookie name)", $value, time()+9000000);
 
 # Extra
 If you need to kick/shadowkick a user, you could modify the script live to include an error
