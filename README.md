@@ -6,7 +6,7 @@ The stopwatch counts time since it was first run. To reset it, delete time2.txt
 
 # Installation
 * Copy the files into the directory you want to.
-* Change the secrets in 28.php
+* Change the secrets in data.php
 * Set a cookie with the name you set, with any non-blank value.
 
 # Extra
