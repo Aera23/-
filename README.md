@@ -1,8 +1,8 @@
 # Chat and stopwatch
-New: Admin can delete messages with one click! (Click the number button)
-
 Included are the chat script, "creation stopwatch" and the CAPTCHA.
 The stopwatch counts time since it was first run. To reset it, delete time2.txt
+New: Admin can delete messages with one click! (Click the number button)
+For the latest code, check out [[https://124.181.64.193/source.php]] as the repo is archiving the old version
 
 # Installation
 * Copy the files into the directory you want to.
