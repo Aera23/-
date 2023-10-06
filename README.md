@@ -1,5 +1,5 @@
 http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
-
+(Yes, I know that the hosting IP and onionsite are linked with this Github. But it is useful if the onion goes offline, or the IP changes)
 # Chat and stopwatch
 * Included are the chat script, "creation stopwatch" and the CAPTCHA.
 * The stopwatch counts time since it was first run. To reset it, delete time2.txt
@@ -30,3 +30,9 @@ Error ideas:
 * If you are using an external hosting, create an account and follow their instructions. Navigate to the www/htdocs/public or similar using their tools and then start installation.
 * If you want to host on your own machine, try downloading Uniserver XV on your machine. Start it up, Run Apache, and go to the www directory.
 * Then, copy the files from this page into that directory, and type yuor server's web address. For Uniserver, it's localhost/g3.php
+
+
+# Troubleshooting
+* If you get an error called "Can't write to disk" when loading the CAPTCHA, check to see if there are write permissions for PHP and the hosting folder
+* Also check to see if links.php is present, and rename/delete that file, as I have site specific config when it is used (hint, Peppermint OS live)
+* Finally, SElinux, hard drive failure, inode limit, and more can stop writing. Search online for more troubleshooting
