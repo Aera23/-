@@ -1,5 +1,5 @@
 This file will be updated to reflect downtime. Latest entries at the bottom.
-Yes, GitHub is about code, but since they seem pretty reliable, I will use them for NODs (Notices of Downtime)
+Yes, GitHub is about code, but since they are reliable, I use them for NODs (Notices of Downtime)
 
 on 27/09/2023, there was downtime due to machine being moved and battery coming loose
 on 15/09/2023, there was roughly 8 mins of downtime due to wifi switched off when...
@@ -9,6 +9,6 @@ on 18/09/2023, there was about 1 min downtime while Tor updated, restarted, and 
 on 21/10/2023, the chat went PHP 500 coz I misplaced some brackets and didn't test immediately after editing
 on 23/10/2023, the wifi disconnected for 1 min due to breaker tripping, ending 8 days of router uptime
                Worse, the onionsite went offline for 1 hour, returning with degraded performance for 8 hours!
-  
-Last updated: 24/10/2023. This file only reports known downtime, delayed coz I am lazy.
-              I made it to 28.5 days since reboot:)
+on 29/10/2023, the onion site somehow became unreachable, Tor was restarted and it fixed it (maybe 2 hours)  
+Last updated: 31/10/2023. This file only reports known downtime.
+              I made it to 33 days since reboot, router is 8 days :)
