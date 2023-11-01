@@ -15,11 +15,12 @@ http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
         setcookie("(Your Cookie name)", $value, time()+9000000);
 
 # Extra
-If you need to kick/shadowkick a user, you could modify the script live to include an error
+If you need to kick/shadowkick a user, you could modify the script live to include an error.
+Additionally, entering a file called "unlock.txt" with a value "spammer" will stop @spammer from spamming for a while
   
     if($_REQUEST['name']="spammer"){exit("<mark>Can't connect to MySQL database</mark>");}
   
-To clear the chat, delete the file prvt.txt
+To clear the chat, delete the data file (it ends in .txt)
 
 Error ideas:
 * Can't load (upstream/internal/etc) data
