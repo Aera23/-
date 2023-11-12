@@ -13,4 +13,6 @@ on 29/10/2023, the onion site somehow became unreachable, Tor was restarted and 
                Records: 40 days since reboot, router is 15 days :)
 on 05/11/2023, there was a few mins of chat downtime due to pcntl_alarm(5) being too powerful for my chat script   
 on 08/11/2023, 12m downtime, the machine needed restart due to half-crash when accessing file properties :|
-Last updated: 08/11/2023. This file only reports known downtime.
+on 12/11/2023, 14m downtime, a semi-planned restart to protect against hours of downtime after USB disconnect
+               also wifi was red (errored) briefly, idk why (note: usb is still healthy)
+Last updated: 12/11/2023. This file only reports known downtime.
