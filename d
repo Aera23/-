@@ -15,4 +15,5 @@ on 05/11/2023, there was a few mins of chat downtime due to pcntl_alarm(5) being
 on 08/11/2023, 12m downtime, the machine needed restart due to half-crash when accessing file properties :|
 on 12/11/2023, 14m downtime, a semi-planned restart to protect against hours of downtime after USB disconnect
                also wifi was red (errored) briefly, idk why (note: usb is still healthy)
+on 13/11/2023, I used ufw, it had an error, and I will have to wait a few hours to fix it
 Last updated: 12/11/2023. This file only reports known downtime.
