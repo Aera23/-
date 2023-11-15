@@ -1,14 +1,15 @@
-
 <?php
 if($phrase==""){
 if(file_get_contents("links.php")!=""){
 include("links.php");$live='/home/peplive/Documents/';}
 else{$live='old';}
+$old=glob($live.'*eep.txt');foreach($old as $eep){if((80+filectime($eep))<time()){unlink($eep);}}
+
 //Return 1 if cookie exists, and is not hijacked, or if CRC32 of IP is in the DB
 function chkx(){
-#Fixed poor validation
+#Fixed poor validation ++
 $file=filemtime(crc32("127.0.0.1").".dat");
- if((filemtime($file)+20)>time()){return "1";}
+ if((filemtime($file)+20)>time()){return "1";unlink(crc32("127.0.0.1").".dat");}
 elseif($_REQUEST['o']<time() && crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
  return "1";}
 else{return "2";}}
@@ -50,49 +51,49 @@ $a = base_convert(mt_rand(1296,46655),10,36);
 $tag = ['q','span','b'];
 $text = ['Type the final 3 letters/digits: ','Only type the last 3 letters and numbers - ','Gimme random characters, ignoring 1<sup>st</sup> one: ','Recall the last three characters: ','Last three letters/digits please - '];
 $texta = ['Type the initial 3 letters/digits: ','Only type the first 3 letters and numbers - ','Gimme random characters, ignoring  4<sup>th</sup> one: ','Recall the first three characters: ','First three letters/digits please - '];
-echo'<!DOCTYPE html><html style="background:#000"><meta http-equiv="refresh" content="80">
+$textb = ['Type the random characters twice:','Enter the characters below 2 times =','Input the characters below two times:','Repeat the characters into the box','Enter the characters below twice'];
+echo'<!DOCTYPE html><html style="background:#000"><meta http-equiv="refresh" content="70">
 <style>
 .r {width: 50px;height: 50px;
   background: red;
   position: relative;
   animation-name: example;
-  animation-duration: 80s;
-  animation-timing-function: linear;} fieldset{border:2px solid #7f7}
+  animation-duration: 70s;
+  animation-timing-function: linear} fieldset{border:2px solid #7f7}
 
 @keyframes example {
-  0%   {background:#0f0; left:89%; top:0px;}
-  50%  {background:#ff0; left:44.5%; top:0px;}
-  100% {background:#f00; left:0%; top:0px;}
-}
+  0%   {background:#0f0; left:89%; top:0px}
+  50%  {background:#ff0; left:44.5%; top:0px}
+  100% {background:#f00; left:0%; top:0px}}
 
 /*Cool timer*/
 @keyframes t{
   0%   {opacity:1;font-size:0.1px}
   1%   {opacity:1;font-size:20px}
   81%   {opacity:1;font-size:20px}
-  100%   {opacity:1;font-size:0.1px}
-}';
+  100%   {opacity:1;font-size:0.1px}}';
 
-for($i=0;$i<91;$i++){echo '.a'.$i.'{animation: t 1s linear;animation-delay:'.(90-$i).'s;opacity:0;font-size:0.1px}';}
+for($i=0;$i<81;$i++){echo'.a'.$i.'{animation: t 1s linear;animation-delay:'.(80-$i).'s;opacity:0;font-size:0.1px}';}
 
 echo'</style>
 <h2 id="a" style="margin:2em;color:#9f9;font-family:sans-serif;border:2px solid #6d6;border-radius:5px;padding:0.2em;width:69vw">:) ';
 //Randomise whether CAPTCHA wants first or last letters
-if((mt_rand()%2)==1){echo $text[mt_rand(0,4)];
+if((mt_rand()%3)==1){echo $text[mt_rand(0,4)];
 echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.base_convert(mt_rand(0,35),10,36).$a.'</'.$tag[time()%3].'>:';}
+elseif((mt_rand()%3)==2){echo $textb[mt_rand(0,4)];
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.$a.'</'.$tag[time()%3].'>:';$a=$a.$a;}
 else{echo $texta[mt_rand(0,4)];
 echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.$a.base_convert(mt_rand(0,35),10,36).'</'.$tag[time()%3].'>:';}
 
-$r = mt_rand(0,999);
+$r=mt_rand(0,999);
 file_put_contents($live.$r.'eep.txt',$a) or die("<mark>Page can't write to disk!</mark></html>");
-$old = glob($live.'*eep.txt');foreach($old as $eep){if((90+filectime($eep))<time()){unlink($eep);}}
 
 echo'<form action="g3.php" method="post">
 <input name="ii" style="padding:0.3em" size="4"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><button style="background:#000;color:#8f8">Enter</button></form>
-<p style="font-size:15px">Animation shows time left (up to 80s)</p></h2>
+<p style="font-size:15px">Animation shows time left (up to 70s)</p></h2>
 <div style="background:#dfd;width:70vw;display:inline-block;margin-left:2.8em"><div class="r"><center style="padding:20% !important;" class="run">';
 
-for($i=0;$i<91;$i++){echo '<span class="a'.$i.'">'.($i-10).'</span>';}
+for($i=0;$i<81;$i++){echo '<span class="a'.$i.'">'.($i-10).'</span>';}
 
 echo'</center></div></div><br>
 <br><mark style="margin-left:3em">'.`uptime -p`.'</mark></html>';if($live!="old"){include("70.php");}}
@@ -101,7 +102,7 @@ $find=['(:','):',':|',':D',':3)',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;',
 $change=['<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3)</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
 
 #Decompressing the random colours
-$k = "'>$</span><span style='color:#";
+$k="'>$</span><span style='color:#";
 $t="<span style='color:#1794BA$k 325EAE$k E117F6$k 662191$k 703B3C$k F3BD07$k 11C04F$k 4E2714$k C6C1DE$k 9A1775$k 96C7E6$k 3AEC8D$k C78432$k C5062C$k 80788B$k 8BB64E$k 0115A9$k 298002$k 715DB8$k 71DDBD$k 762946$k 0A4DC2$k 888EDD$k A20E87$k 93110B$k 06B799$k F8E4B4$k 28F57F$k 89355A$k EA6090$k 48CBDD$k 0B36A6$k 064FBA$k CCB91E'>$</span>";
 $t=str_replace(" ","",$t);
 $tx=str_replace("ns","n s", $t);
@@ -127,4 +128,18 @@ function normalize($string) {
         'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
         'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r');
 return strtr($string, $table);}}
-?> 
+
+function highlighter($e){$parts = explode("@",$e);
+foreach($parts as $part){
+ if(strpos($e,"@".$part)!==false){$a='@'.$part;}
+ else{$a=$part;}
+  #Getting the colour from the user
+ preg_match('/@([^\s:?\/\\*|<>.,]*)\s?/', $a, $matches);
+ if($matches[1]!=""){
+   $times=explode("|",file_get_contents($matches[1].".visit"));
+   $times = $times[count($times)-1];
+   $pos = strpos($times, "color:");
+   $col.= str_replace($matches[1],"@<b style='color:".substr($times,$pos+6,7).";'>".$matches[1]."</b>",$part);}
+ else{$col.=$a;}}
+return str_replace("@@","@",$col);}
+?>
