@@ -16,7 +16,7 @@ Enjoy :)
 # Extra
 If you need to deal with a spammer,  entering a file called "unlock.txt" with a value "spammerNick" will stop @spammerNick from spamming for a while
 (there's a cool trick used when they are denied)
-To clean the public chat, type `u`u`u`u`u`u`u`u`u`u`u`u`u`u`u`u`u`u`u`u
+To clean the public chat, type \`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u
 
 # Hosting
 * If you are using an external hosting, create an account and follow their instructions. Navigate to the www/htdocs/public or similar using their tools and then start installation.
