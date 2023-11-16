@@ -1,0 +1,13 @@
+While I hope to get as much uptime as possible, and minimise the risk of data loss / spread of internal data, nothing can be guaranteed.
+Here is a short list of potential risks affecting the hosted site (but probably not Github)
+
+Possible risks:
+- Hosting laptop becomes unreachable due to internal or external factors (ufw error, network outage)
+- Hosting laptop fails, whether whole or part (RAM/CPU/CPU fan/SD card/Live USB)
+- Data loss due to config error (like losing messages, stale messages showing, etc)
+- Data loss due to failed SD card (will happen eventually, backups may be out of date too)
+- Equipment moving to storage (has happened!)
+- Hosting building/contents becoming unusable (seems unlikely)
+- Other risks may exist, I am not the universe
+
+Please have backups of your own content / etc (even personal machine, unless you don't mind losing the data not backed up)
