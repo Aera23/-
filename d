@@ -16,4 +16,5 @@ on 08/11/2023, 12m downtime, the machine needed restart due to half-crash when a
 on 12/11/2023, 14m downtime, a semi-planned restart to protect against hours of downtime after USB disconnect
                also wifi was red (errored) briefly, idk why (note: usb is still healthy)
 on 13/11/2023, I used ufw, it had an error, and it made my site unreachable for 8 hours (fixed in person)
-Last updated: 16/11/2023. This file only reports known downtime.
+on 15/11/2023, the router restarted, I only knew thru the config panel
+Last updated: 17/11/2023. This file only reports known downtime.
