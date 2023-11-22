@@ -17,4 +17,5 @@ on 12/11/2023, 14m downtime, a semi-planned restart to protect against hours of 
                also wifi was red (errored) briefly, idk why (note: usb is still healthy)
 on 13/11/2023, I used ufw, it had an error, and it made my site unreachable for 8 hours (fixed in person)
 on 15/11/2023, the router restarted, I only knew thru the config panel
-Last updated: 17/11/2023. This file only reports known downtime.
+on 22/11/2023, there was 30m downtime due to onion changing, and I didn't change it!
+Last updated: 22/11/2023. This file only reports known downtime.
