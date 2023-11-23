@@ -18,4 +18,6 @@ on 12/11/2023, 14m downtime, a semi-planned restart to protect against hours of 
 on 13/11/2023, I used ufw, it had an error, and it made my site unreachable for 8 hours (fixed in person)
 on 15/11/2023, the router restarted, I only knew thru the config panel
 on 22/11/2023, there was 30m downtime due to onion changing, and I didn't change it!
-Last updated: 22/11/2023. This file only reports known downtime.
+on 24/11/2023, there was 39m of the same thing, and after so many Tor restarts and permission/key (re)fixing,
+               PHP was restarted and it was fixed 
+Last updated: 24/11/2023. This file only reports known downtime.
