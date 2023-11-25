@@ -10,7 +10,7 @@ on 21/10/2023, the chat went PHP 500 coz I misplaced some brackets and didn't te
 on 23/10/2023, the wifi disconnected for 1 min due to breaker tripping, ending 8 days of router uptime
                Worse, the onionsite went offline for 1 hour, returning with degraded performance for 8 hours!
 on 29/10/2023, the onion site somehow became unreachable, Tor was restarted and it fixed it (maybe 2 hours)  
-               Records: 40 days since reboot, router is 15 days :)
+          >>>>>Records: 40 days since reboot, router is 15 days :)
 on 05/11/2023, there was a few mins of chat downtime due to pcntl_alarm(5) being too powerful for my chat script   
 on 08/11/2023, 12m downtime, the machine needed restart due to half-crash when accessing file properties :|
 on 12/11/2023, 14m downtime, a semi-planned restart to protect against hours of downtime after USB disconnect
@@ -19,5 +19,6 @@ on 13/11/2023, I used ufw, it had an error, and it made my site unreachable for 
 on 15/11/2023, the router restarted, I only knew thru the config panel
 on 22/11/2023, there was 30m downtime due to onion changing, and I didn't change it!
 on 24/11/2023, there was 39m of the same thing, and after so many Tor restarts and permission/key (re)fixing,
-               PHP was restarted and it was fixed 
-Last updated: 24/11/2023. This file only reports known downtime.
+               PHP was restarted and it was fixed
+          >>>>>As of last update: 13-14 days since reboot, router is 9-10 days :)
+Last updated: 26/11/2023. This file only reports known downtime.
