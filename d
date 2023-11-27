@@ -20,5 +20,7 @@ on 15/11/2023, the router restarted, I only knew thru the config panel
 on 22/11/2023, there was 30m downtime due to onion changing, and I didn't change it!
 on 24/11/2023, there was 39m of the same thing, and after so many Tor restarts and permission/key (re)fixing,
                PHP was restarted and it was fixed
-          >>>>>As of last update: 13-14 days since reboot, router is 9-10 days :)
-Last updated: 26/11/2023. This file only reports known downtime.
+on 27/11/2023, there was network interruptions as the computer was transitioned to wifi, as well as some malicious
+               (insider) sabotage, but not just for the sake of causing downtime to the site.
+          >>>> As of last update: 15 days since reboot, router is under 1 hour uptime
+Last updated: 27/11/2023. This file only reports known downtime.
