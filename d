@@ -22,5 +22,8 @@ on 24/11/2023, there was 39m of the same thing, and after so many Tor restarts a
                PHP was restarted and it was fixed
 on 27/11/2023, there was network interruptions as the computer was transitioned to wifi, as well as some malicious
                (insider) sabotage, but not just for the sake of causing downtime to the site.
-          >>>> As of last update: 15 days since reboot, router is under 1 hour uptime
+on 06/12/2023, there was 10-32 mins of limited access to my site (intermittent network timeouts).
+               Some days later, no visitors arrived for a 12 hour period, suggesting unknown downtime 
+               or failure to share site  (probably the latter)
+          >>>> As of last update: 26 days since server reboot, router is 10 days
 Last updated: 27/11/2023. This file only reports known downtime.
