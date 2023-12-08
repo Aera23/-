@@ -26,4 +26,4 @@ on 06/12/2023, there was 10-32 mins of limited access to my site (intermittent n
                Some days later, no visitors arrived for a 12 hour period, suggesting unknown downtime 
                or failure to share site  (probably the latter)
           >>>> As of last update: 26 days since server reboot, router is 10 days
-Last updated: 27/11/2023. This file only reports known downtime.
+Last updated: 08/12/2023. This file only reports known downtime.
