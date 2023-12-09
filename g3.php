@@ -1,15 +1,33 @@
+
 <?php
 if($phrase==""){
 if(file_get_contents("links.php")!=""){
 include("links.php");$live='/home/peplive/Documents/';}
 else{$live='old';}
 $old=glob($live.'*eep.txt');foreach($old as $eep){if((80+filectime($eep))<time()){unlink($eep);}}
+function svg($g){
+return '<svg width="200" height="50" alt="'.$g.'">
+  <defs>
+    <filter id="MyFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="60">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur" />
+      <feOffset in="blur" dx="0.5" dy="0.5" result="offsetBlur" />
+    </filter>
+  </defs>
+  <rect width="99" height="59" fill="#ddffdd" />
+  <g filter="url(#MyFilter)">
+    <path fill="none" stroke="#D90000" stroke-width="5" d="M25,45 C0,45 0,15 25,15 L75,15 C100,15 100,45 75,45 z" />
+    <text fill="#FFFFFF" stroke="black" font-size="23" font-family="Verdana" x="20" y="38">'.$g.'</text>
+  </g>'.$g.'
+</svg>';}
 
 //Return 1 if cookie exists, and is not hijacked, or if CRC32 of IP is in the DB
 function chkx(){
 #Fixed poor validation ++
 $file=filemtime(crc32("127.0.0.1").".dat");
- if((filemtime($file)+20)>time()){return "1";unlink(crc32("127.0.0.1").".dat");}
+ if((filemtime($file)+20)>time()){unlink(crc32("127.0.0.1").".dat");
+  $write='000-'.'<i>'.date("m-jS H:i:s").'</i> |<span style="color:#88ff88">System: User solved CAPTCHA'."</span>\n\n";
+  file_put_contents("1id8sjl.txt",$write,FILE_APPEND);return "1";
+}
 elseif($_REQUEST['o']<time() && crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
  return "1";}
 else{return "2";}}
@@ -79,11 +97,11 @@ echo'</style>
 <h2 id="a" style="margin:2em;color:#9f9;font-family:sans-serif;border:2px solid #6d6;border-radius:5px;padding:0.2em;width:69vw">:) ';
 //Randomise whether CAPTCHA wants first or last letters
 if((mt_rand()%3)==1){echo $text[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.base_convert(mt_rand(0,35),10,36).$a.'</'.$tag[time()%3].'>:';}
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg(base_convert(mt_rand(0,35),10,36).$a).'</'.$tag[time()%3].'>:';}
 elseif((mt_rand()%3)==2){echo $textb[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.$a.'</'.$tag[time()%3].'>:';$a=$a.$a;}
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>:';$a=$a.$a;}
 else{echo $texta[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.$a.base_convert(mt_rand(0,35),10,36).'</'.$tag[time()%3].'>:';}
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(mt_rand(0,35),10,36)).'</'.$tag[time()%3].'>:';}
 
 $r=mt_rand(0,999);
 file_put_contents($live.$r.'eep.txt',$a) or die("<mark>Page can't write to disk!</mark></html>");
@@ -98,8 +116,8 @@ for($i=0;$i<81;$i++){echo '<span class="a'.$i.'">'.($i-10).'</span>';}
 echo'</center></div></div><br>
 <br><mark style="margin-left:3em">'.`uptime -p`.'</mark></html>';if($live!="old"){include("70.php");}}
 else{
-$find=['(:','):',':|',':D',':3)',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<', ':-)','miii',':<}','{>:'];
-$change=['<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3)</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
+$find=['O-O','*v*','*-*','^.^','*.*',':P','(:','):',':|',':D',':3',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<', ':-)','miii',':<}','{>:'];
+$change=['<mark>O-O</mark>','<mark>*v*</mark>','<mark>*-*</mark>','<mark>^.^</mark>','<mark>*.*</mark>','<mark>:P</mark>','<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
 
 #Decompressing the random colours
 $k="'>$</span><span style='color:#";
@@ -112,9 +130,7 @@ $phrase=htmlspecialchars_decode($phrase);$q='';
 $shift=time()%15;
 for($i=0;$i<min(strlen($phrase),$max);$i++){$q.= str_replace("$",$phrase[$i],str_replace(" sty","<span sty",$txt[$i+$shift]));}$phrase = str_replace("_","",$phrase);
 
-#Sets up filter file if blank, or loads it in
-if(file_get_contents(crc32("x"))==""){file_put_contents(crc32("x"),"nigg\ncunt\nslut\nsuck\nfag\ndick\npuss\nporn\nsex\ncp li\ncock\ncurry munch\nescorts");exit("<meta http-equiv='refresh' content='0'><mark>reload coz filters are there</mark>");}
-else{$filter = file(crc32("x"));}
+#Removed $filter due to it not being used
 
 #Credit to allixsenos, Source: https://www.php.net/manual/en/function.strtr.php
 function normalize($string) {
@@ -142,4 +158,4 @@ foreach($parts as $part){
    $col.= str_replace($matches[1],"@<b style='color:".substr($times,$pos+6,7).";'>".$matches[1]."</b>",$part);}
  else{$col.=$a;}}
 return str_replace("@@","@",$col);}
-?>
+?> 
