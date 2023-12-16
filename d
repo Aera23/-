@@ -27,4 +27,6 @@ on 06/12/2023, there was 10-32 mins of limited access to my site (intermittent n
                or failure to share site  (probably the latter)
 on 10/12/2023, there was 5-10 mins of downtime due to insider network sabotage (wish I could prevent future attacks)
           >>>> As of last update: 28 days since server reboot, router is few hrs
-Last updated: 10/12/2023. This file only reports known downtime.
+on 13/12/2023, there was overnight downtime due to bad onion keys, restored from backup. The IP has changed a few days later
+on 16/12/2023, there was 1m downtime for switching networks
+Last updated: 17/12/2023. This file only reports known downtime.
