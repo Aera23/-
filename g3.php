@@ -1,4 +1,3 @@
-
 <?php
 if($phrase==""){
 if(file_get_contents("links.php")!=""){
@@ -24,9 +23,7 @@ return '<svg width="200" height="50" alt="'.$g.'">
 function chkx(){
 #Fixed poor validation ++
 $file=filemtime(crc32("127.0.0.1").".dat");
- if((filemtime($file)+20)>time()){unlink(crc32("127.0.0.1").".dat");
-  $write='000-'.'<i>'.date("m-jS H:i:s").'</i> |<span style="color:#88ff88">System: User solved CAPTCHA'."</span>\n\n";
-  file_put_contents("1id8sjl.txt",$write,FILE_APPEND);return "1";
+ if((filemtime($file)+15)>time()){unlink(crc32("127.0.0.1").".dat");return "1";
 }
 elseif($_REQUEST['o']<time() && crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
  return "1";}
@@ -55,7 +52,7 @@ exit("<meta http-equiv='refresh' content='3'><mark>Solve in other window, should
 }
 else{echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 if($_REQUEST['id']!=""){$e = file_get_contents($live.$_POST['id'].'eep.txt');}
-if($_REQUEST['ii']!="" and strtolower(trim($_REQUEST['ii'],' \\'))==$e)
+if($_REQUEST['ii']!="" && strtolower(trim($_REQUEST['ii'],' \\'))==$e)
 {setcookie("o", time(), time()+36000);setcookie("crc", crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".time())), time()+36000);
 file_put_contents(crc32("127.0.0.1").".dat",crc32(strrev("127.0.0.1")));
  if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.1 28.php'/>";exit;}
@@ -67,9 +64,9 @@ else{echo"<meta http-equiv='refresh' content='0.1 g3.php?j=1&next=".$_POST['next
 
 $a = base_convert(mt_rand(1296,46655),10,36);
 $tag = ['q','span','b'];
-$text = ['Type the final 3 letters/digits: ','Only type the last 3 letters and numbers - ','Gimme random characters, ignoring 1<sup>st</sup> one: ','Recall the last three characters: ','Last three letters/digits please - '];
-$texta = ['Type the initial 3 letters/digits: ','Only type the first 3 letters and numbers - ','Gimme random characters, ignoring  4<sup>th</sup> one: ','Recall the first three characters: ','First three letters/digits please - '];
-$textb = ['Type the random characters twice:','Enter the characters below 2 times =','Input the characters below two times:','Repeat the characters into the box','Enter the characters below twice'];
+$text = ['Type the final 3 letters/digits','Only type the last 3 letters and numbers','Gimme random characters, ignoring 1<sup>st</sup> one','Recall the last three characters','Last three letters/digits please'];
+$texta = ['Type the initial 3 letters/digits','Only type the first 3 letters and numbers','Gimme random characters, ignoring  4<sup>th</sup> one','Recall the first three characters','First three letters/digits please'];
+$textb = ['Type the random characters twice','Enter the characters below 2 times =','Input the characters below two times','Repeat the characters into the box','Enter the characters below twice'];
 echo'<!DOCTYPE html><html style="background:#000"><meta http-equiv="refresh" content="70">
 <style>
 .r {width: 50px;height: 50px;
@@ -91,24 +88,24 @@ echo'<!DOCTYPE html><html style="background:#000"><meta http-equiv="refresh" con
   81%   {opacity:1;font-size:20px}
   100%   {opacity:1;font-size:0.1px}}';
 
-for($i=0;$i<81;$i++){echo'.a'.$i.'{animation: t 1s linear;animation-delay:'.(80-$i).'s;opacity:0;font-size:0.1px}';}
+for($i=0;$i<81;$i++){echo'.a'.$i.'{animation:t 1s linear;animation-delay:'.(80-$i).'s;opacity:0;font-size:0.1px}';}
 
 echo'</style>
 <h2 id="a" style="margin:2em;color:#9f9;font-family:sans-serif;border:2px solid #6d6;border-radius:5px;padding:0.2em;width:69vw">:) ';
 //Randomise whether CAPTCHA wants first or last letters
 if((mt_rand()%3)==1){echo $text[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg(base_convert(mt_rand(0,35),10,36).$a).'</'.$tag[time()%3].'>:';}
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg(base_convert(mt_rand(0,35),10,36).$a).'</'.$tag[time()%3].'>';}
 elseif((mt_rand()%3)==2){echo $textb[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>:';$a=$a.$a;}
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>';$a=$a.$a;}
 else{echo $texta[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(mt_rand(0,35),10,36)).'</'.$tag[time()%3].'>:';}
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(mt_rand(0,35),10,36)).'</'.$tag[time()%3].'>';}
 
 $r=mt_rand(0,999);
 file_put_contents($live.$r.'eep.txt',$a) or die("<mark>Page can't write to disk!</mark></html>");
 
 echo'<form action="g3.php" method="post">
 <input name="ii" style="padding:0.3em" size="4"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><button style="background:#000;color:#8f8">Enter</button></form>
-<p style="font-size:15px">Animation shows time left (up to 70s)</p></h2>
+<p style="font-size:15px">Accessible CAPTCHA, solve within 70s</p></h2>
 <div style="background:#dfd;width:70vw;display:inline-block;margin-left:2.8em"><div class="r"><center style="padding:20% !important;" class="run">';
 
 for($i=0;$i<81;$i++){echo '<span class="a'.$i.'">'.($i-10).'</span>';}
@@ -126,11 +123,13 @@ $t=str_replace(" ","",$t);
 $tx=str_replace("ns","n s", $t);
 $txt=explode("<span",$tx.$tx);
 $max=count($txt);
-$phrase=htmlspecialchars_decode($phrase);$q='';
-$shift=time()%15;
-for($i=0;$i<min(strlen($phrase),$max);$i++){$q.= str_replace("$",$phrase[$i],str_replace(" sty","<span sty",$txt[$i+$shift]));}$phrase = str_replace("_","",$phrase);
+$phrase='_'.htmlspecialchars_decode($phrase);$q='';
+$shift=time()%20;
+for($i=0;$i<min(strlen($phrase),$max);$i++){$q.= str_replace("$",$phrase[$i],str_replace(" sty","<span sty",$txt[$i+$shift]));}$q = str_replace("_","",$q);
 
-#Removed $filter due to it not being used
+#Unused filters
+#if(file_get_contents(crc32("x"))==""){file_put_contents(crc32("x"),"nigg\ncunt\n^s\nsuck\nfag\n^d\npuss\nporn\n^x\ncp li\n^k\ncurry munch\nescorts");exit("<meta http-equiv='refresh' content='0'><mark>reload coz filters are there</mark>");}
+#else{$filter = file(crc32("x"));}
 
 #Credit to allixsenos, Source: https://www.php.net/manual/en/function.strtr.php
 function normalize($string) {
@@ -150,7 +149,7 @@ foreach($parts as $part){
  if(strpos($e,"@".$part)!==false){$a='@'.$part;}
  else{$a=$part;}
   #Getting the colour from the user
- preg_match('/@([^\s:?\/\\*|<>.,]*)\s?/', $a, $matches);
+ preg_match('/@([^\s:?\/\\*|<>.,]*)\s?/',$a,$matches);
  if($matches[1]!=""){
    $times=explode("|",file_get_contents($matches[1].".visit"));
    $times = $times[count($times)-1];
