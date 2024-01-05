@@ -3,14 +3,17 @@ http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 # Chat and stopwatch
 * Included are the chat script, "creation stopwatch" and the CAPTCHA.
 * The stopwatch counts time since it was first run. To reset it, delete time2.txt
-* New: Admin can delete messages with one click! (Click the number button)
+* New: Admin can delete messages and deter unwanted chatters from staying, with one click!
+# Latency test
+* To run the test, access colour.php
+* To view more data, add ?r=1 (or 2,3,4) when accessing data.php
 
 # Installation
 * Copy the files into the directory you want to.
 * Run g3.php and solve CAPTCHA
 * Follow the prompts, and save
 * Click the button saying "BACK"
-* Access stopwatch.php (optional)
+* Optional: Check out stopwatch.php or colour.php :)
 Enjoy :)
 
 # Extra
