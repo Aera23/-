@@ -31,4 +31,8 @@ on 13/12/2023, there was overnight downtime due to bad onion keys, restored from
 on 16/12/2023, there was 1m downtime for switching networks
 on 22/12/2023, there was 30 mins downtime due to I/O error after 40 days uptime
 on 26/12/2023, there was 10m downtime due to internal reasons over wifi. I probably missed another downtime note
-Last updated: 27/12/2023. This file only reports known downtime.
+on 04/01/2024, there was 1m downtime to switch networks to wifi, from hotspot
+on 07/01/2024, there was 14m downtime from typing "sudo cat /dev/watchdog" in the terminal, coz I didn't know better
+on 08/01/2024, there was a few hours of chat unreachability due to an autoreplaced Do^cents... added a long term patch
+               to 0.php to fix it (My own FoxyReplace filter)
+Last updated: 09/01/2024. This file only reports known downtime.
