@@ -1,4 +1,7 @@
+
 <?php
+if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+36000);}
+if($_GET['a']=="a"){file_put_contents("crc.txt",crc().date(" jS H:i:s")."\n",8);}
 $_COOKIE['name']=trim($_COOKIE['name']);
 if($_COOKIE['name']==file_get_contents("unlock.txt")&&$_COOKIE['name']!=""){exit('<meta http-equiv="refresh" content="4"><mark>I/O error<br><br>'.date("H:i:s").'</mark>');}
 $config=explode("|",file_get_contents("config.txt"));
@@ -74,10 +77,10 @@ if($e!=""){rename($e,$e.".ivisit");}
 $e = explode(".v",$e)[0];
 file_put_contents("unlock.txt",$e);
 #Ideally, there will be a loop to clean all messages from that user, mark the lines as [redacted ###] and store it so it can be restored or read if needed. I won't implement it though
-exit("<meta http-equiv='refresh' content='1 28.php?b=b'><h3><mark>Kicked $e</mark></h3>");}
+exit("<meta http-equiv='refresh' content='1 28.php?b=b'><h3><mark>Banned $e</mark></h3>");}
 
-if(($_GET['a']=='Settings' && $_COOKIE['9u9dyi']=="t") || $config[0]==""){
-setcookie("9u9dyi","t",time()+864000);
+if(($_GET['a']=='Settings' && $_COOKIE['9u9dyi']!="") || $config[0]==""){
+setcookie("9u9dyi","n",time()+864000);
 $phrase=$config[2] ?: 'Chat Settings';include('g3.php');
 if($_POST['a']!=""){file_put_contents("config.txt",htmlspecialchars($_POST['a']."|".$_POST['b']."|".$_POST['c']."|".htmlspecialchars_decode($_POST['d'])."|".$_POST['f'])."|".$_POST['g']."|".$_POST['h']);echo'<i>Saved</i>';$config=explode("|",file_get_contents("config.txt"));}
 if($_POST['e']!="" && $_POST['e']!=file_get_contents("canary.txt")){file_put_contents("canary.txt",$_POST['e']);}
@@ -213,8 +216,15 @@ if($_GET['b']=='d'){
 #Basics
 $comment=trim($_POST["comment"]);$z=2;function mydump(){$x=fopen("9u9dyi", "a+"); fwrite($x, $_POST['name'] . $_POST['comment']);fclose($x);}
 
+
 #Saving messages
 if($_POST["name"]!="" && $comment!="" && $_COOKIE['u']!=$_REQUEST['q']){$z=5;
+
+#Prevent multiple submissions within a 2s timeframe, if post too quick, reset timeframe
+if(file_get_contents("".crc())==''){file_put_contents("".crc(),time());}
+elseif((time()-2)> file_get_contents("".crc())){file_put_contents("".crc(),time());}
+else{file_put_contents("".crc(),time());exit("<mark>Unknown error</mark>");}
+
  if(file_get_contents("3.html")!=""){
   $file=file("3.html");foreach($file as $filter){$f=explode("|",str_replace("\n","",$filter));$find[]=$f[0];$change[]=substr($f[1],0,-1);}}
 if(strpos($_POST['comment'],'/me')!==0){$txt=process($_POST["name"],$find,$change) . " - " . process($comment,$find,$change);}
@@ -224,8 +234,8 @@ else{$txt=process($_POST["name"],$find,$change) . str_replace('/me','',process($
 if(strpos($_POST['comment'],"/bm ")!==false && ($config[5]==1 || $_COOKIE['9u9dyi']!="")){
 $bm=str_replace("/bm ","",process($_POST['comment'],$find,$change));
 $cf=fopen("load.txt", "w+") or die($m);fwrite($cf, $bm) or die("<mark>Can't write</mark>");fclose($cf);$z=3;}
-#Kick
-if(strpos($_POST['comment'],"/k ")===0 && $_COOKIE['9u9dyi']!=""){$cf=fopen("unlock.txt", "w") or die($m);$e=htmlspecialchars(str_replace("/k ","",$_POST['comment']));fwrite($cf, $e) or die("<mark>Can't write</mark>");fclose($cf);$z=4;echo"<mark>Kicked $e</mark>";}
+#Bann
+if(strpos($_POST['comment'],"/k ")===0 && $_COOKIE['9u9dyi']!=""){$cf=fopen("unlock.txt", "w") or die($m);$e=htmlspecialchars(str_replace("/k ","",$_POST['comment']));fwrite($cf, $e) or die("<mark>Can't write</mark>");fclose($cf);$z=4;echo"<mark>Banned $e</mark>";}
 #Filter add
 if(strpos($_POST['comment'],"/fa ")===0 && ($config[5]==1 || $_COOKIE['9u9dyi']!="")){$cf=fopen("3.html", "a+") or die($m);$e=htmlspecialchars(str_replace("/fa ","",$_POST['comment']));fwrite($cf, $e."\n") or die("<mark>Can't write</mark>");fclose($cf);$z=4;echo"<mark>Filter added: $e</mark>";}
 #Filter remove
@@ -295,7 +305,7 @@ for($i=0;$i<10;$i++){echo'.a'.$i.'{animation:t 10s linear infinite;animation-del
 echo'.r{color:#fff}.g{width:15em;margin-right:8em;margin-left:1em;background:#004;margin-top:-1px;padding:0.2em;border-radius:10px}
 /*Clock :)*/
 @keyframes t{
- 0%{opacity:1;font-size:20px}9.8%{opacity:1;font-size:20px}9.9%{opacity:0;font-size:20px}10%{opacity:0;font-size:0.1px}}
+ 0%{opacity:1;font-size:20px}9.98%{opacity:1;font-size:20px}9.99%{opacity:0;font-size:20px}10%{opacity:0;font-size:0.1px}}
 @keyframes i{
  35%{opacity:0;font-size:0.01px}35.1%{opacity:0;font-size:20px}35.2%{opacity:1;font-size:20px}51.7%{opacity:1;font-size:20px}51.8%{opacity:0;font-size:20px}51.9%{opacity:0;font-size:0.1px}}
 @keyframes c{
@@ -338,6 +348,8 @@ echo'<span>Emphasis (0.7-1.5em):</span>
 <input name="e" size="3" value="'. min(htmlspecialchars($_REQUEST['e']),2).'" max="2">
 <span>Refresh (s)</span>
 <input name="refresh" size="3" value="'. htmlspecialchars($_POST['refresh']).'" min="2" placeholder="4">
+<span>Audio (on|off)</span>
+<input name="audio" size="3" value="'. htmlspecialchars($_POST['audio']).'">
 <span>Font</span><input name="f" value="'.htmlspecialchars($_REQUEST['f']).'"><!--span>Messages:</span><input name="lines" size="2" value="htmlspecialchars($l)" max="64"-->';}
 
 #Chat form
@@ -363,7 +375,7 @@ echo'<br></span></label><div class="content">
 "/fr 1" removes the first filter<br>
 "/fl" lists all the filters in a tiny frame</b>';}echo'
 </div><div class="hidden"><p style="display:inline">Please keep things non-toxic (Reload if needed, Bookmark too) <mark>:)</mark></p></div><iframe id="tx" style="float:right" src="28.php?b=b&refresh='.htmlspecialchars($_COOKIE['refresh']).'"></iframe><iframe src="28.php?b=d" name="d" id="d" autofocus style="height:10em"></iframe><br><b style="color:#afa">Welcome to '.$phrase.' :)</b>
-</fieldset><iframe class="v" name="aa" src="/28.php?a=a&m='. $l .'&name='.htmlspecialchars($_REQUEST['name']).'&refresh='.htmlspecialchars($_COOKIE['refresh']).'&col='.base64_encode($_REQUEST['col']).'" style="width:100%;height:30em" name="aa"></iframe><audio src="X-silence.mp3" autoplay></audio></body></html>';exit();}}
+</fieldset><iframe class="v" name="aa" src="/28.php?a=a&m='. $l .'&name='.htmlspecialchars($_REQUEST['name']).'&refresh='.htmlspecialchars($_COOKIE['refresh']).'&col='.base64_encode($_REQUEST['col']).'" style="width:100%;height:34em" name="aa"></iframe><audio src="X-silence.';if($_COOKIE['audio']!='off' && $_COOKIE['audio']!='no'){echo 'ogg';}else{echo'mp3';}echo'" autoplay></audio></body></html>';exit();}}
 
 else{function pt($a,$i){
 $z='</button></form>';$e=crc()."-";$b='';
@@ -381,7 +393,7 @@ elseif($i%2==0){
 preg_match("/([0-9]{3})-/i",strtolower($a),$matches);
 $b.='<form action="28.php?b=d&name='.htmlspecialchars($_REQUEST['name']).'&col='.base64_encode($_COOKIE['col']).'" target="d" method="post"><button class="v" name="pm" value="/pm '.$matches[1].' ">PM</button></form>';}}
 $a=str_replace("<!--","<i>",$a);$a=str_replace("-->","</i> |",$a);echo $b;
-return str_replace(date("m-jS "),"",$a);}
+return str_replace(date("m-"),"",str_replace(date("m-jS "),"",$a));}
 
 $sec=htmlspecialchars($_COOKIE['refresh'])?:'4';
 echo'<!DOCTYPE html><html lang="en">';
@@ -397,7 +409,7 @@ echo'<title>'.$phrase.'</title><meta http-equiv="refresh" content="'.$sec.' ?a=a
 #Message count and retrieval
 $b=($config[4]*2)?:80;#(intval($_REQUEST['m'])*2)?:24;#$b=abs(min($b,48));
 #Audio ping
-if($_GET['t'] != $time && $_GET['t']!=""){$e='VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
+if($_GET['t'] != $time && $_GET['t']!="" && $_COOKIE['audio']!="off" & $_COOKIE['audio']!="no"){$e='VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
 $v='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';echo'<audio autobuffer="autobuffer" autoplay="autoplay"><source src="data:audio/mp3;base64,SUQzAwAAAAAAZVRQRTEAAAAHAAAAQWVyYTIzVFlFUgAAAAUAAAAyMDIzVERSQwAAAAUAAAAyMDIzQ09NTQAAABEAAAAAAAAAbGlrZSBkYXkgMTc4Q09NTQAAABEAAABYWFgAbGlrZSBkYXkgMTc4//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAAVAAAMGQAxMTExPj4+Pj5ISEhISFJSUlJSW1tbW2VlZWVlb29vb295eXl5eYODg4ONjY2NjZqampqapKSkpKStra2turq6urrExMTExM7Ozs7O2NjY2OLi4uLi7Ozs7Oz29vb29v////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAJUQQABzAAADBmTpZS3'.$v.$v.$v.$v.$v.$v.$v.'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'.$e.'//sQxPqARIgdO+xh4OCPg+d8/Twc'.$e.'VVVVVVVVVVVVVVVVVVX/+xDE/4BFVH817gFM4KcP5j3AKZx'.$e.'VVVVVVVVVVVVVVVVVVf/7EMT+gMXofy+uAazgnxAmecApnF'.$e.'VVVVVVVVVVVVVVVVVV//sQxPuAxSBHNe3hpKCHCOa5sB2c'.$e.'VVVVVVVVVVVVVVVVVVX/+xDE/4BGuDsz7T2IKLoFJHT3mJ'.$e.'VVVVVVVVVVVVVVVVVVVQ==" /></audio><mark>*</mark>';}
 echo'<mark class="ref">*</mark><pre style="word-wrap:break-word;line-height:1.7;margin-top:-0.1em"><a href="canary.txt" target="_blank">'.htmlspecialchars_decode($config[3]).'</a><br>';
 if(isset($_COOKIE['name'])){file_put_contents(str_ireplace("Aera344","Aera23",str_ireplace("Aera23","alkaline",strtr($_COOKIE['name'],":?/\\*|<>  '","__________"))).'.visit','|<span style="color:'.htmlspecialchars($_COOKIE['col']).'">'.date("m-jS H:i:</\s\p\a\\n>s"),FILE_APPEND);}
