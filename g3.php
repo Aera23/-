@@ -1,4 +1,5 @@
 <?php
+if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+36000);}
 if($phrase==""){
 if(file_get_contents("links.php")!=""){
 include("links.php");$live='/home/peplive/Documents/';}
@@ -34,7 +35,7 @@ if(chkx()=="1"){
 if($_COOKIE['crc']==""){
 setcookie("crc", crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".time())), time()+36000);
 setcookie("o",time(),time()+36000);}
-  if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.06 28.php'/>";exit();}
+  if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.06 28.php".$_POST['audio']."'/>";exit();}
   else{
   echo"<meta http-equiv='refresh' content='0.06 ".$_REQUEST['next']."'/>";exit();
   }
@@ -52,7 +53,7 @@ exit("<meta http-equiv='refresh' content='3'><mark>Solve in other window, should
 }
 else{echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 if($_REQUEST['id']!=""){$e = file_get_contents($live.$_POST['id'].'eep.txt');}
-if($_REQUEST['ii']!="" && strtolower(trim($_REQUEST['ii'],' \\'))==$e)
+if($_REQUEST['ii'.base_convert($_REQUEST['id'],10,36)]!="" && strtolower(trim($_REQUEST['ii'.base_convert($_REQUEST['id'],10,36)],' \\'))==$e)
 {setcookie("o", time(), time()+36000);setcookie("crc", crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".time())), time()+36000);
 file_put_contents(crc32("127.0.0.1").".dat",crc32(strrev("127.0.0.1")));
  if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.1 28.php'/>";exit;}
@@ -101,10 +102,12 @@ else{echo $texta[mt_rand(0,4)];
 echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(mt_rand(0,35),10,36)).'</'.$tag[time()%3].'>';}
 
 $r=mt_rand(0,999);
-file_put_contents($live.$r.'eep.txt',$a) or die("<mark>Page can't write to disk!</mark></html>");
+file_put_contents($live.$r.'eep.txt',$a) or die("<meta http-equiv='refresh' content='0 g9.php?next=".$_REQUEST['next']."'><mark>Please await forwarding to the platform</mark></html>");
 
 echo'<form action="g3.php" method="post">
-<input name="ii" style="padding:0.3em" size="4"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><button style="background:#000;color:#8f8">Enter</button></form>
+<input name="ii'.base_convert($r,10,36).'" style="padding:0.3em" size="4" maxlength="6"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><br><br><button style="background:#000;color:#8f8" name="audio" value="yes">Enter with Audio</button>
+<br><br><button style="background:#000;color:#8f8" name="audio" value="no">Enter without Audio</button>
+</form>
 <p style="font-size:15px">Accessible CAPTCHA, solve within 70s</p></h2>
 <div style="background:#dfd;width:70vw;display:inline-block;margin-left:2.8em"><div class="r"><center style="padding:20% !important;" class="run">';
 
