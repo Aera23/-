@@ -9,7 +9,7 @@ table,tr,td{display:inline;margin-left:1em}*:hover{background:#dfd}
 $str = file_get_contents(date('j')."l.txt");
 
 $data="<center><h1>Server Speed Monitor</h1></center><br><body><p>How fast is the server? <a href='colour.php'>Check your speed</a> and come back.
-The speed of the site is displayed below. <a href='timing.php?sort=1'>Sort by time</a></p>";
+The speed of the site is displayed below. <a href='data.php?sort=1'>Sort by time</a></p>";
 echo'Date: ' . date("m-d @ H\h\\r\s\ \A\C\S\T");
 $x=0;
 foreach(explode('<br>', $str) as $r){
