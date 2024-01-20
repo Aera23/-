@@ -1,5 +1,7 @@
 http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
-(Removed hosting IP since HTTPS certificate seems unrenewable)
+
+https://aera23.net/
+
 # Chat and stopwatch
 * Included are the chat script, "creation stopwatch" and the CAPTCHA.
 * The stopwatch counts time since it was first run. To reset it, delete time2.txt
