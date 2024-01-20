@@ -6,8 +6,9 @@ http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 * New: Admin can delete messages and deter unwanted chatters from staying, with one click!
 # Latency test
 * To run the test, access colour.php
-* To view more data, add ?r=1 (or 2,3,4) when accessing data.php
-
+* To view more data, add ?r=1 (or 2,3,4) when accessing data.php (shows from last day)
+# Comment form
+* Type a comment, and press enter (this was made for people who want to see how simple PHP can be, and because I liked some CSS)
 # Installation
 * Copy the files into the directory you want to.
 * Run g3.php and solve CAPTCHA
