@@ -1,10 +1,10 @@
 <?php
-if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+36000);}
+if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+34000);}
 if($phrase==""){
-if(file_get_contents("links.php")!=""){
+if(file_get_contents("links.php")!=""){ # Sets path
 include("links.php");$live='/home/peplive/Documents/';}
 else{$live='old';}
-$old=glob($live.'*eep.txt');foreach($old as $eep){if((80+filectime($eep))<time()){unlink($eep);}}
+$old=glob($live.'*eep.txt');foreach($old as $eep){if((80+filectime($eep))<time()){unlink($eep);}} #cleanup
 function svg($g){
 return '<svg width="200" height="50" alt="'.$g.'">
   <defs>
@@ -16,61 +16,56 @@ return '<svg width="200" height="50" alt="'.$g.'">
   <rect width="99" height="59" fill="#ddffdd" />
   <g filter="url(#MyFilter)">
     <path fill="none" stroke="#D90000" stroke-width="5" d="M25,45 C0,45 0,15 25,15 L75,15 C100,15 100,45 75,45 z" />
-    <text fill="#FFFFFF" stroke="black" font-size="23" font-family="Verdana" x="20" y="38">'.$g.'</text>
-  </g>'.$g.'
-</svg>';}
+    <text fill="#FFF" stroke="#000" font-size="23" font-family="Verdana" x="20" y="38">'.$g.'</text>
+  </g>
+</svg>';} #SVG of CAPTCHA
 
-//Return 1 if cookie exists, and is not hijacked, or if CRC32 of IP is in the DB
+#Return 1 if cookie exists, and is not hijacked
 function chkx(){
-#Fixed poor validation ++
-$file=filemtime(crc32("127.0.0.1").".dat");
- if((filemtime($file)+15)>time()){unlink(crc32("127.0.0.1").".dat");return "1";
-}
-elseif($_REQUEST['o']<time() && crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
- return "1";}
+if($_REQUEST['o']<time() && crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){return "1";}
 else{return "2";}}
 
-//Redirection
+#Redirection if already solved
 if(chkx()=="1"){
-if($_COOKIE['crc']==""){
-setcookie("crc", crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".time())), time()+36000);
-setcookie("o",time(),time()+36000);}
   if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.06 28.php".$_POST['audio']."'/>";exit();}
   else{
   echo"<meta http-equiv='refresh' content='0.06 ".$_REQUEST['next']."'/>";exit();
   }
 }
 
-//Redirect if cookie exists, and is not hijacked
-if(abs($_COOKIE['o'] - time())<36000 && crc32(base64_encode("127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
+#Redirect if cookie checks out
+if(abs($_COOKIE['o'] - time())<34000 && crc32(base64_encode("127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
   if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.06 28.php'/>";exit();}
   else{
   echo"<meta http-equiv='refresh' content='0.06 ".$_REQUEST['next']."'/>";exit();
   }
-}
+}//Captcha expiry within 28.php
 elseif($_GET['next']=="28.php?b=d" || $_GET['next']=="28.php?b=b"){
 exit("<meta http-equiv='refresh' content='3'><mark>Solve in other window, should refresh automatically. You could try to resubmit the form too ~ ".date("H:i:s")."</mark>");
-}
-else{echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+}else{echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+
+#Fresh Validation
 if($_REQUEST['id']!=""){$e = file_get_contents($live.$_POST['id'].'eep.txt');}
-if($_REQUEST['ii'.base_convert($_REQUEST['id'],10,36)]!="" && strtolower(trim($_REQUEST['ii'.base_convert($_REQUEST['id'],10,36)],' \\'))==$e)
-{setcookie("o", time(), time()+36000);setcookie("crc", crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".time())), time()+36000);
+if($_REQUEST['q'.base_convert(crc32($_REQUEST['id']."9u9dyi"),10,36)]!="" && strtolower(trim($_REQUEST['q'.base_convert(crc32($_REQUEST['id']."9u9dyi"),10,36)],' \\'))==$e)
+{
+$stupid = base64_decode(strrev(explode("|",file_get_contents("config.txt"))[7]));
+       if($_POST['test']!=$stupid){echo("<mark>Bad invite code</mark><br>");}
+#Cookie setup
+else{  
+setcookie("o", time(), time()+34000);setcookie("crc", crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".time())), time()+34000);
 file_put_contents(crc32("127.0.0.1").".dat",crc32(strrev("127.0.0.1")));
  if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.1 28.php'/>";exit;}
  else{echo"<meta http-equiv='refresh' content='0.1 ".$_REQUEST['next']."'/>";exit;}
-
-if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.1 g3.php?j=1&next=28.php&id=".$_REQUEST['id']."&ii=".$_REQUEST['ii']."'/>";exit;}
-else{echo"<meta http-equiv='refresh' content='0.1 g3.php?j=1&next=".$_POST['next']."&id=".$_REQUEST['id']."&ii=".$_REQUEST['ii']."''/>";exit;}}
-}
+}}}
 
 $a = base_convert(mt_rand(1296,46655),10,36);
-$tag = ['q','span','b'];
+$tag = ['i','span','b'];
 $text = ['Type the final 3 letters/digits','Only type the last 3 letters and numbers','Gimme random characters, ignoring 1<sup>st</sup> one','Recall the last three characters','Last three letters/digits please'];
 $texta = ['Type the initial 3 letters/digits','Only type the first 3 letters and numbers','Gimme random characters, ignoring  4<sup>th</sup> one','Recall the first three characters','First three letters/digits please'];
 $textb = ['Type the random characters twice','Enter the characters below 2 times =','Input the characters below two times','Repeat the characters into the box','Enter the characters below twice'];
-echo'<!DOCTYPE html><html style="background:#000"><meta http-equiv="refresh" content="70">
+echo'<!DOCTYPE html><html style="background:linear-gradient(45deg, #0A1520, #0A2015, #200A15)"><meta http-equiv="refresh" content="70">
 <style>
-.r {width: 50px;height: 50px;
+button:hover,input:hover{border:2px solid #a66 !important}.r {width: 50px;height: 50px;
   background: red;
   position: relative;
   animation-name: example;
@@ -94,19 +89,19 @@ for($i=0;$i<81;$i++){echo'.a'.$i.'{animation:t 1s linear;animation-delay:'.(80-$
 echo'</style>
 <h2 id="a" style="margin:2em;color:#9f9;font-family:sans-serif;border:2px solid #6d6;border-radius:5px;padding:0.2em;width:69vw">:) ';
 //Randomise whether CAPTCHA wants first or last letters
-if((mt_rand()%3)==1){echo $text[mt_rand(0,4)];
+/*if((mt_rand()%3)==1){echo $text[mt_rand(0,4)];
 echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg(base_convert(mt_rand(0,35),10,36).$a).'</'.$tag[time()%3].'>';}
-elseif((mt_rand()%3)==2){echo $textb[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>';$a=$a.$a;}
+else*/if(1==1 || (mt_rand()%3)==2){echo $textb[mt_rand(0,4)];
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>';$a=$a.$a;}/*
 else{echo $texta[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(mt_rand(0,35),10,36)).'</'.$tag[time()%3].'>';}
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(mt_rand(0,35),10,36)).'</'.$tag[time()%3].'>';}*/
 
 $r=mt_rand(0,999);
 file_put_contents($live.$r.'eep.txt',$a) or die("<meta http-equiv='refresh' content='0 g9.php?next=".$_REQUEST['next']."'><mark>Please await forwarding to the platform</mark></html>");
 
-echo'<form action="g3.php" method="post">
-<input name="ii'.base_convert($r,10,36).'" style="padding:0.3em" size="4" maxlength="6"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><br><br><button style="background:#000;color:#8f8" name="audio" value="yes">Enter with Audio</button>
-<br><br><button style="background:#000;color:#8f8" name="audio" value="no">Enter without Audio</button>
+echo'<form action="g3.php" method="post"><br>
+<input name="q'.base_convert(crc32($r."9u9dyi"),10,36).'" style="padding:0.3em;background:#dfd;margin-left:2em" size="4" maxlength="6"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><br><br><span style="font-size:16px">Invite code (30 on public chats):</a><br><input name="test" value="30" size="8" style="padding:0.3em;background:#dfd;margin-left:1em"><br><br><button style="padding:0.3em;border-radius:8px;border: 2px solid #8f8;background:linear-gradient(45deg, #0A1520, #0A2015, #200A15);color:#8f8" name="audio" value="yes">Enter with Audio</button>
+<br><br><button style="padding:0.3em;border-radius:8px;border: 2px solid #8f8;background:linear-gradient(45deg, #0A1520, #0A2015, #200A15);color:#8f8" name="audio" value="no">Enter without Audio</button>
 </form>
 <p style="font-size:15px">Accessible CAPTCHA, solve within 70s</p></h2>
 <div style="background:#dfd;width:70vw;display:inline-block;margin-left:2.8em"><div class="r"><center style="padding:20% !important;" class="run">';
