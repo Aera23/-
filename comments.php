@@ -11,15 +11,15 @@
         padding-bottom: 25px;}
 </style>
 <body>
-    <h2 style="font-size:30px;">Basic comment form</h2>
+    <h2 style="font-size:30px;">Comments</h2>
     <form action="" method="post">
-    <input name="name" value="<?php echo htmlspecialchars($_POST['name']); ?>"><br><input name="comment" size="70" placeholder="Text"><button>Go</button></form>
-    <p style="color:yellow;">This is @Aera23's logfile</p>
+    <input name="name" placeholder="Nick" value="<?php echo htmlspecialchars($_POST['name']); ?>"><br><input name="comment" size="70" placeholder="Text"><button>Go</button></form>
+    <p style="color:yellow;">I made this with PHP and some CSS/HTML that was lying around.</p>
 <pre style="margin:1em"><br>
     <?php
     if(file_get_contents("comments.txt")==""){file_put_contents("comments.txt","\n",8);} # Fix visual bug
     #Send and/or retrieve comments
-    if($_POST['name']!="" && $_POST['comment']!=""){file_put_contents("comments.txt",htmlspecialchars(date("jS H:i | ").$_POST['name'].' - '.$_POST['comment']."\n"),8);}
+    if($_POST['name']!="" && $_POST['comment']!=""){file_put_contents("comments.txt",htmlspecialchars(date("y-m-jS H:i:s | ").$_POST['name'].' - '.$_POST['comment']."\n"),8);}
     echo file_get_contents("comments.txt");
     ?></pre>
 </body>
