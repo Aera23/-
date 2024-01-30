@@ -28,7 +28,7 @@ To clean the public chat, type \`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\`u\
 # Hosting
 * If you are using an external hosting, create an account and follow their instructions. Navigate to the www/htdocs/public or similar using their tools and then start installation.
 * If you want to host on your own machine, for Windows try downloading Uniserver XV on your machine. Start it up, Run Apache, and go to the www directory.
-*                                          for Linux, try "sudo apt install php" and something like "php -S 127.0.0.1:8000 -t '/var/www/'" and also goto www.
+*   .   .   .   .   .   .   .   .   .   .  for Linux, try "sudo apt install php" and something like "php -S 127.0.0.1:8000 -t '/var/www/'" and also goto www.
 * Then, copy the files from this page into that directory, and type your server's web address. For Uniserver, it's "localhost/g3.php", or for php "127.0.0.1:8000/g3.php".
 * Don't forget to enable port forwarding if you don't use onionsites (or follow an online guide if u do)
 # Troubleshooting
