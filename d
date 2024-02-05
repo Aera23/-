@@ -1,3 +1,5 @@
+Last updated: 21/01/2024. This file only reports known downtime.
+
 This file will be updated to reflect downtime. Latest entries at the bottom.
 Yes, GitHub is about code, but since they are reliable, I use them for NODs (Notices of Downtime)
 
@@ -36,4 +38,8 @@ on 07/01/2024, there was 14m downtime from typing "sudo cat /dev/watchdog" in th
 on 08/01/2024, there was a few hours of chat unreachability due to an autoreplaced Documents... added a long term patch
                to 0.php to fix it (My own FoxyReplace filter)
 on 21/01/2024, and possibly other days, occasional downtime due to PHP 500 while coding updates
-Last updated: 21/01/2024. This file only reports known downtime.
+on 24/01/2024, there was 1m or so of downtime due to memory filling, Ctrl + Alt + Esc crosshairs fixed it tho.
+on 25/01/2024, there were multiple Tor updates that caused small downtime
+on 03/02/2024, potential downtime due to 0.2s USB disconnect
+on 04/02/2024, potential downtime, screen flashing too
+on 05/02/2024, there was onion downtime due to 0.2s USB disconnect, as well as 14m total downtime to setup stuff again
