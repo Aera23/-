@@ -40,6 +40,6 @@ on 08/01/2024, there was a few hours of chat unreachability due to an autoreplac
 on 21/01/2024, and possibly other days, occasional downtime due to PHP 500 while coding updates
 on 24/01/2024, there was 1m or so of downtime due to memory filling, Ctrl + Alt + Esc crosshairs fixed it tho.
 on 25/01/2024, there were multiple Tor updates that caused small downtime
-on 03/02/2024, potential downtime due to 0.2s USB disconnect
+on 03/02/2024, potential downtime due to 0.2s USB disconnect, yesterday 1m memory fill too!
 on 04/02/2024, potential downtime, screen flashing too
 on 05/02/2024, there was onion downtime due to 0.2s USB disconnect, as well as 14m total downtime to setup stuff again
