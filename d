@@ -1,4 +1,4 @@
-Last updated: 21/01/2024. This file only reports known downtime.
+Last updated: 05/02/2024. This file only reports known downtime.
 
 This file will be updated to reflect downtime. Latest entries at the bottom.
 Yes, GitHub is about code, but since they are reliable, I use them for NODs (Notices of Downtime)
