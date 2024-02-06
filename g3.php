@@ -1,3 +1,4 @@
+
 <?php
 if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+34000);}
 if($phrase==""){
@@ -63,6 +64,7 @@ $tag = ['i','span','b'];
 $text = ['Type the final 3 letters/digits','Only type the last 3 letters and numbers','Gimme random characters, ignoring 1<sup>st</sup> one','Recall the last three characters','Last three letters/digits please'];
 $texta = ['Type the initial 3 letters/digits','Only type the first 3 letters and numbers','Gimme random characters, ignoring  4<sup>th</sup> one','Recall the first three characters','First three letters/digits please'];
 $textb = ['Type the random characters twice','Enter the characters below 2 times =','Input the characters below two times','Repeat the characters into the box','Enter the characters below twice'];
+$textc = ['Type the random characters once','Enter the characters below 1 time =','Input the characters below one time','Type the characters into the box','Enter the characters below'];
 echo'<!DOCTYPE html><html style="background:linear-gradient(45deg, #0A1520, #0A2015, #200A15)"><meta http-equiv="refresh" content="70">
 <style>
 button:hover,input:hover{border:2px solid #a66 !important}.r {width: 50px;height: 50px;
@@ -73,28 +75,26 @@ button:hover,input:hover{border:2px solid #a66 !important}.r {width: 50px;height
   animation-timing-function: linear} fieldset{border:2px solid #7f7}
 
 @keyframes example {
-  0%   {background:#0f0; left:89%; top:0px}
-  50%  {background:#ff0; left:44.5%; top:0px}
-  100% {background:#f00; left:0%; top:0px}}
+ 0%   {background:#0f0;left:89%;top:0px}
+ 50%  {background:#ff0;left:44.5%;top:0px}
+ 100% {background:#f00;left:0%;top:0px}}
 
 /*Cool timer*/
 @keyframes t{
-  0%   {opacity:1;font-size:0.1px}
-  1%   {opacity:1;font-size:20px}
-  81%   {opacity:1;font-size:20px}
-  100%   {opacity:1;font-size:0.1px}}';
+ 0%   {opacity:1;font-size:0.1px}
+ 10%  {opacity:1;font-size:20px}
+ 90%  {opacity:1;font-size:20px}
+ 100% {opacity:1;font-size:0.1px}}';
 
 for($i=0;$i<81;$i++){echo'.a'.$i.'{animation:t 1s linear;animation-delay:'.(80-$i).'s;opacity:0;font-size:0.1px}';}
 
 echo'</style>
 <h2 id="a" style="margin:2em;color:#9f9;font-family:sans-serif;border:2px solid #6d6;border-radius:5px;padding:0.2em;width:69vw">:) ';
-//Randomise whether CAPTCHA wants first or last letters
-/*if((mt_rand()%3)==1){echo $text[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg(base_convert(mt_rand(0,35),10,36).$a).'</'.$tag[time()%3].'>';}
-else*/if(1==1 || (mt_rand()%3)==2){echo $textb[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>';$a=$a.$a;}/*
-else{echo $texta[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(mt_rand(0,35),10,36)).'</'.$tag[time()%3].'>';}*/
+//Randomise whether CAPTCHA wants to be typed once or twice
+if(time()%2==0){echo $textb[mt_rand(0,4)];
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>';$a=$a.$a;}
+else{echo $textc[mt_rand(0,4)];
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>';}
 
 $r=mt_rand(0,999);
 file_put_contents($live.$r.'eep.txt',$a) or die("<meta http-equiv='refresh' content='0 g9.php?next=".$_REQUEST['next']."'><mark>Please await forwarding to the platform</mark></html>");
@@ -111,8 +111,8 @@ for($i=0;$i<81;$i++){echo '<span class="a'.$i.'">'.($i-10).'</span>';}
 echo'</center></div></div><br>
 <br><mark style="margin-left:3em">'.`uptime -p`.'</mark></html>';if($live!="old"){include("70.php");}}
 else{
-$find=['O-O','*v*','*-*','^.^','*.*',':P','(:','):',':|',':D',':3',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<', ':-)','miii',':<}','{>:'];
-$change=['<mark>O-O</mark>','<mark>*v*</mark>','<mark>*-*</mark>','<mark>^.^</mark>','<mark>*.*</mark>','<mark>:P</mark>','<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
+$find=[':/','O-O','*v*','*-*','^.^','*.*',':P','(:','):',':|',':D',':3',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<', ':-)','miii',':<}','{>:'];
+$change=['<mark>:/</mark>','<mark>O-O</mark>','<mark>*v*</mark>','<mark>*-*</mark>','<mark>^.^</mark>','<mark>*.*</mark>','<mark>:P</mark>','<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
 
 #Decompressing the random colours
 $k="'>$</span><span style='color:#";
@@ -142,17 +142,16 @@ function normalize($string) {
         'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r');
 return strtr($string, $table);}}
 
-function highlighter($e){$parts = explode("@",$e);
+function highlighter($e){$parts = explode("\\",str_replace("@","\\@",$e));
 foreach($parts as $part){
- if(strpos($e,"@".$part)!==false){$a='@'.$part;}
- else{$a=$part;}
+ $a=$part;
   #Getting the colour from the user
  preg_match('/@([^\s:?\/\\*|<>.,]*)\s?/',$a,$matches);
  if($matches[1]!=""){
    $times=explode("|",file_get_contents($matches[1].".visit"));
    $times = $times[count($times)-1];
    $pos = strpos($times, "color:");
-   $col.= str_replace($matches[1],"@<b style='color:".substr($times,$pos+6,7).";'>".$matches[1]."</b>",$part);}
+   $col.= str_replace("@".$matches[1],"@<b style='color:".substr($times,$pos+6,7).";'>".$matches[1]."</b>",$part);}
  else{$col.=$a;}}
-return str_replace("@@","@",$col);}
-?> 
+return $col;}
+?>
