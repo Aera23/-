@@ -1,118 +1,117 @@
-
 <?php
-if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+34000);}
+#Setup vars, and ting if user got CAPTCHAd mid chat
+if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+34060);}
+if($_POST['name']!=""){setcookie("name",$_POST['name'],time()+34000);}
+if($_POST['refresh']!=""){setcookie("refresh",$_POST['refresh'],time()+34000);}
+if(strlen($_POST['col'])==7){setcookie("col",$_POST['col'],time()+34000);}
 if($phrase==""){
-if(file_get_contents("links.php")!=""){ # Sets path
-include("links.php");$live='/home/peplive/Documents/';}
-else{$live='old';}
-$old=glob($live.'*eep.txt');foreach($old as $eep){if((80+filectime($eep))<time()){unlink($eep);}} #cleanup
-function svg($g){
-return '<svg width="200" height="50" alt="'.$g.'">
-  <defs>
-    <filter id="MyFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="100" height="60">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur" />
-      <feOffset in="blur" dx="0.5" dy="0.5" result="offsetBlur" />
-    </filter>
-  </defs>
-  <rect width="99" height="59" fill="#ddffdd" />
-  <g filter="url(#MyFilter)">
-    <path fill="none" stroke="#D90000" stroke-width="5" d="M25,45 C0,45 0,15 25,15 L75,15 C100,15 100,45 75,45 z" />
-    <text fill="#FFF" stroke="#000" font-size="23" font-family="Verdana" x="20" y="38">'.$g.'</text>
-  </g>
-</svg>';} #SVG of CAPTCHA
+if($_COOKIE['audio']!="" && $_COOKIE['name']=="" && $_POST['name']==""){$v = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';$l='qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq';
+echo'<audio autoplay controls src="data:audio/mpeg;base64,SUQzBABAAAAAZQAAAAwBIAUKOn0nKUNPTU0AAAALAAAAAAAAAEd1aXRhckNPTU0AAAALAAAAWFhYAEd1aXRhclRZRVIAAAAFAAAAMjAyNFREUkMAAAAFAAAAMjAyNFRQRTEAAAAHAAAAQWVyYTIz//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAAMAAAJqgBaWlpaWlpaWnFxcXFxcXFxgYGBgYGBgYGRkZGRkZGRkZGioqKioqKioq6urq6urq6uv7+/v7+/v7+/zMzMzMzMzMzZ2dnZ2dnZ2ebm5ubm5ubm5vPz8/Pz8/Pz//////////8AAAAUTEFNRTMuMTAwBJgAAAAAAAAAABUgJALeQQABpAAACao8wpc'.$v.$v.$v.$v.$v.$v.'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//vAxAAABhABX9QAAALzqC3/MYAACgk0NmaJpGyJ6yjhObg+H1AgMBDg+H/4fgg74PxAGCgIO/znE4fy7//vKBjDETvB+aiIh9eVlXZUS2NtOJNSABOiWkMLkLaDGwqOEo9tyR5ddk4FUVZNUfpvGiX2dN1IBYskduBnCX4xJRuB45L5JD8YmoPa7cjklf6JNc4/j9xqBLDY29gz4xBE3ypV1GJVKI7ZlsxIoxS01PHpXO6q0l+9SVqaX49tR6U2Z+I4WIlQVaSM2rdmmsapInbjVa/Ys1btSTxrvML2Nyx2phR/Y+vqrbyvynCrZyz3Wl3zNBZq442dShMLNxWxrspiira8dWZBEFIoqBkUDroIPHI8SBd0gnHjvUpxXhfLzql5lNpzKXkbtF8+jRvMLospUvWr0lKmU8yrSFaLajWrmzXU6fX0of+tdvetPHdSrWJ5syUVmEGEk0+HR/I3hZEsFuh78JpzkQrUxK3tStQ1rWlluY2UU88RJKXaQKp3ki++hO9jUen/2b3aqsbPdiYEAkkucAoSgxjw4KiXILQitvyKf6IDEU3m95K4muWm96Pau3X7Xr5atT9cZF7DyEryQtzpFNbte7mkdiAklJQDnch/TM20dYkYlUPdjqn7xTRq72rRJqtFWp50ile0ktbmOllztG57ELud7urn3pU3AQASCdAUEFEVKNnHMw0W+kHTvDdpDe9qF3OJqXsIlLn0V3MrXfRW44wuhV7dTtCujLlmZzDJfEwQeiNpGWFdIgmIgh5Yzof3ko6rTa+8TuaRWrorv1Lu672FlKed1Kfp1t+EeEASEk4AIjMtSDhsQAb2HOMPA6AoSvKXuStV9CFPPsQpTzzELuYTUva1e+0puelXvuSpoxgwkpAA+L6Yuh3ODwz4PfQh5ILJHZRVN4ZQw81CVT2XU9yarmpRzjS3k13NbXX23ng3NAIKdoANSMP/3KBXEDRUwND/+0DE7AAJ6S9v/MOAAOgFrnzDjYDM+ICHKypxqSq7mMQq5tCnvampzCKVb2ld0mpd7KtjLiidiAhN3gCB7AQaLztDQ4C5Ybr7JSMte1r1st3P3Lcsfu5OCavl5OL9T3/0fvemHa6qxZ6WJwMAEleAJMCvKXigAvQlsrX36pG/jhb7r3OWtRS8Ms/UpeWv3PXvx+de4/WGP2QquxhhfFccpUBvou0HuQ1UrNTos6X0R+45MhS3fv/7IMT3gAdQyXHkrEUA1gtufPSJFL8UvLU5OpKcvDNz/49d49W26vW9hWYzAhJ7gBtKBl6QspUxgXoipA8La8bQX0qVc9KFz7ULVdTU96E7jxMtukVKsZRi3bmisQoJ2p0RvGpyIPcCOnT3QcrqkgDx5aDlbjrUpXPalXtSq9xJC9v/+yDE9gBGcCdx57CkoMIMbrjGiJRFt7xVJzICC5gAED0DlsdWL8Rc67zwqftDLYwiWWt7EoXcyXVc1C73kl9iUy1S8E6CBLclAHxPilVYVuslplQ9JdbmpQu97S8cfpKKto3ualSGmJUHERIUoAAxQwNJlnvSUakhA7zbOBPg3INJ//sgxPqABlQtc+YU6GDHCC389giUjz7yVrk3vX3gnWtnzr3z4StwyGqkKBe1gk8aEb0VQ6YCR6HAh0sAcEs9ByinnWEkqe7KquYla7ia1wSodFUwEhOgAA+kgPZthWwUsPwp7xJT3EVqW+hCrWILKv0Lc8il2aHNFUQIL1EPLJU4h//7EMT+gAZYMW3mJOggzZktvLCOdcY2YB8aRA1I3aXniJbe1CVT2tVzUFlucRQpTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVdaJH2wSoAABpQeheWRPGjVTcij76GBL//sgxPSARfTJa+WEU6jCmy24wIo9vHmzSZPJu+L3/GnfikxBTUUzLjEwMK'.$l.''.$l.'qqqqqv/7EMT6gEYkNW3nrKZgqges/MSI2K'.$l.''.$l.'//sQxPYARVwtZeUkQ2CUBKv8dhxc'.$l.''.$l.'r/+xDE94BFfHVZ56RIiKgHq7zDCRC'.$l.''.$l.'v/7EMT2AES4LV3gMKDgnAaqvNWcWK'.$l.''.$l.'//sQxOgDxHQvUaSBJCgAAD/AAAAE'.$l.''.$l.'o=">
+</audio>';}
+if(file_get_contents("links.php")!=""){include("links.php");$live='/home/peplive/Documents/';}else{$live='old';}
+$old=glob($live.'*eep.txt');foreach($old as $eep){if((80+filectime($eep))<time()){unlink($eep);}}
 
-#Return 1 if cookie exists, and is not hijacked
+function svg($g,$r){
+return '<svg width="200" height="50" alt="'.$g.'">
+ <rect width="99" height="59" fill="#020" />
+ <g><path fill="none" stroke="'.$r.'" stroke-width="5" d="M25,45 C0,45 0,15 25,15 L75,15 C100,15 100,45 75,45 z" />
+ <text class="cc" font-size="22" font-family="monospace" x="20" y="38">'.$g.'</text></g>
+</svg>';}
+
+#Return 1 for valid cookie
 function chkx(){
-if($_REQUEST['o']<time() && crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){return "1";}
+#Fixed poor validation ++
+$file=filemtime(crc32("127.0.0.1").".dat");
+ if(filemtime($file)>time()){unlink(crc32("127.0.0.1").".dat");return "1";
+}
+elseif($_REQUEST['o']<time() && crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
+ return "1";}
 else{return "2";}}
 
-#Redirection if already solved
+#Redirection
 if(chkx()=="1"){
-  if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.06 28.php".$_POST['audio']."'/>";exit();}
-  else{
-  echo"<meta http-equiv='refresh' content='0.06 ".$_REQUEST['next']."'/>";exit();
-  }
+if($_COOKIE['crc']==""){
+setcookie("crc", crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".time())), time()+34000);
+setcookie("o",time(),time()+34000);}
+ if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.06 28.php".$_POST['audio']."'/>";exit();}
+ else{echo"<meta http-equiv='refresh' content='0.06 ".$_REQUEST['next']."'/>";exit();}
 }
 
-#Redirect if cookie checks out
-if(abs($_COOKIE['o'] - time())<34000 && crc32(base64_encode("127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
-  if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.06 28.php'/>";exit();}
-  else{
-  echo"<meta http-equiv='refresh' content='0.06 ".$_REQUEST['next']."'/>";exit();
-  }
-}//Captcha expiry within 28.php
+#Redirect if valid cookie exists
+if(abs($_COOKIE['o']-time())<34000 && crc32(base64_encode("127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
+ if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.06 28.php'/>";exit();}
+ else{echo"<meta http-equiv='refresh' content='0.06 ".$_REQUEST['next']."'/>";exit();}
+}
 elseif($_GET['next']=="28.php?b=d" || $_GET['next']=="28.php?b=b"){
-exit("<meta http-equiv='refresh' content='3'><mark>Solve in other window, should refresh automatically. You could try to resubmit the form too ~ ".date("H:i:s")."</mark>");
-}else{echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
-
-#Fresh Validation
-if($_REQUEST['id']!=""){$e = file_get_contents($live.$_POST['id'].'eep.txt');}
-if($_REQUEST['q'.base_convert(crc32($_REQUEST['id']."9u9dyi"),10,36)]!="" && strtolower(trim($_REQUEST['q'.base_convert(crc32($_REQUEST['id']."9u9dyi"),10,36)],' \\'))==$e)
-{
-$stupid = base64_decode(strrev(explode("|",file_get_contents("config.txt"))[7]));
-       if($_POST['test']!=$stupid){echo("<mark>Bad invite code</mark><br>");}
-#Cookie setup
-else{  
-setcookie("o", time(), time()+34000);setcookie("crc", crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".time())), time()+34000);
+exit("<meta http-equiv='refresh' content='4'><mark>Solve in other window, should refresh automatically. You could try to resubmit the form too ~ ".date("H:i:s")."</mark>");
+}
+else{echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+if($_REQUEST['id']!=""){$e=file_get_contents($live.$_POST['id'].'eep.txt');}
+if($_REQUEST['q'.base_convert(crc32($_REQUEST['id']."9u9dyi"),10,36)]!=""&&strtolower(trim($_REQUEST['q'.base_convert(crc32($_REQUEST['id']."9u9dyi"),10,36)],' \\'))==$e)
+{#InviteCode check
+  if(file_exists("config.txt")){$ic = base64_decode(strrev(explode('|',file_get_contents("config.txt"))[7]));}else{$ic=30;}
+  if($_POST['test']!=$ic){echo("<mark>;</mark><br><meta http-equiv='refresh' content='0 http://3bu5sy446zbvqugbomvulx4ev43s2tgqcilvsg5oqlvguuziutljzgad.onion/'>");}
+else{
+setcookie("o", time(), time()+34000);setcookie("crc",crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".time())),time()+34000);
 file_put_contents(crc32("127.0.0.1").".dat",crc32(strrev("127.0.0.1")));
  if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.1 28.php'/>";exit;}
  else{echo"<meta http-equiv='refresh' content='0.1 ".$_REQUEST['next']."'/>";exit;}
-}}}
 
-$a = base_convert(mt_rand(1296,46655),10,36);
+if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.1 g3.php?j=1&next=28.php&id=".$_REQUEST['id']."&ii=".$_REQUEST['ii']."'/>";exit;}
+else{echo"<meta http-equiv='refresh' content='0.1 g3.php?j=1&next=".$_POST['next']."&id=".$_REQUEST['id']."&ii=".$_REQUEST['ii']."''/>";exit;}}}}
+#Preset colours
+if($_POST['col']==""){$cb=(mt_rand()%10);$cf=["#cc552",'#8800f','#ff334',"#11ffe","#eeaa0","#00dfd","#ff880","#ffff0","#00ff0","#0088f"];$cfi=$cf[$cb].$cb;}
+else{$cfi = htmlspecialchars($_POST['col']);}
+
+#Fixed to allow for 0 as first digit(s), with string padding :)
+$a = str_pad(base_convert(mt_rand(0,46655),10,36),3,0,0);
 $tag = ['i','span','b'];
-$text = ['Type the final 3 letters/digits','Only type the last 3 letters and numbers','Gimme random characters, ignoring 1<sup>st</sup> one','Recall the last three characters','Last three letters/digits please'];
-$texta = ['Type the initial 3 letters/digits','Only type the first 3 letters and numbers','Gimme random characters, ignoring  4<sup>th</sup> one','Recall the first three characters','First three letters/digits please'];
-$textb = ['Type the random characters twice','Enter the characters below 2 times =','Input the characters below two times','Repeat the characters into the box','Enter the characters below twice'];
-$textc = ['Type the random characters once','Enter the characters below 1 time =','Input the characters below one time','Type the characters into the box','Enter the characters below'];
+$text = ['Type the final 3 letters/digits','Only type the last 3 letters & numbers','Gimme those characters, ignoring 1<sup>st</sup> one','Recall the last three characters','Last three letters/digits please'];
+$texta = ['Type the initial 3 letters/digits','Only type the first 3 letters & numbers','Gimme those characters, ignoring 4<sup>th</sup> one','Recall the first three characters','First three letters/digits please'];
+$textb = ['Type those characters twice','Enter the characters below 2x','Input the characters below two times','Repeat the characters into the box','Enter the characters below twice'];
 echo'<!DOCTYPE html><html style="background:linear-gradient(45deg, #0A1520, #0A2015, #200A15)"><meta http-equiv="refresh" content="70">
-<style>
+<style>input,button{background:#dfd;border:2px solid #060;padding:0.3em}::placeholder{color:#060}.cc{fill:#9ff}
 button:hover,input:hover{border:2px solid #a66 !important}.r {width: 50px;height: 50px;
   background: red;
   position: relative;
   animation-name: example;
   animation-duration: 70s;
   animation-timing-function: linear} fieldset{border:2px solid #7f7}
-
 @keyframes example {
- 0%   {background:#0f0;left:89%;top:0px}
- 50%  {background:#ff0;left:44.5%;top:0px}
- 100% {background:#f00;left:0%;top:0px}}
-
+  0%   {background:#0f0; left:89%; top:0px}
+  50%  {background:#ff0; left:44.5%; top:0px}
+  100% {background:#f00; left:0%; top:0px}}
 /*Cool timer*/
 @keyframes t{
- 0%   {opacity:1;font-size:0.1px}
- 10%  {opacity:1;font-size:20px}
- 90%  {opacity:1;font-size:20px}
- 100% {opacity:1;font-size:0.1px}}';
+  0%   {opacity:1;font-size:0.1px}
+  1%   {opacity:1;font-size:20px}
+  81%   {opacity:1;font-size:20px}
+  100%   {opacity:1;font-size:0.1px}}';
 
 for($i=0;$i<81;$i++){echo'.a'.$i.'{animation:t 1s linear;animation-delay:'.(80-$i).'s;opacity:0;font-size:0.1px}';}
-
+$r=mt_rand(0,999);
 echo'</style>
 <h2 id="a" style="margin:2em;color:#9f9;font-family:sans-serif;border:2px solid #6d6;border-radius:5px;padding:0.2em;width:69vw">:) ';
-//Randomise whether CAPTCHA wants to be typed once or twice
-if(time()%2==0){echo $textb[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>';$a=$a.$a;}
-else{echo $textc[mt_rand(0,4)];
-echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a).'</'.$tag[time()%3].'>';}
+//Randomise whether CAPTCHA wants first or last letters
+if((mt_rand()%3)==1){echo $text[mt_rand(0,4)];
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg(base_convert(mt_rand(0,35),10,36).$a,$cfi).'</'.$tag[time()%3].'>';}
+elseif((mt_rand()%3)==2){echo $textb[mt_rand(0,4)];
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a,$cfi).'</'.$tag[time()%3].'>';$a=$a.$a;}
+else{echo $texta[mt_rand(0,4)];
+echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(mt_rand(0,35),10,36),$cfi).'</'.$tag[time()%3].'>';}
 
-$r=mt_rand(0,999);
-file_put_contents($live.$r.'eep.txt',$a) or die("<meta http-equiv='refresh' content='0 g9.php?next=".$_REQUEST['next']."'><mark>Please await forwarding to the platform</mark></html>");
-
-echo'<form action="g3.php" method="post"><br>
-<input name="q'.base_convert(crc32($r."9u9dyi"),10,36).'" style="padding:0.3em;background:#dfd;margin-left:2em" size="4" maxlength="6"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><br><br><span style="font-size:16px">Invite code (30 on public chats):</a><br><input name="test" value="30" size="8" style="padding:0.3em;background:#dfd;margin-left:1em"><br><br><button style="padding:0.3em;border-radius:8px;border: 2px solid #8f8;background:linear-gradient(45deg, #0A1520, #0A2015, #200A15);color:#8f8" name="audio" value="yes">Enter with Audio</button>
-<br><br><button style="padding:0.3em;border-radius:8px;border: 2px solid #8f8;background:linear-gradient(45deg, #0A1520, #0A2015, #200A15);color:#8f8" name="audio" value="no">Enter without Audio</button>
-</form>
-<p style="font-size:15px">Accessible CAPTCHA, solve within 70s</p></h2>
+file_put_contents($live.$r.'eep.txt',$a) or exit("<mark>Can't write</mark>");
+#The CAPTCHA form, now with name ready
+echo'<form action="g3.php" method="post"><br><input name="name" size="15" placeholder="Nick" value="'.$_POST['name'].'" style="margin-left:2em"><br><input name="refresh" size="10" placeholder="Refresh" value="4" style="margin-left:2em"><span style="font-size:14px">Refresh</span><br>
+<input name="q'.base_convert(crc32($r."9u9dyi"),10,36).'" style="background:#dfd;margin-left:2em" size="4" maxlength="6" placeholder="Code" autofocus required><input type="color" name="col" value="'.$cfi.'"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><br><br><span style="font-size:16px">Invite code (30 on public chats):</a><br><input name="test" value="30" size="8" style="padding:0.3em;background:#dfd;margin-left:1em"><br><br><button style="margin-left:2em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520, #0A2015,#200A15);color:#8f8;" name="audio" value="yes">Enter with Audio</button><button style="margin-left:25px;padding:0.3em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520,#0A2015,#200A15);color:#8f8" name="audio" value="no">Enter without Audio</button></form>
+<p style="font-size:15px">Accessible CAPTCHA expires 70 seconds</p></h2>
 <div style="background:#dfd;width:70vw;display:inline-block;margin-left:2.8em"><div class="r"><center style="padding:20% !important;" class="run">';
-
-for($i=0;$i<81;$i++){echo '<span class="a'.$i.'">'.($i-10).'</span>';}
-
+for($i=0;$i<81;$i++){echo '<span class="a'.$i.'">'.($i-10).'</span>';} #Timer
 echo'</center></div></div><br>
-<br><mark style="margin-left:3em">'.`uptime -p`.'</mark></html>';if($live!="old"){include("70.php");}}
+<br><mark style="margin-left:3em">';if($live!="old"){echo `uptime -p`;}echo'</mark></html>';if($live!="old"){include("70.php");}}
 else{
-$find=[':/','O-O','*v*','*-*','^.^','*.*',':P','(:','):',':|',':D',':3',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<', ':-)','miii',':<}','{>:'];
-$change=['<mark>:/</mark>','<mark>O-O</mark>','<mark>*v*</mark>','<mark>*-*</mark>','<mark>^.^</mark>','<mark>*.*</mark>','<mark>:P</mark>','<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
+$find=['O-O','*v*','*-*','^.^','*.*',':P','(:','):',':|',':D',':3',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<', ':-)','miii',':<}','{>:'];
+$change=['<mark>O-O</mark>','<mark>*v*</mark>','<mark>*-*</mark>','<mark>^.^</mark>','<mark>*.*</mark>','<mark>:P</mark>','<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
 
 #Decompressing the random colours
 $k="'>$</span><span style='color:#";
@@ -130,28 +129,29 @@ for($i=0;$i<min(strlen($phrase),$max);$i++){$q.= str_replace("$",$phrase[$i],str
 #else{$filter = file(crc32("x"));}
 
 #Credit to allixsenos, Source: https://www.php.net/manual/en/function.strtr.php
-function normalize($string) {
-    $table = array(
-        'Š'=>'S', 'š'=>'s', 'Đ'=>'Dj', 'đ'=>'dj', 'Ž'=>'Z', 'ž'=>'z', 'Č'=>'C', 'č'=>'c', 'Ć'=>'C', 'ć'=>'c',
-        'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
-        'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O',
-        'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss',
-        'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
-        'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o',
-        'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
-        'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r');
-return strtr($string, $table);}}
+function normalize($string){
+ $table=array(
+  'Š'=>'S', 'š'=>'s', 'Đ'=>'Dj', 'đ'=>'dj', 'Ž'=>'Z', 'ž'=>'z', 'Č'=>'C', 'č'=>'c', 'Ć'=>'C', 'ć'=>'c',
+  'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+  'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O',
+  'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss',
+  'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
+  'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o',
+  'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
+  'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r');
+return strtr($string,$table);}}
 
-function highlighter($e){$parts = explode("\\",str_replace("@","\\@",$e));
+function highlighter($e){$parts=explode("@",$e);
 foreach($parts as $part){
- $a=$part;
+ if(strpos($e,"@".$part)!==false){$a='@'.$part;}
+ else{$a=$part;}
   #Getting the colour from the user
  preg_match('/@([^\s:?\/\\*|<>.,]*)\s?/',$a,$matches);
  if($matches[1]!=""){
    $times=explode("|",file_get_contents($matches[1].".visit"));
    $times = $times[count($times)-1];
    $pos = strpos($times, "color:");
-   $col.= str_replace("@".$matches[1],"@<b style='color:".substr($times,$pos+6,7).";'>".$matches[1]."</b>",$part);}
+   $col.= str_replace($matches[1],"@<b style='color:".substr($times,$pos+6,7).";'>".$matches[1]."</b>",$part);}
  else{$col.=$a;}}
-return $col;}
-?>
+return str_replace("@@","@",$col);}
+?> 
