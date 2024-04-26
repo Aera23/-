@@ -18,13 +18,13 @@ if(m<10){m = "0" + m;}
 var h = (t - (t % 3600))/ 3600;
 var d = (t - (t % 86.4)) / 864;
 d*=0.01;
-if(d<1){d+="0_";d=d.substr(0, 4);}
-else if(d<10){d+="0_";d=d.substr(0, 5);}
-else if(d<100){d+="0_";d = d.substr(0, 6);}
-else if(d<1000){d+="0_";d=d.substr(0, 7);}
-else if(d<10000){d+="0_";d=d.substr(0, 8);}
-else if(d<100000){d+="0_";d=d.substr(0, 9);}
-else{d+="0_";d=d.substr(0, 10);}
+if(d<1){d+="0_";d=d.substr(0, 3);}
+else if(d<10){d+="0_";d=d.substr(0, 4);}
+else if(d<100){d+="0_";d = d.substr(0, 5);}
+else if(d<1000){d+="0_";d=d.substr(0, 6);}
+else if(d<10000){d+="0_";d=d.substr(0, 7);}
+else if(d<100000){d+="0_";d=d.substr(0, 8);}
+else{d+="0_";d=d.substr(0, 9);}
 
 document.getElementById('time').innerHTML = h + ":" + m + ":" + s;
 document.getElementById('days').innerHTML = d + " days";
