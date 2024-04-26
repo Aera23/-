@@ -1,5 +1,4 @@
-
-<!DOCTYPE html><html><meta http-equiv="refresh" content="30"><title>Second Counter</title><style>body{font-family:consolas,sans-serif; font-size:50px;margin-top:60px}#time{border:2px solid #d80; border-radius:12px; width: 8em;padding:0.2em;color:#930;}#s{font-size:16px;margin-left:60px}#days{font-size:30px}</style><body><p id="s">
+<!DOCTYPE html><html><meta http-equiv="refresh" content="30"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Second Counter</title><style>body{font-family:consolas,sans-serif; font-size:50px;margin-top:60px}#time{border:2px solid #d80; border-radius:12px; width: 8em;padding:0.2em;color:#930;}#s{font-size:16px;margin-left:60px}#days{font-size:30px}</style><body><p id="s">
 <?php
 $file = file_get_contents('time2.txt');
 //$file = 1671579350;
