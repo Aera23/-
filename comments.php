@@ -11,10 +11,10 @@
         padding-bottom: 25px;}
 </style>
 <body>
-    <h2 style="font-size:30px;">Comments</h2>
+    <h2 style="font-size:30px;margin-left:0.45em">Comments</h2>
     <form action="" method="post">
     <input name="name" placeholder="Nick" value="<?php echo htmlspecialchars($_POST['name']); ?>"><br><input name="comment" size="70" placeholder="Text"><button>Go</button></form>
-    <p style="color:yellow;">I made this with PHP and some CSS/HTML that was lying around.</p>
+    <p style="color:yellow;margin-left:0.9em;font-size:16px">I made this with PHP and some CSS/HTML that was lying around.</p>
 <pre style="margin:1em"><br>
     <?php
     if(file_get_contents("comments.txt")==""){file_put_contents("comments.txt","\n",8);} # Fix visual bug
@@ -23,4 +23,4 @@
     echo file_get_contents("comments.txt");
     ?></pre>
 </body>
-</html> 
+</html>
