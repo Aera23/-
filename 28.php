@@ -1,5 +1,5 @@
 <?php
-function db($file){if(file_exists($file)){return file($file);}return ' ';}
+function db($file){if(file_exists($file)){return file($file);}return [' '];}
 
 if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+34100);}
 if($_GET['a']=="a"){file_put_contents("crc.txt",crc().date(" jS H:i:s")."\n",8);}
