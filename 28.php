@@ -1,11 +1,10 @@
-
 <?php
 function db($file){if(file_exists($file)){return file($file);}return ' ';}
 
 if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+34100);}
 if($_GET['a']=="a"){file_put_contents("crc.txt",crc().date(" jS H:i:s")."\n",8);}
 $_COOKIE['name']=trim($_COOKIE['name']);
-if($_COOKIE['name']==file_get_contents("unlock.txt")&&$_COOKIE['name']!=""){file_put_contents("/home/peplive/crc.txt",$_COOKIE['name'].date(".H:i:s.|"),8);exit('<meta http-equiv="refresh" content="4">');}
+if($_COOKIE['name']==file_get_contents("unlock.txt")&&$_COOKIE['name']!=""){file_put_contents("crc.txt",$_COOKIE['name'].date(".H:i:s.|"),8);exit('<meta http-equiv="refresh" content="4">');}
 $config=explode("|",file_get_contents("config.txt"));
 $phrase=$config[2]?:'Chat';
 $v='<meta name="viewport" content="width=device-width, initial-scale=1">';
@@ -14,7 +13,7 @@ if($_POST['name']!=""){setcookie("name",$_REQUEST['name'],time()+34000);}
 if(strlen($_POST['col'])==7){setcookie('col',$_POST['col'],time()+34000);}
 
 if($_GET['9u9dyi']=="t"){setcookie("9u9dyi","t",time()+432000);echo'<mark>Moderator cookie set</mark><form action="28.php" style="display:inline"><input type="submit" name="a" value="Settings"></form>';}
-if($_GET['a']==""&&$_GET['b']==""){echo'<form action="z28.php" method="get" style="display:inline"><input type="submit" name="e" value="Digit Only mode"></form>';}
+if($_GET['a']==""&&$_GET['b']==""){echo'<form action="z28.php" method="get" style="display:inline"><input type="submit" name="e" value="Digit Only"></form>';}
 function roulette($obj){
 $obj = str_replace("/","\\/",$obj);
  $strs=explode("\\",$obj);
@@ -56,10 +55,10 @@ $file = explode("|",file_get_contents($_GET['f']));
 if((count($file)-10000)>0){$r=count($file);}else{$r = 0 - (count($file)-10000);}
 $z=min($r,($_GET['i']?:0)+10000);
 if($z>count($file)){$z=count($file);}
-echo'<br><form action="" method="get"><input type="hidden" name="f" value="'.$_GET['f'].'"><input name="i" value="'.max($_GET['i']-10000,0).'" size="6"><input type="submit" value="Previous"></form>||<form action="" method="get"><input type="hidden" name="f" value="'.$_GET['f'].'"><input name="i" value="'.min($_GET['i']+10000,$r).'" size="6"><input type="submit" value="Next"></form><br><br>';
+echo'<br><form action="" method="get"><input type="hidden" name="f" value="'.$_GET['f'].'"><input name="i" value="'.max($_GET['i']-10000,0).'" size="6"><input type="submit" value="Previous"></form>||<form action="" method="get"><input type="hidden" name="f" value="'.$_GET['f'].'"><input name="i" value="'.min($_GET['i']+10000,$r-100).'" size="6"><input type="submit" value="Next"></form><br><br>';
 for($i=($_GET['i']?:0);$i<$z;$i++){echo $file[$i]."|";}exit;}
 
-if($_GET['b']=="d"){$file=db("1699686263.old");$count = count($file);for($i=$count-1;$i>=max(0,$count-16);$i--){$t.=$file[$i];}$limit = substr_count($t,crc()."-");  if($limit>($config[6]?:7)&&($_POST['comment']!=""||$_POST['rpl']!="")){file_put_contents("9u9dyi","|m".time(),FILE_APPEND);exit("<mark>! <a href='28.php?b=d'>Clear then wait for reply</a></mark>");}}
+if($_GET['b']=="d"){$file=db("1id8sjl.txt");$count = count($file);for($i=$count-1;$i>=max(0,$count-16);$i--){$t.=$file[$i];}$limit = substr_count($t,crc()."-");  if($limit>($config[6]?:7)&&($_POST['comment']!=""||$_POST['rpl']!="")){file_put_contents("9u9dyi","|m".time(),FILE_APPEND);exit("<mark>! <a href='28.php?b=d'>Clear then wait for reply</a></mark>");}}
 
 #Filtering spam
 if($_POST['comment']!=""){$token=crc32($_REQUEST['t']);
@@ -103,25 +102,25 @@ echo'<!DOCTYPE html><html>'.$v.'<h2>'.$q.' Config <a href="28.php"><button style
  The following settings can be <a href="https://pgptool.org/" target="_blank">safely</a> left blank:
  <br><br><input name="d" value="'.$config[3].'" size="'.(strlen($config[3]) ?: 35).'" placeholder="Link"><br>
  <textarea name="e" class="v" form="f" cols="80" rows="40" placeholder="canary.txt">'.htmlspecialchars(file_get_contents("canary.txt")).'</textarea>';}
-echo'</form><br><b>If @Aera23 has an update, please visit <a href="http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/source.php?f=28.php&a=usernum" target="_blank">link 1</a> and <a href="http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/source.php?f=g3.php&a=usernum" target="_blank">link 2</a>, which may take a while to load. Then replace the old code with these files.</b><style>button:hover,a:hover{color:#0ff}button,input{background:#446;color:#fff;border-radius:8px;padding:0.4em;margin:0.2em;border:2px solid #300}html{margin:3em;font-family:sans-serif}::placeholder{color:#fff;opacity: 1}::-ms-input-placeholder{color: #fff;opacity: 1}
+echo'</form><br><b>If @Aera23 has an update, please visit <a href="http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/source.php?f=28.php&a=usernum" target="_blank">link 1</a> and <a href="http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/source.php?f=g3.php&a=usernum" target="_blank">link 2</a>, which may take a while to load. Then replace the old code with these files.</b><style>button:hover,a:hover{color:#0ff}button,input{background:#446;color:#fff;border-radius:8px;padding:0.4em;margin:0.2em;border:2px solid #300}button:hover,input:hover{border:2px solid #520}html{margin:3em;font-family:sans-serif}::placeholder{color:#fff;opacity: 1}::-ms-input-placeholder{color: #fff;opacity: 1}
 *{background:#000;color:#0af;}b,h2{color:#0cf}form{display:inline}textarea{padding:0.3em;border-radius:15px}</style></form><br>Debug: ';print_r($_POST);echo'</html>';exit;}
 
 if($_POST['del']!=""){$a=2;
-$file=db("1699686263.old");$count = count($file);
+$file=db("1id8sjl.txt");$count = count($file);
  if($_COOKIE['crc']%1000==0){$e=(100+crc32("127.0.0.1")%900);}
  else{$e=100+($_COOKIE['crc']%900);}
 if($_POST['del']=="n"){for($i=0;$i<$count-max(($_POST['lines']*2),2);$i++)
-{$prvt.=$file[$i];}file_put_contents("1699686263.old",$prvt);}
+{$prvt.=$file[$i];}file_put_contents("1id8sjl.txt",$prvt);}
 elseif($_POST['del']!="" && strpos($file[$_POST['del']],$e)!==false && $e!=""){$a=1;}
 elseif($_COOKIE['9u9dyi']!=""){$a=1;}
-if($a==1){for($i=0;$i<$count;$i++){if($_POST['del']!=$i && $_POST['del']!=$i-1){$prvt.=$file[$i];}}file_put_contents("1699686263.old",$prvt);}}
+if($a==1){for($i=0;$i<$count;$i++){if($_POST['del']!=$i && $_POST['del']!=$i-1){$prvt.=$file[$i];}}file_put_contents("1id8sjl.txt",$prvt);}}
 
 #Refresh List (intentionally using softer checks)
 if($_GET['b']=="b" && $_COOKIE['o']!=""){
 $sec=intval($_COOKIE['refresh']) ?: '4';
 $names=glob("*.visit");$e=0;
 foreach($names as $name){$i=0;
-if((filemtime($name)+172800)>time()){
+if((filemtime($name)+90000)>time()){
 $p=file_get_contents($name);
 $l=filemtime($name);
 if(($l+30)>time()){$e+=1;}
@@ -143,7 +142,7 @@ $em=(htmlspecialchars($_REQUEST['e']) ?: '1');
 if($em>1.5){$em=1.5;}
 if($em<0.7){$em=0.7;}
 if($_COOKIE['o']<time() && crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){}
-else{if($_GET['a']=="a"){header('Location: g3.php?next=28.php?a=a');}elseif($_GET['b']=='d'){header('Location: g3.php?next=28.php?b=d');exit;}elseif($_GET['b']=="b"){header('Location: g3.php?next=28.php?b=b');}else{header('Location: g3.php?next=28.php');exit;}}
+else{if($_GET['a']=="a"){header('Location: g3.php?next=28.php?a=a');}elseif($_GET['b']=='d'){header('Location: g3.php?next=28.php?b=d');exit;}elseif($_GET['b']=="b"){header('Location: g3.php?next=28.php?b=b');}else{header('Location: g3.php?next=28.php');exit("<mark>Solve CAPTCHA to chat</mark>");}}
 
 if($_GET['b']=='d'){
 include('g3.php');
@@ -155,6 +154,9 @@ foreach($filter as $f){if(stripos($g, $f)!==false){exit("<mark>No connection to 
 function process($e,$find,$change)
 {if($e==$_POST['name']){$e=str_replace('Aera23','alkaline',$e);$e=str_replace('Aera344','Aera23',$e);$e=substr($e,0,min(strlen($e),50));}
 $e=htmlspecialchars($e);
+$x=['hild p','teleg','t.me','h i l d','nigg','oy vid','irl vid','pajeet','notbu','edofil','opic link','invite/i='];
+foreach($x as $y){
+if(strpos($e,$y)!==false){file_put_contents("unlock.txt",$_COOKIE['name']);exit();}}
 $e=nl2br($e);
 $e=substr($e,0,min(strlen($e),($config[1] ?: 500)));
 if(strpos($e, "http")===false){$e=highlighter($e);}
@@ -244,7 +246,7 @@ if(strpos($_POST['comment'],'/me')!==0){$txt=process($_POST["name"],$find,$chang
 else{$txt=process($_POST["name"],$find,$change).str_replace('/me','',process($comment,$find,$change));}}
 
 #If broadcasting
-if(strpos($_POST['comment'],"/bm ")!==false && ($config[5]==1 || $_COOKIE['9u9dyi']!="")){
+if(strpos($_POST['comment'],"/bm ")===0 && ($config[5]==1 || $_COOKIE['9u9dyi']!="")){
 $bm=str_replace("/bm ","",process($_POST['comment'],$find,$change));
 $cf=fopen("load.txt", "w+") or die($m);fwrite($cf, $bm) or die("<mark>Can't write</mark>");fclose($cf);$z=3;}
 #Bann
@@ -264,9 +266,9 @@ echo"<mark>$e</mark>";$z=4;}
 #Writing
 if($_COOKIE['u']!=$_REQUEST['q']&&$z==5){$e='';
 
-if($_POST['rpl']!=""){$file=db("1699686263.old");}
+if($_POST['rpl']!=""){$file=db("1id8sjl.txt");}
  #Find the message number that was replied to, cannot be more than 300 below the current message
- if($_POST['rpl']!=""&&$_POST['rpl']>(count($file)-(($config[4]?:30)*2))){$file=db("1699686263.old");$reply=$file[$_POST['rpl']];if(strpos($reply,"^!")!==false){$reply=$file[$_POST['rpl']];}if($reply==""){$reply="
+ if($_POST['rpl']!=""&&$_POST['rpl']>(count($file)-(($config[4]?:30)*2))){$file=db("1id8sjl.txt");$reply=$file[$_POST['rpl']];if(strpos($reply,"^!")!==false){$reply=$file[$_POST['rpl']];}if($reply==""){$reply="
 ";}
 $e='<button style="background:radial-gradient(#004, #040, #400);font-size:0.75em;border:2px solid #afa;line-height:0.8em;float:right;margin-top:-3em">'.crc().'-'.$reply.'</button>
 ';}
@@ -286,14 +288,14 @@ $write=str_replace($matches[0],'',$write.$nl); $m="The comments aren't working d
 $write="/pm ".$matches[1].crc()."-^!<b><u>[PM]</u></b> ----".$write;
 
 if($_POST['rpl']!=""&&strpos($file[$line],$e)!==false && $e!=""){
-for($i=0;$i<count($file);$i++){if($line!=$i){$prvt.=$file[$i];}else{$prvt.=$write."\n";}}file_put_contents("1699686263.old",$prvt);}
-else{$cf=fopen("1699686263.old", "a+") or die($m);
+for($i=0;$i<count($file);$i++){if($line!=$i){$prvt.=$file[$i];}else{$prvt.=$write."\n";}}file_put_contents("1id8sjl.txt",$prvt);}
+else{$cf=fopen("1id8sjl.txt", "a+") or die($m);
 fwrite($cf, $write) or die("Can't write");
 fclose($cf);}}
 
 elseif($_POST['rpl']!=""&&strpos($file[$line], $e)!==false && $e!=""){
-for($i=0;$i<count($file);$i++){if($line!=$i){$prvt.=$file[$i];}else{$prvt.=$write."\n";}}file_put_contents("1699686263.old",$prvt);}
-else{$cf=fopen("1699686263.old", "a+") or die($m);fwrite($cf, $write.$nl) or die("<mark>Can't write</mark>");fclose($cf);}}}
+for($i=0;$i<count($file);$i++){if($line!=$i){$prvt.=$file[$i];}else{$prvt.=$write."\n";}}file_put_contents("1id8sjl.txt",$prvt);}
+else{$cf=fopen("1id8sjl.txt", "a+") or die($m);fwrite($cf, $write.$nl) or die("<mark>Can't write</mark>");fclose($cf);}}}
 
 if($_GET['b']!="d"){echo'<!DOCTYPE html><html id="f"><title>'.$phrase.'</title>';}
 if($_REQUEST['lines']==""){$l=12;}else{$l=htmlspecialchars(min($_REQUEST['lines'],48));}
@@ -346,7 +348,7 @@ echo' placeholder="';if($_REQUEST['reply']==""){echo'Type a message.';
 if($_REQUEST['show']!=""){
 echo' Current heuristics: '.$limit.'/'.$config[6].'L & '.$config[0].' C/S & '.$config[1].'C."';}
 } elseif($_REQUEST['reply']>0){echo'Reply (send a blank message to cancel)"';}else{echo'Edit (send a blank message to cancel)"';}
-if($_REQUEST['reply']<0){$file=db("1699686263.old");
+if($_REQUEST['reply']<0){$file=db("1id8sjl.txt");
 
 if(strpos($file[abs(intval($_REQUEST['reply']))],"/pm")===false){
 preg_match('/\">(.*) - (.*)<\/span>/i',$file[abs(intval($_REQUEST['reply']))],$matches);$e=strip_tags($matches[2]);}
@@ -372,7 +374,7 @@ echo'<input style="background:#252;color:#fff" type="submit" onclick="window.nav
 else{echo'<style>#show,.content{display:none}
 #show:checked~.content{display:block !important}label u{color:#afa}label u:hover{color:#0ff}
 show,.hidden{display:block}#show:checked~.hidden{display:none}'.$hide.'
-</style><input id="show" type=checkbox><label for="show"><u>'.$phrase.' Intro<b> (check autoplay)</b></u> | <a href="music.php" target="_blank">NCS Music</a> | <a href="22.php" target="_blank">Random colours</a> | <a href="colour.php" target="_blank">Latency</a> | <a href="28.php?a=a" target="aa">Reload messages</a> | <a href="files.php" target="_blank">Upload</a>';
+</style><input id="show" type=checkbox><label for="show"><u>'.$phrase.' Intro<b></b></u> | <a href="music.php" target="_blank">🎵</a> | <a href="22.php" target="_blank">🎨</a> | <a href="colour.php" target="_blank">🚅</a> | <a href="28.php?a=a" target="aa">🔄 messages</a> | <a href="files.php" target="_blank">⬆️</a>';
  if($_COOKIE['9u9dyi']!='' && $_GET['9u9dyi']==""){echo'<form action="28.php" style="display:inline"><input type="submit" name="a" value="Settings"></form>';}
 echo'<br><span class="r">UTC: <span class="g"><span class="e0">0</span>';
 for($i=0;$i<15;$i++){if($i!="0"){$e=((24-$i)%24);}else{$e="00";}echo'<span class="e'.$i.'">'.((24-$i)%24).'</span>';}
@@ -385,7 +387,7 @@ echo'<br></span></label><div class="content"><span style="color:#66e">Set standa
 <p style="color:#8e8">Emojis and commands: :alien: :books: :tree: :book: :kiss: :dog: :fire: :ice: :cash:<br><i style="color:#afa">MORE: :egg: :taco: :eggplant: :rocket: :ghost: :elephant: :snail: :lips: :pumpkin: :xmas: :bird: :lovedock: :docking: :spacedock: :miii:</i><br><span style="color:#e6e">:shrug: /shrug :goat: :rainbow: /wow /symbols :cat: :music: :shroom: /me, /dice, <mark style="color:red;background:#400"><3</mark>, <mark>:)</mark>, <mark>:3)</mark> , <mark>XD</mark></a>, :panda: :fox: :duck:</span></p>';if($config[5]==1){echo'"/fa test1|test2" adds a filter which replaces test1 with test 2<br>
 "/fr 1" removes the first filter<br>
 "/fl" lists all the filters in a tiny frame';}echo'
-</div><div class="hidden"><p style="display:inline">Please keep things non-toxic (Reload if needed, Bookmark too) <mark>:)</mark></p></div><iframe id="tx" style="float:right" src="28.php?b=b"></iframe><iframe src="28.php?b=d" name="d" id="d" autofocus style="height:10em"></iframe><br><b style="color:#afa">Welcome to '.$phrase.' :)</b>
+</div><div class="hidden"><p style="display:inline">Please be friendly (bookmark too?) <mark>:)</mark></p></div><iframe id="tx" style="float:right" src="28.php?b=b"></iframe><iframe src="28.php?b=d" name="d" id="d" autofocus style="height:10em"></iframe><br><b style="color:#afa">Welcome to '.$phrase.' :)</b>
 <iframe class="v" name="aa" src="/28.php?a=a" style="width:100%;height:40em" name="aa"></iframe><audio src="X-silence.mp3" autoplay></audio></body></html>';exit();}}
 
 else{function pt($a,$i){
@@ -412,11 +414,12 @@ echo'<!DOCTYPE html><html>';
 $b=($config[4]*2)?:80;#(intval($_REQUEST['m'])*2)?:24;#$b=abs(min($b,48));
 function p($file,$b){
 for($i=count($file)-1;$i>=max(0,count($file)-$b);$i--){
+if(strpos($file[$i],"/m ")!==false && $_COOKIE['9u9dyi']!=""){return $i;}else{$i-=1;$b+=2;}
 #PM/CRC checks
 if(!preg_match("/\/pm ([0-9]{3})([0-9]{3})-\^!/i",strtolower($file[$i]),$matches)){
 if(strlen($file[$i])>3){return $i;}}
 else{if($matches[1]==crc()||$matches[2]==crc()){return $i;}else{$i-=1;$b+=2;}}}}
- $file=db("1699686263.old");$time=p($file,$b);
+ $file=db("1id8sjl.txt");$time=p($file,$b);
 if(file_get_contents("load.txt")!="" && file_get_contents("load.txt")!=" "){
 $e='><mark style="display:inline;background:#000;color:#afa">'.file_get_contents("load.txt").'</mark>';}
 else{$e='>';}
@@ -429,11 +432,18 @@ echo'<title>'.$phrase.'</title><meta http-equiv="refresh" content="'.$sec.' ?a=a
 if($_GET['t']!=$time && $_GET['t']!="" && $_COOKIE['audio']!="off" & $_COOKIE['audio']!="no"){$e='VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
 $v='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';echo'<audio autobuffer="autobuffer" autoplay="autoplay"><source src="data:audio/mp3;base64,SUQzAwAAAAAAZVRQRTEAAAAHAAAAQWVyYTIzVFlFUgAAAAUAAAAyMDIzVERSQwAAAAUAAAAyMDIzQ09NTQAAABEAAAAAAAAAbGlrZSBkYXkgMTc4Q09NTQAAABEAAABYWFgAbGlrZSBkYXkgMTc4//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAAVAAAMGQAxMTExPj4+Pj5ISEhISFJSUlJSW1tbW2VlZWVlb29vb295eXl5eYODg4ONjY2NjZqampqapKSkpKStra2turq6urrExMTExM7Ozs7O2NjY2OLi4uLi7Ozs7Oz29vb29v////8AAAA8TEFNRTMuMTAwBK8AAAAAAAAAABUgJAJUQQABzAAADBmTpZS3'.$v.$v.$v.$v.$v.$v.$v.'AAAAA//ugxAAAwZgDVcAAACiAhKi5h5jVcgJ5sAAAAACqeRIRkxQaavbwEfo7DheMtghLMAmdi2FwH+SQXN9KSGE4yMis+Qre0AAAAABxASFlANKOKHpnACYZbRUgYZCB9tP0Fb+AAAYABOwAErHOD+wNBY6ARdiP66B3tNVMQU1FMy4xMDBVVZcGqUgHDgAAABgHAIZD4whnj14XDnFt0QErE64ZZnR+CHZ4ZpASrYAkKBxBawkbKhArSA1fFaYoW7V2tBhassn9Lur/6tpMQU1FMy4xMDCqqqqqqqqqtQWJYAcOBgAAGBmBC5wIwC0oDtIDjU0LjqnVIztVGT+vyzv/VsxgWaYAkF5ggjWwQAE1wvLBm10Ft1h1SNbbDf9frkxBTUUzLjEwMKqqqqqqqqqqqqqqqqrHBalwAA4HAAAZGBHJfmRwhfAOhBl2WGMaD7EHLbjf/6//r+Qi8sAAEOoIwmmCMDLgukBlrsRXYmuhx2k9TEFNRTMuMTAwqqqqqqqqqrUGerAAAAeAABVELMXmFnBWgBrG0qYip3LSsYOrnD///q9VKDReAAAAPjBB8NzERGJg8AGOuxU7lhWD/DAWP//+r1VMQU1FVVWWBolwCQwHAAAZ6MAIhgiIKn5wwEb1oqIB1jq4ae0i9/kPZ/8hJgsS4A4cbtfIwCPGKAQNhz+AYwcFUALlrHTU//sgxOQAw5wdVcxh4qBpA6q4/DwkYOoZRfX/gnf7a3X1qnIEaGAHDi4AABwUnG7jAACrvPbBQxlXIoGy9WBk6DEm//Bv/hxv9WdlXQFeCAGDi4txQ6KHhQGgKpZy4CBpajwX/WOnwycHC3/Mf+oZn///P9PKa5QFmSAJDi5gABYEgP/7EMT5AER4HznscwIgiIOnvY5gRIvsROCqjnLAEAEBVMACAaKafDJwcLf6AwZ/j0d//+3p5Hk5UFiCAIBVUgIouINBVnTvQBgSAq5C/662SPOHw9/y8Wf1CCG3//0vty5VlAaZEAgO//sQxPeAxLAdO+xzAiB1A6g5jeBENyAAGQodG7jBBC255UAANAdWwv+utkjfg4W/1CeS/0A0Jn//yHyNuOnVQwRL8XF9WMLLEQJCODQPzAVBdGxL9l8gn2iXvUJo3/sBOFl///KeVfj/+xDE9IDEWB1B7G8CIGkDqXmM4ESq6z///+ipBqowCw43YAAbCwJmpKYsJmHkgmbNQTSRmLB8Pf6QWwbm/WI9P//6fs/Jz6JgFdhAIDh8Jetyf1gxKSiHSMk4GpPJLM6wih7/UIkaf//7EMT3gERUHT/sZwIggAOofPw8HHHCMVv//b0zbWLWz/+7/+mYCKggCQwvBAAjzd1kCMFSRhReAQECix1SNcl9I1S98bh8/6A4Tf//O+/EQv/9MsDVIgEhxaW5J3rIEYLjjZgurTIB//sQxPyARJwfPezvAiCdCKd9sAmMYcsomA09+BHN/rCDNf6grhsf//0fV5/b/93/9CqEBZkQCA4mQAAbknezwZAsUaM8sAEAAEHAEghgxywA83/ECO/1AfCz//9P+LLVwgNVEASHFyb/+xDE/4BFKEc37mBE4KsQJr3cKJTknezwZAsRKydLAGaFJfmQxcRHNWAQzf6hNCl/WFCb///X/ydpcgR3MAgOBQAAGRId26DIDhRpzxQEzEZTMu4sRk7qAoj3+oTY0/uPAX2////yvf/7EMT/AMXQfzfsdULgpo/muY60XJ////TSgsyYBIcDxBolWoYIYhRpgOSgQALnAgATAVjbQMm/4/Lf0Bg7///08eZa6D3YHHAwAAC8iEbPBVIIT05IBsAAEsOX8XQrGyQOzf8ff+J8//sQxPwBRgSBNex1QuC7j+Z90CmMQH///5V5u8GCs6ADAkcQtUUEeQJCT5gbMIBgtWhIXQrGzQK5v+i/9Ysyj///5ke5rZMDZ0AFDgQAAARiGdqKCHIAZZ0AOgABLnQkLoVjZIEr/0//+yDE9gBFmH877HWi4MEP5j3sQJT4gT//kpbEBYmQAA4HYhCCqFugqHEDU4wEs4w9IRiC120Z139H///8HtrVTEFNRVVVtQOZoAAOBmAAEEQrVYAQ1CyTGNQB2yyiYAxywEnd/8u//1v65YFeoAADgdm8Azp6AFKFiwDpgYAu9Ujk//sQxP4ARcyBN+6BTGDDD+a93DSUBXj8J/P/+G//hmU0qqMHiFAADgcAABMAwOEXALzmEEwcJBpgwLF1y8CpGXuo3O/+ExP///H53Lu4Q7IAAHEwqQOx0aAwIkgnQ0EC03YjFu80e///+xDE94BFxIE17r1EoLOP5v3cNJRAlCY///r4xfj13////VX0f9gAcSgAAQy2JqpYBg5aA3bGCwGsI5cPxSXthv/WEzIP//0PY/yc//+//+j/+qVBZlQAAZih4vsRBQVggHQQGA67C//7IMTzgEZEfzPu4aSgqpAnfY4oXE6g7BHHZ7f+oGSf//7+Ufkf/+hMQaUFqHAGDiwAABZIiCFgwoKBXAAd0AnrENJy27LHfCYn/+v/lwt/yuyUgwV5gAAHpT0dMRAAFjDkwAwsBUETHZ2nQy9gN/8Djv9XpZQFeIh4j/4AAAt2ydj/+xDE+4DFZIEzrHWi4KYP5nmONFx6Qhi5hyQxbdYiRb/jgZwpYYWOdSlOowwsWP36XCAMPDw8f/9Dwz1PxoCkckicYTIKk3QkILoBWCpOg02dgWvVHEgYiiCgpsEFBQUF//xBgoKCjv/7EMT6gEUARzPscULgkQ6nvaAJnP/IKOxVTEFNRTMuMTAw'.$e.'//sQxPqARIgdO+xh4OCPg+d8/Twc'.$e.'VVVVVVVVVVVVVVVVVVX/+xDE/4BFVH817gFM4KcP5j3AKZx'.$e.'VVVVVVVVVVVVVVVVVVf/7EMT+gMXofy+uAazgnxAmecApnF'.$e.'VVVVVVVVVVVVVVVVVV//sQxPuAxSBHNe3hpKCHCOa5sB2c'.$e.'VVVVVVVVVVVVVVVVVVX/+xDE/4BGuDsz7T2IKLoFJHT3mJ'.$e.'VVVVVVVVVVVVVVVVVVVQ==" /></audio><mark style="display:inline">*</mark>';}
 echo'<pre style="word-wrap:break-word;line-height:1.7;margin-top:-0.1em"><a href="canary.txt" target="_blank">'.htmlspecialchars_decode($config[3]).'</a><br>';
-if(isset($_COOKIE['name'])){file_put_contents(str_ireplace("Aera344","Aera23",str_ireplace("Aera23","alkaline",strtr($_COOKIE['name'],":?/\\*|<>  '","__________"))).'.visit','|<span style="color:'.htmlspecialchars($_COOKIE['col']).'">'.date("m-jS H:i:</\s\p\a\\n>s"),FILE_APPEND);}
+
+if($_COOKIE['9u9dyi']!=""){$v='*';}else{$v='';}
+if(isset($_COOKIE['name'])){file_put_contents(str_ireplace("Aera344","Aera23",str_ireplace("Aera23","alkaline",strtr($_COOKIE['name'],":?/\\*|<>  '","__________"))).'.visit','|<span style="color:'.htmlspecialchars($_COOKIE['col']).'">'.date("m-jS H:i:</\s\p\a\\n>s").$v,FILE_APPEND);}
+
 for($i=$time;$i>=max(0,$time-$b);$i--){
-#PM/CRC checks
+#M/PM/CRC checks
+if(strpos($file[$i],"/m ")!==false){
+if($_COOKIE['9u9dyi']!=""){echo str_replace('/m ','',preg_replace('|([0-9]{3}-)|i', '<b><u>[M]</u></b> ------$1', pt($file[$i],$i)));continue;}else{$i-=1;$b+=2;}}
+
 if(!preg_match("/\/pm ([0-9]{3})([0-9]{3})-\^!/i",strtolower($file[$i]),$matches)){
 if(strlen($file[$i])>2){echo pt($file[$i],$i);}}
-else{if($matches[1]==crc() || $matches[2]==crc()){echo explode("^!",pt($file[$i],$i))[1];}else{$i-=1;$b+=2;}}}}
+else{if($matches[1]==crc() || $matches[2]==crc()){echo explode("^!",pt($file[$i],$i))[1];}else{$i-=1;$b+=2;}}}
+}
 #echo'<!--span class="w">Load: </span><a href="28.php?a=a&m='.min($b,64).'&refresh='.($sec*3).'">More</a> | <a href="28.php?a=a&m='.round($b/4).'&refresh='.max($sec/3,4).'">Less</a-->';
-?></pre></html> 
+?></pre></html>
