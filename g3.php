@@ -16,18 +16,17 @@ function svg($g,$r,$e){
 return '<svg height="50" width="129" alt="'.$g.'>
   <defs>
     <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#88c" />
-      <stop offset="100%" stop-color="#8fb" />
+      <stop offset="0%" stop-color="#000" />
+      <stop offset="100%" stop-color="#000" />
     </linearGradient>
         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="'.$e.'" />
-      <stop offset="100%" stop-color="'.$r.'" />
+      <stop offset="0%" stop-color="'.$r.'" />
+      <stop offset="100%" stop-color="'.$e.'" />
     </linearGradient>
   </defs>
   <ellipse cx="100" cy="60" rx="85" ry="55" fill="url(#grad2)" />
   <text fill="url(#grad1)" font-size="28" x="23" y="41" >'.$g.'</text>
 </svg>';}
-
 
 #Return 1 for valid cookie
 function chkx(){
@@ -112,8 +111,8 @@ echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(
 file_put_contents($live.$r.'eep.txt',$a) or exit("<mark>Can't write</mark>");
 #The CAPTCHA form, now with name ready
 echo'<form action="g3.php" method="post"><br><input name="name" size="15" placeholder="Nick" value="'.($_POST['name'] ?: $_COOKIE['name']).'" style="margin-left:2em"><br><input name="refresh" size="10" placeholder="Refresh" value="4" style="margin-left:2em"><span style="font-size:14px">Refresh</span><br>
-<input name="q'.base_convert(crc32($r."9u9dyi"),10,36).'" style="background:#dfd;margin-left:2em" size="4" maxlength="6" placeholder="Code" autofocus required><input type="color" name="col" value="'.$cfi.'"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><br><br><span style="font-size:16px">Invite code (30 on public chats):</a><br><input name="test" value="30" size="8" style="padding:0.3em;background:#dfd;margin-left:1em"><br><br><button style="margin-left:2em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520, #0A2015,#200A15);color:#8f8;" name="audio" value="yes">Enter with Audio</button><button style="margin-left:25px;padding:0.3em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520,#0A2015,#200A15);color:#8f8" name="audio" value="no">Enter without Audio</button></form>
-<p style="font-size:15px">Accessible CAPTCHA expires 80 seconds</p></h2>
+<input name="q'.base_convert(crc32($r."9u9dyi"),10,36).'" style="background:#dfd;margin-left:2em" size="4" maxlength="6" placeholder="Code" autofocus required><input type="color" name="col" value="'.$cfi.'"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><br><br><span style="font-size:16px;margin-left:1.3em">Invite code (30 on public chats):</a><br><input name="test" value="30" size="8" style="padding:0.3em;background:#dfd;margin-left:1.3em"><br><br><button style="margin-left:2em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520, #0A2015,#200A15);color:#8f8;" name="audio" value="yes">Enter with Audio</button><button style="margin-left:25px;padding:0.3em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520,#0A2015,#200A15);color:#8f8" name="audio" value="no">Enter without Audio</button></form>
+<p style="font-size:16px;margin-left:1.3em">Accessible CAPTCHA expires 80 seconds</p></h2>
 <div style="background:#dfd;width:70vw;display:inline-block;margin-left:2.8em"><div class="r"><center style="padding:20% !important;" class="run">';
 for($i=0;$i<81;$i++){echo '<span class="a'.$i.'">'.$i.'</span>';} #Timer
 echo'</center></div></div><br>
@@ -132,10 +131,6 @@ $max=count($txt);
 $phrase='_'.htmlspecialchars_decode($phrase);$q='';
 $shift=time()%20;
 for($i=0;$i<min(strlen($phrase),$max);$i++){$q.= str_replace("$",$phrase[$i],str_replace(" sty","<span sty",$txt[$i+$shift]));}$q = str_replace("_","",$q);
-
-#Unused filters
-#if(file_get_contents(crc32("x"))==""){file_put_contents(crc32("x"),"nigg\ncunt\n^s\nsuck\nfag\n^d\npuss\nporn\n^x\ncp li\n^k\ncurry munch\nescorts");exit("<meta http-equiv='refresh' content='0'><mark>reload coz filters are there</mark>");}
-#else{$filter = file(crc32("x"));}
 
 #Credit to allixsenos, Source: https://www.php.net/manual/en/function.strtr.php
 function normalize($string){
