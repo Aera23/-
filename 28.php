@@ -218,6 +218,7 @@ $e=str_replace('<mark>:3</mark>)','<mark>:3)</mark>',$e);
 $e=str_replace('http<mark>:/</mark>','http:/',$e);
 $e=str_replace('https<mark>:/</mark>','https:/',$e);
 $e=str_replace('/<b>@</b>','/@',$e);
+$e=str_replace('&lt;br&gt;','<br>',$e);
 return $e;}}
 
 #Show Colour choice
