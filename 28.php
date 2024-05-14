@@ -1,7 +1,7 @@
 <?php
 function db($file){if(file_exists($file)){return file($file);}return [' '];}
 
-if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+34100);}
+if($_POST['audio']!=""){setcookie("audio",$_POST['audio'],time()+34060);}
 if($_GET['a']=="a"){file_put_contents("crc.txt",crc().date(" jS H:i:s")."\n",8);}
 $_COOKIE['name']=trim($_COOKIE['name']);
 if($_COOKIE['name']==file_get_contents("unlock.txt")&&$_COOKIE['name']!=""){file_put_contents("crc.txt",$_COOKIE['name'].date(".H:i:s.|"),8);exit('<meta http-equiv="refresh" content="4">');}
@@ -30,12 +30,6 @@ $obj = str_replace("/","\\/",$obj);
 return str_replace("/bk","\\",$obj);}
 
 if($_POST['comment']!=""){
-/*include('g3.php');$phrase = $config[4];
-$g=$_POST['comment'].$_POST['name'];if(file_get_contents('g3.php')!=""){$g=normalize($g);}
-$g=strtr($g,'@43105$7|!€','aaeiosstlie');$g=strtr($g,',.-` ','_____');$g=str_replace("_","",$g);
-#Filters
-$filter=db(crc32("x"));
-foreach($filter as $f){if(stripos($g,$f)!==false){file_put_contents("unlock.txt",$_POST['name']);exit("<mark>I/O error</mark>");}}*/
 
 $check=floatval(str_replace("|314159","",$_REQUEST['t']));$d=(microtime(true)-$check); 
 $len=strlen(htmlspecialchars($_POST['comment']));
@@ -65,13 +59,13 @@ if($_POST['comment']!=""){$token=crc32($_REQUEST['t']);
 if($_POST['q']==file_get_contents("q.txt")){$token = -1;}else{file_put_contents("q.txt",$_POST['q']);}
 #Variables defined above
  if(($token!=$_REQUEST['q']||$_COOKIE['u']==$_POST['q'])&&$_POST['rpl']!=""&&$_POST['reply']!=""){file_put_contents("9u9dyi","|c".time(),FILE_APPEND);
-exit("<mark>! <a href='28.php?b=d'>Oops, you resubmitted, click me to keep messaging</a></mark>");}
+exit("<mark>! <a href='28.php?b=d'>Resubmit detected, click to continue.</a></mark>");}
  else{if($d==0){$d = 10;}
   $length=strlen(htmlspecialchars($_POST['comment']));$t='';
   if((($length/$d)>($config[0]?:10) && strpos($_POST['rpl'],"-")===false) || strlen($_POST['name'])>($config[1]?:300)){
    echo ($length/$d).' '.$length;
   file_put_contents("9u9dyi","|s".time(),FILE_APPEND);
-  exit("<mark>! <a href='28.php?b=d'>You are fast lol</a></mark>");
+  exit("<mark>! <a href='28.php?b=d'>Unknown error.</a></mark>");
 }}}
 
 if($_GET['b']=="c" && $_COOKIE['9u9dyi']!=""){
@@ -100,9 +94,9 @@ echo'<!DOCTYPE html><html>'.$v.'<h2>'.$q.' Config <a href="28.php"><button style
 <button>Save</button><br><br>';
  if(file_get_contents("links.php")!=""){echo'
  The following settings can be <a href="https://pgptool.org/" target="_blank">safely</a> left blank:
- <br><br><input name="d" value="'.$config[3].'" size="'.(strlen($config[3]) ?: 35).'" placeholder="Link"><br>
+ <br><br><input name="d" value="'.$config[3].'" size="'.(strlen($config[3])?:35).'" placeholder="Link"><br>
  <textarea name="e" class="v" form="f" cols="80" rows="40" placeholder="canary.txt">'.htmlspecialchars(file_get_contents("canary.txt")).'</textarea>';}
-echo'</form><br><b>If @Aera23 has an update, please visit <a href="http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/source.php?f=28.php&a=usernum" target="_blank">link 1</a> and <a href="http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/source.php?f=g3.php&a=usernum" target="_blank">link 2</a>, which may take a while to load. Then replace the old code with these files.</b><style>button:hover,a:hover{color:#0ff}button,input{background:#446;color:#fff;border-radius:8px;padding:0.4em;margin:0.2em;border:2px solid #300}button:hover,input:hover{border:2px solid #520}html{margin:3em;font-family:sans-serif}::placeholder{color:#fff;opacity: 1}::-ms-input-placeholder{color: #fff;opacity: 1}
+echo'</form><br><b>If @Aera23 has an update, please visit <a href="http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/source.php?f=28.php&a=100" target="_blank">link 1</a> and <a href="http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/source.php?f=g3.php&a=100" target="_blank">link 2</a>, which may take a while to load. Then replace the old code with these files.</b><style>button:hover,a:hover{color:#0ff}button,input{background:#446;color:#fff;border-radius:8px;padding:0.4em;margin:0.2em;border:2px solid #300}button:hover,input:hover{border:2px solid #520}html{margin:3em;font-family:sans-serif}::placeholder{color:#fff;opacity: 1}::-ms-input-placeholder{color: #fff;opacity: 1}
 *{background:#000;color:#0af;}b,h2{color:#0cf}form{display:inline}textarea{padding:0.3em;border-radius:15px}</style></form><br>Debug: ';print_r($_POST);echo'</html>';exit;}
 
 if($_POST['del']!=""){$a=2;
@@ -116,8 +110,8 @@ elseif($_COOKIE['9u9dyi']!=""){$a=1;}
 if($a==1){for($i=0;$i<$count;$i++){if($_POST['del']!=$i && $_POST['del']!=$i-1){$prvt.=$file[$i];}}file_put_contents("1id8sjl.txt",$prvt);}}
 
 #Refresh List (intentionally using softer checks)
-if($_GET['b']=="b" && $_COOKIE['o']!=""){
-$sec=intval($_COOKIE['refresh']) ?: '4';
+if($_GET['b']=="b"&&$_COOKIE['o']!=""){
+$sec=intval($_COOKIE['refresh'])?:'4';
 $names=glob("*.visit");$e=0;
 foreach($names as $name){$i=0;
 if((filemtime($name)+90000)>time()){
@@ -138,7 +132,7 @@ echo'<audio autoplay src="data:audio/mpeg;base64,SUQzBABAAAAAZQAAAAwBIAUKOn0nKUN
 echo"<style>a{color:#0ff}button{background:#f88;border-radius:8px;border:2px solid #f00}table{border-spacing:0;}td{color:#fff;border-radius:6px;background:inherit;border:1px solid #afa;line-height:1.3;font-size:16px;max-width:10em;padding:0.2em}.x{color:#888}.t:hover{border:2px solid #80f;background:#f80}</style><center><span style='font-size:18px;background:inherit;color:#afa'>Last online: ";
 exit($e.' (last 30s)</span><br><table>'.$t.'</table></center></html>');}
 
-$em=(htmlspecialchars($_REQUEST['e']) ?: '1');
+$em=(htmlspecialchars($_REQUEST['e'])?:'1');
 if($em>1.5){$em=1.5;}
 if($em<0.7){$em=0.7;}
 if($_COOKIE['o']<time() && crc32(base64_encode($_SERVER['HTTP_USER_AGENT']."127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){}
@@ -196,8 +190,8 @@ $e=str_ireplace(':kiss:','😗',$e);
 $e=str_replace('plmm','http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/',$e);
 $e=str_ireplace(':ice:','🧊',$e);
 $e=str_ireplace(':goat:','🐐',$e);
-$e=str_ireplace('&lt;q&rt;','<q>',$e);
-$e=str_ireplace('&lt;/q&rt;','</q>',$e);
+$e=str_ireplace('&lt;q&gt;','<q>',$e);
+$e=str_ireplace('&lt;/q&gt;','</q>',$e);
 #https://stackoverflow.com/questions/14399246/preg-replace-url-with-links-mime-types-failure (corrected at regex101.com)
 $e=preg_replace('|([\w\d]*)\s?(https?://([\d\w\.-]+\.[\w\.]{2,6})[^\s\]\[\<\>]*/?)|i', '$1 <a href="$2" target="_blank">$2</a>', $e);
 $e=str_replace('aera23@','aer\\a23@',$e);
@@ -222,21 +216,21 @@ $e=str_replace('&lt;br&gt;','<br>',$e);
 return $e;}}
 
 #Show Colour choice
-if($_GET['a']==""){if($_REQUEST['col']=="" && $_COOKIE['col']==""){$cb=(mt_rand()%10);
+if($_GET['a']==""){if($_COOKIE['col']==""){$cb=(mt_rand()%10);
 $cf=["#cc552",'#77ff7','#ff334',"#11ffe","#eeaa0","#00dfd","#ff880","#ffff0","#00ff0","#0088f"];$cfi=$cf[$cb].$cb;}
-else{$i=0;if($_GET['col']!=""){$cf=$_GET['col'];while($i < 10 && strlen($cf)>7){$cf=base64_decode($cf);$i++;}}
+else{$i=0;
 
 if(strlen($_POST['col'])==7){$cfi=$_POST['col'];}
-else{$cfi=$_COOKIE['col'] ?: base64_decode($_GET['col']);}}
+else{$cfi=$_COOKIE['col'];}}
 
 if($_GET['b']=='d'){
 #Basics
-$comment=trim($_POST["comment"]);$z=2;function mydump(){$x=fopen("9u9dyi","a+"); fwrite($x,$_POST['name'].$_POST['comment']);fclose($x);}
+$comment=trim($_POST["comment"]);$z=2;function mydump(){$x=fopen("9u9dyi","a+");fwrite($x,$_POST['name'].$_POST['comment']);fclose($x);}
 
 #Saving messages
-if($_POST["name"]!="" && $comment!="" && $_COOKIE['u']!=$_REQUEST['q']){$z=5;
+if($_POST["name"]!=""&& $comment!=""&&$_COOKIE['u']!=$_REQUEST['q']){$z=5;
 
-#Prevent multiple submissions within a 2s timeframe, if post too quick, reset timeframe
+#Prevent multiple submissions within 2s of last one
 if(file_get_contents("".crc())==''){file_put_contents("".crc(),time());}
 elseif((time()-2)> file_get_contents("".crc())){file_put_contents("".crc(),time());}
 else{file_put_contents("".crc(),time());exit("<a href='28.php?b=d'><mark>Too fast</mark></a>");}
@@ -306,7 +300,7 @@ $token=crc32($e."|314159");
 echo $v.'<style>
 @media(max-width:929px){#tx{width:99%;height:10em}#d{width:99%}}
 @media(min-width:930px){#tx{width:32%;height:13.5em;margin-top:-3.5em}#d{width:65%}}#f:nth-child(1){background:radial-gradient(#000014, #001400, #140000);}
-html{color:#fff}pre{font-family:calibri;}a{color:#afa}a:hover{color:#28f}input,button,iframe{border-radius:8px;border:1px solid #444}* mark{padding:0.2em;border-radius:10px}
+html{color:#fff}pre{font-family:sans-serif;}a{color:#afa}a:hover{color:#28f}input,button,iframe{border-radius:8px;border:1px solid #444}* mark{padding:0.2em;border-radius:10px}
 input{padding:0.5em;background:#450;border:3px solid #300;color:#fff !important}input:hover{padding:0.5em;background:#560;border:3px solid #500}.n:hover{background:#f00}
 .a1{font-size:20px}.a2{font-size:24px}.a3{font-size:28px}.a4{font-size:32px}h3{margin-top:0.3em}</style><body style="margin:1.5em">';
 
@@ -375,7 +369,7 @@ echo'<input style="background:#252;color:#fff" type="submit" onclick="window.nav
 else{echo'<style>#show,.content{display:none}
 #show:checked~.content{display:block !important}label u{color:#afa}label u:hover{color:#0ff}
 show,.hidden{display:block}#show:checked~.hidden{display:none}'.$hide.'
-</style><input id="show" type=checkbox><label for="show"><u>'.$phrase.' Intro<b></b></u> | <a href="music.php" target="_blank">🎵</a> | <a href="22.php" target="_blank">🎨</a> | <a href="colour.php" target="_blank">🚅</a> | <a href="28.php?a=a" target="aa">🔄 messages</a> | <a href="files.php" target="_blank">⬆️</a>';
+</style><input id="show" type=checkbox><label for="show"><u>'.$phrase.' Intro<b></b></u> | <a href="music.php" target="_blank">🎵</a> | <a href="22.php" target="_blank">🎨</a> | <a href="colour.php" target="_blank">🚅</a> | <a href="files.php" target="_blank">⬆️</a>';
  if($_COOKIE['9u9dyi']!='' && $_GET['9u9dyi']==""){echo'<form action="28.php" style="display:inline"><input type="submit" name="a" value="Settings"></form>';}
 echo'<br><span class="r">UTC: <span class="g"><span class="e0">0</span>';
 for($i=0;$i<15;$i++){if($i!="0"){$e=((24-$i)%24);}else{$e="00";}echo'<span class="e'.$i.'">'.((24-$i)%24).'</span>';}
@@ -385,15 +379,25 @@ for($i=0;$i<10;$i++){echo'<span class="c'.$i.'">'.(9-$i).'</span>';} echo'<span 
 for($i=0;$i<6;$i++){echo'<span class="b'.$i.'">'.(5-$i).'</span>';}  for($i=0;$i<10;$i++){ echo'<span class="a'.$i.'">'.(9-$i).'</span>';}
 echo'<br></span></label><div class="content"><span style="color:#66e">Set standard Tor security for audio pings. <i>(Type "/pm '.crc().' message" for self-PM.)</i>
 <br>&gt;Last Online is based on browser refresh, which can be incorrect if a user leaves their tab open while AFK, or their browser stops refreshing due to temporary network timeout.</span>
-<p style="color:#8e8">Emojis and commands: :alien: :books: :tree: :book: :kiss: :dog: :fire: :ice: :cash:<br><i style="color:#afa">MORE: :egg: :taco: :eggplant: :rocket: :ghost: :elephant: :snail: :lips: :pumpkin: :xmas: :bird: :lovedock: :docking: :spacedock: :miii:</i><br><span style="color:#e6e">:shrug: /shrug :goat: :rainbow: /wow /symbols :cat: :music: :shroom: /me, /dice, <mark style="color:red;background:#400"><3</mark>, <mark>:)</mark>, <mark>:3)</mark> , <mark>XD</mark></a>, :panda: :fox: :duck:</span></p>';if($config[5]==1){echo'"/fa test1|test2" adds a filter which replaces test1 with test 2<br>
+<p style="color:#8e8">Emojis and commands: :alien: :books: :tree: :book: :kiss: :dog: :fire: :ice: :cash:<br><i style="color:#afa">MORE: :egg: :taco: :eggplant: :rocket: :ghost: :elephant: :snail: :lips: :pumpkin: :xmas: :bird: :lovedock: :docking: :spacedock: :miii:</i><br><span style="color:#e6e">:shrug: /shrug :goat: :rainbow: /wow /symbols :cat: :music: :shroom: /me, /dice, <mark style="color:red;background:#400"><3</mark>, <mark>:)</mark>, <mark>:3)</mark> , <mark>XD</mark>, <mark>^.^</mark>, <mark>*.*</mark>, <mark>*-*</mark></a>, :panda: :fox: :duck:</span></p>';if($config[5]==1){echo'"/fa test1|test2" adds a filter which replaces test1 with test 2<br>
 "/fr 1" removes the first filter<br>
-"/fl" lists all the filters in a tiny frame';}echo'
-</div><div class="hidden"><p style="display:inline">Please be friendly (bookmark too?) <mark>:)</mark></p></div><iframe id="tx" style="float:right" src="28.php?b=b"></iframe><iframe src="28.php?b=d" name="d" id="d" autofocus style="height:10em"></iframe><br><b style="color:#afa">Welcome to '.$phrase.' :)</b>
-<iframe class="v" name="aa" src="/28.php?a=a" style="width:100%;height:40em" name="aa"></iframe><audio src="X-silence.mp3" autoplay></audio></body></html>';exit();}}
+"/fl" lists all the filters in a tiny frame<br>
+"/bm [message]" for changing the topic text<br>
+"/m [message]" for modmail<br>';}
+if(isset($_GET['bottom'])){
+$bo[0]='src="28.php?a=a" name="aa" id="aa" autofocus style="height:20em;width:95vw"';
+$bo[1]='class="v" src="28.php?b=d" name="d" id="d" style="width:100%;height:10em"';}
+else{
+$bo[0]='class="v" src="28.php?b=d" name="d" id="d" style="height:10em">';
+$bo[1]='name="aa" src="28.php?a=a" autofocus style="width:100%;height:40em" name="aa"';}
 
-else{function pt($a,$i){
+echo'
+</div><div class="hidden"><p style="display:inline">Please be friendly (bookmark too?) <mark>:)</mark></p></div><iframe id="tx" style="float:right" src="28.php?b=b"></iframe><iframe '.$bo[0].'></iframe><br><b style="color:#afa">Welcome to '.$phrase.' | <a href="28.php?a=a" target="aa">🔄 messages</a> | <a href="28.ph'.($_GET['bottom']?'p':'p?bottom=1').'">Flip</a></b>
+<iframe '.$bo[1].'></iframe><audio src="X-silence.mp3" autoplay></audio></body></html>';exit();}}
+
+else{if($_COOKIE['col']==""){$_COOKIE['col']='#88ff88';}function pt($a,$i){
 $z='</button></form>';$e=crc()."-";$b='';
-if($_COOKIE['ina']=="t"){$v = $i;}else{$v = $i%1000;}
+if($_COOKIE['ina']=="t"){$v=$i;}else{$v=$i%1000;}
 if($i%2==0){$b.='<form action="28.php?b=d" method="post" target="d"><button name="reply" value="'.$i.'" class="z">↩️<b>'.$v.'</b></button></form>';}
 $btn=' <form action="" method="post"><button name="del" value="'.$i.'" class="';
 if(strpos($a, $e)!==false && $e!=""){$b.=$btn.'y">❌'.$z;}
@@ -406,8 +410,7 @@ elseif($i%2==0){
 #Preg match for PM id
 preg_match("/([0-9]{3})-/i",strtolower($a),$matches);
 $b.='&nbsp;<form action="28.php?b=d" target="d" method="post"><button class="v" name="pm" value="/pm '.$matches[1].' "><span style="font-size:0.4em">&nbsp;</span><b>PM</b><span style="font-size:0.4em">&nbsp;</span></button></form>';}
-$a=str_replace("<!--","<i>",$a);$a=str_replace("-->","</i> |",$a);echo $b;
-return str_replace(date("m-"),"",str_replace(date("m-jS "),"",$a));}
+echo$b;return str_replace(date("m-"),"",str_replace(date("m-jS "),"",$a));}
 
 $sec=htmlspecialchars($_COOKIE['refresh'])?:'4';
 echo'<!DOCTYPE html><html>';
@@ -441,7 +444,6 @@ for($i=$time;$i>=max(0,$time-$b);$i--){
 #M/PM/CRC checks
 if(strpos($file[$i],"/m ")!==false){
 if($_COOKIE['9u9dyi']!=""){echo str_replace('/m ','',preg_replace('|([0-9]{3}-)|i', '<b><u>[M]</u></b> ------$1', pt($file[$i],$i)));continue;}else{$i-=1;$b+=2;}}
-
 if(!preg_match("/\/pm ([0-9]{3})([0-9]{3})-\^!/i",strtolower($file[$i]),$matches)){
 if(strlen($file[$i])>2){echo pt($file[$i],$i);}}
 else{if($matches[1]==crc() || $matches[2]==crc()){echo explode("^!",pt($file[$i],$i))[1];}else{$i-=1;$b+=2;}}}
