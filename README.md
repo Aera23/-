@@ -3,21 +3,23 @@ http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 https://aera23.net/
 
 # Chat and stopwatch
-* Included are the chat script, "creation stopwatch" and the CAPTCHA.
+* Included are the chat script, PHP stopwatch and the CAPTCHA.
 * The stopwatch counts time since it was first run. To reset it, delete time2.txt
 * New: Admin can delete messages and send away bad chatters with one click!
+* Use Find and Replace (Ctrl + H or Ctrl + R) to change these secrets 1id8sjl.txt and 9u9dyi
+* if you cannot do that, obtain g3.php and 28.php from https://aera23.net/source.php
 # Latency test
 * To run the test, access colour.php
 * To view more data, add ?r=1 (or 2,3,4) when accessing data.php (shows from last day)
 # Comment form
 * Type a comment, and press enter (this was made for people who want to see how simple PHP can be, and because I liked some CSS)
-* The comments are stored in "comments.txt", and can technically be edited (or specific comments can be removed)
+* The comments are stored in "comments.txt", and can technically be edited (or specific comments can be removed, manually)
 # File upload
 * This needs sqlite
 * I made it with a lot of ChatGPT assistance
 * I added the timestamps column in DB, and timestamp support
 * I changed chatGPT's dotpoint list to a table, and improved styling
-* ?delete=accesskey to be able to delete files via the upload page
+* ?delete=accesskey to be able to delete files via the upload page (please change $ad at the top of the script)
 # Installation
 * Copy the files into the directory you want to.
 * Run g3.php and solve CAPTCHA
