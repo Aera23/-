@@ -246,7 +246,7 @@ $cf=fopen("load.txt", "w+") or die($m);fwrite($cf, $bm) or die("<mark>Can't writ
 #Ban
 if(strpos($_POST['comment'],"/k ")===0&&isset($_COOKIE['9u9dyi'])){$cf=fopen($hpu,"w") or die($m);$e=htmlspecialchars(str_replace("/k ","",$_POST['comment']));fwrite($cf, $e) or die("<mark>Can't write</mark>");fclose($cf);$z=4;echo"<mark>Banned $e</mark>";}
 #AntiRaid
-if(strpos($_POST['comment'],"/r")===0&&isset($_COOKIE['9u9dyi'])){$cf=fopen($hpu,"w") or die($m);fwrite($cf, '"') or die("<mark>Can't write</mark>");fclose($cf);$z=4;echo"<mark>Anti-Raid on, type '/k off' to disable</mark>";}
+if(strpos($_POST['comment'],"/r")===0&&isset($_COOKIE['9u9dyi'])){if(file_get_contents($hpu)=='"'){unlink($hpu);echo"<mark>Anti-Raid off</mark>";}else{$cf=fopen($hpu,"w") or die($m);fwrite($cf, '"') or die("<mark>Can't write</mark>");fclose($cf);echo"<mark>Anti-Raid on</mark>";}$z=4;}
 #Unban
 if(strpos($_POST['comment'],"/uk ")===0&&isset($_COOKIE['9u9dyi'])){unlink($hpu) or die($m);$e=htmlspecialchars(str_replace("/uk ","",$_POST['comment']));if(file_exists($e.'.visit.ivisit')){rename($e.'.visit.ivisit',$e.'.visit');};$z=4;echo"<mark>Unbanned $e</mark>";}
 elseif(strpos($_POST['comment'],"/uk")===0&&$_COOKIE['9u9dyi']!=""){if(file_exists($hpu)){$e=file_get_contents($hpu);}if(file_exists($e.'.visit.ivisit')){rename($e.'.visit.ivisit',$e.'.visit');};$z=4;echo"<mark>Unbanned $e</mark>";}
