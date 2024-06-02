@@ -17,8 +17,8 @@ if(file_get_contents("links.php")!=""){include("links.php");$live='Documents/';}
 $old=glob($live.'*eep.txt');foreach($old as $eep){if((85+filectime($eep))<time()){unlink($eep);}}
 
 function g($l){
- if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.03 28.php".$_POST['audio']."'/>";exit($l);}
- else{echo"<meta http-equiv='refresh' content='0.06 ".$_REQUEST['next']."'/>";exit($l);}}
+ if($_REQUEST['next']==""){echo"<meta http-equiv='refresh' content='0.03 28.php'/>";exit($l);}
+ else{echo"<meta http-equiv='refresh' content='0.06 ".htmlspecialchars($_REQUEST['next'])."'/>";exit($l);}}
 
 function svg($g,$r,$e){
 return '<svg height="50" width="129" alt="'.$g.'>
@@ -56,7 +56,7 @@ g($l);
 #Redirect if valid cookie exist
 if(abs($_COOKIE['o']-time())<34000 && crc32(base64_encode("127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){g($l);}
 elseif($_GET['next']=="28.php?b=d" || $_GET['next']=="28.php?b=b"){
-exit("<meta http-equiv='refresh' content='4'><mark>Solve in other window, should refresh automatically. You could try to resubmit the form too ~ ".date("H:i:s")."</mark>");
+exit("<meta http-equiv='refresh' content='4'><mark>Solve captcha, should refresh automatically. You could resend data too ~ ".date("H:i:s")."</mark>");
 }
 else{
 if($_REQUEST['id']!=""){$e=file_get_contents($live.$_POST['id'].'eep.txt');}
@@ -117,15 +117,15 @@ echo '<br><'.$tag[time()%3].' style="speak-as: spell-out">'.svg($a.base_convert(
 file_put_contents($live.$r.'eep.txt',$a) or exit("<mark>Can't write</mark>");
 #The CAPTCHA form, now with name ready
 echo'<form action="g3.php" method="post"><br><input name="name" size="15" placeholder="Nick" value="'.($_POST['name'] ?: $_COOKIE['name']).'" style="margin-left:2em"><br><input name="refresh" size="10" placeholder="Refresh" value="4" style="margin-left:2em"><span style="font-size:14px">Refresh</span><br>
-<input name="q'.base_convert(crc32($r."9u9dyi"),10,36).'" style="background:#dfd;margin-left:2em" size="4" maxlength="6" placeholder="Code" autofocus required><input type="color" name="col" value="'.$cfi.'"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><br><br><span style="font-size:16px;margin-left:1.3em">Invite code (30 on public chats):</a><br><input name="test" value="30" size="8" style="padding:0.3em;background:#dfd;margin-left:1.3em"><br><br><button style="margin-left:2em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520, #0A2015,#200A15);color:#8f8;" name="audio" value="yes">Enter with Audio</button><button style="margin-left:25px;padding:0.3em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520,#0A2015,#200A15);color:#8f8" name="audio" value="no">Enter without Audio</button></form>
-<p style="font-size:16px;margin-left:1.3em">Accessible CAPTCHA expires 80 seconds</p></h2>
+<input name="q'.base_convert(crc32($r."9u9dyi"),10,36).'" style="background:#dfd;margin-left:2em" size="4" maxlength="6" placeholder="Code" autofocus required><span style="font-size:12px">CAPTCHA</span><input type="color" name="col" value="'.$cfi.'"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next'] ?: '28.php').'"><br><br><span style="font-size:16px;margin-left:1.3em">Invite code (30 on public chats):</a><br><input name="test" value="30" size="8" style="padding:0.3em;background:#dfd;margin-left:1.3em"><br><br><button style="margin-left:2em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520, #0A2015,#200A15);color:#8f8;" name="audio" value="yes">Enter with Audio</button><button style="margin-left:25px;padding:0.3em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520,#0A2015,#200A15);color:#8f8" name="audio" value="no">Enter without Audio</button></form>
+<p style="font-size:16px;margin-left:1.3em">Accessible CAPTCHA expires 80 seconds, COOKIES NEEDED</p></h2>
 <div style="background:#dfd;width:70vw;display:inline-block;margin-left:2.8em"><div class="r"><center style="padding:20% !important;" class="run">';
 for($i=0;$i<81;$i++){echo '<span class="a'.$i.'">'.$i.'</span>';} #Timer
 echo'</center></div></div><br>
 <br><mark style="margin-left:3em">';if($live!="old"){echo `uptime -p`;}echo'</mark></html>';if($live!="old"){include("70.php");}}
 else{
-$find=['^-^',':&#039;(','o-o','0-0','*v*','*-*','^.^','*.*',':P','(:','):',':|',':D',':3',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<', ':-)','miii',':<}','{>:'];
-$change=['<mark>^-^</mark>','<mark>:\'(</mark>','<mark>o-o</mark>','<mark>0-0</mark>','<mark>*v*</mark>','<mark>*-*</mark>','<mark>^.^</mark>','<mark>*.*</mark>','<mark>:P</mark>','<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
+$find=['^v^','^-^',':&#039;(','o-o','0-0','*v*','*-*','^.^','*.*',':P','(:','):',':|',':D',':3',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<', ':-)','miii',':<}','{>:'];
+$change=['<mark>^v^</mark>','<mark>^-^</mark>','<mark>:\'(</mark>','<mark>o-o</mark>','<mark>0-0</mark>','<mark>*v*</mark>','<mark>*-*</mark>','<mark>^.^</mark>','<mark>*.*</mark>','<mark>:P</mark>','<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
 
 #Decompressing the random colours
 $k="'>$</span><span style='color:#";
@@ -151,17 +151,17 @@ function normalize($string){
   'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r');
 return strtr($string,$table);}}
 
-function highlighter($e){$parts=explode("@",$e);
+function highlighter($e){$e=str_replace('&#039;',' 󛱣',$e);$parts=explode("@",$e);
 foreach($parts as $part){
  if(strpos($e,"@".$part)!==false){$a='@'.$part;}
  else{$a=$part;}
   #Getting the colour from the user
- preg_match('/@([^\s:?\/\\\'*|<>.,]*)\s?/',$a,$matches);
+ preg_match('/@([^\s:?\/\'*|<>.,]*)\s?/',$a,$matches);
  if($matches[1]!=""){
    $times=explode("|",file_get_contents($matches[1].".visit"));
    $times = $times[count($times)-1];
    $pos = strpos($times, "color:");
    $col.= str_replace($matches[1],"@<b style='color:".substr($times,$pos+6,7).";'>".$matches[1]."</b>",$part);}
  else{$col.=$a;}}
-return str_replace("@@","@",$col);}
-?> 
+return str_replace("@@","@",str_replace(' 󛱣','&#039;',$col));}
+?>
