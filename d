@@ -43,3 +43,13 @@ on 25/01/2024, there were multiple Tor updates that caused small downtime
 on 03/02/2024, potential downtime due to 0.2s USB disconnect, yesterday 1m memory fill too!
 on 04/02/2024, potential downtime, screen flashing too
 on 05/02/2024, there was onion downtime due to 0.2s USB disconnect, as well as 14m total downtime to setup stuff again
+
+
+
+There were many other episodes of downtime, from 3 router failures taking the aera23.net site offline, 
+to an SD card failure before the replacement could arrive!
+
+
+As of June, I remember 3 restarts, at the 32 day mark (3 days uptime as of writing this), 
+69 day mark (lol yes... though several Tor restarts and even PHP timeouts)
+and one probably under 40 days... Downtime will always be a fact of hosting, it is just minimising it which makes the site appear 24/7
