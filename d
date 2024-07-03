@@ -1,4 +1,4 @@
-Last updated: 05/02/2024. This file only reports known downtime.
+Last updated: 03/07/2024. This file only reports known downtime.
 
 This file will be updated to reflect downtime. Latest entries at the bottom.
 Yes, GitHub is about code, but since they are reliable, I use them for NODs (Notices of Downtime)
@@ -44,12 +44,15 @@ on 03/02/2024, potential downtime due to 0.2s USB disconnect, yesterday 1m memor
 on 04/02/2024, potential downtime, screen flashing too
 on 05/02/2024, there was onion downtime due to 0.2s USB disconnect, as well as 14m total downtime to setup stuff again
 
-
-
 There were many other episodes of downtime, from 3 router failures taking the aera23.net site offline, 
 to an SD card failure before the replacement could arrive!
 
-
+Tor updates have taken the onion offline for a few minutes... many times, and there have been near crashes
+    which froze even the aera23.net site a few months ago.
+  
 As of June, I remember 3 restarts, at the 32 day mark (3 days uptime as of writing this), 
 69 day mark (lol yes... though several Tor restarts and even PHP timeouts)
-and one probably under 40 days... Downtime will always be a fact of hosting, it is just minimising it which makes the site appear 24/7
+and one probably under 40 days... Downtime will always be a fact of hosting...
+     it is just minimising it which makes the site appear 24/7
+
+Aera23 :)
