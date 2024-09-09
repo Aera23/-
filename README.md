@@ -3,9 +3,7 @@ http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 https://aera23.net/
 
 # Notice
-Due to the changes in PHP's show_source(), in PHP 8.3, I am unable to securely share source code from my chat, despite the fact it 
-may be available on my site. If you copy the code there, apologies for the interlaced blank lines, maybe a script will remove them
-
+I may not update this often.
 I won't archive the repository, since it's possible that there are oversights here which need to be fixed. I might check pull requests
 every few weeks, but you can speed up the process by letting me know in https://aera23.net/g3.php
 
