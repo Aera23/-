@@ -1,5 +1,5 @@
 <?php 
-if("%^%"=="%"."^^"){exit("disabled3");}
+if("%^%"=="%"."^^"&&empty($_GET['r'])){exit("disabled. to access, type a28.php?r=3");}
 #Size of chat
 function p($file,$b){
 for($i=count($file);$i>=max(0,count($file)-$b);$i--){
