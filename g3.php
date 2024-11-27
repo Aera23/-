@@ -28,9 +28,9 @@ if(!isset($_REQUEST['next'])){echo"<meta http-equiv='refresh' content='0 28.php'
 else{echo"<meta http-equiv='refresh' content='0 ".htmlspecialchars($_REQUEST['next'])."'/>";exit($l);}}
 
 function svg($g,$r,$e){
-if("%^%"!="%^"."%"){$x='';$len=strlen($g);for($i=0;$i<$len;$i++){$x.=$g[$i].s();}}
+if("%^^"!="%^"."%"){$x='';$len=strlen($g);for($i=0;$i<$len;$i++){$x.=$g[$i].s();}}
 else{$x=$g;}
-return '<svg height="50" width="129" alt="'.$x.' style="background:#000">
+return '<svg height="50" width="129" alt="'.$x.'">
 <defs>
   <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
   <stop offset="0%" stop-color="'.$r.'" /><stop offset="100%" stop-color="'.$e.'" />
@@ -42,7 +42,7 @@ return '<svg height="50" width="129" alt="'.$x.' style="background:#000">
 #Return 1 for valid cookie
 function chkx(){
 #Fixed poor validation ++
-if(isset($_COOKIE['crc'])&&isset($_REQUEST['o'])&&$_REQUEST['o']<time()&&crc32(base64_encode("127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
+if(isset($_COOKIE['crc'])&&isset($_COOKIE['o'])&&$_COOKIE['o']<time()&&crc32(base64_encode("127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
  return "1";}
  elseif(isset($_GET['apikey'])&&file_exists(".bashrc")&&$_GET['apikey']=="nrzknf.txt"){return "1";}
  elseif(file_exists(crc32("127.0.0.1").".dat")&&(filemtime(crc32("127.0.0.1").".dat")+20)>time()){return "1";}
@@ -56,10 +56,8 @@ setcookie("crc", $j, time()+35000);
 setcookie("o",time(),time()+35000);
 if(!file_exists("".makesum($j))){file_put_contents("".makesum($j),$_SERVER['REQUEST_TIME_FLOAT']);}
 }
-g($l);
+g($l);#Redirect if valid cookie exist
 }
-#Redirect if valid cookie exist
-if(chkx()=="1"){g($l);}
 elseif(isset($_GET['next'])&&($_GET['next']=="28.php?b=d"||$_GET['next']=="28.php?b=b")){
 exit("<meta http-equiv='refresh' content='4'><mark>Solve captcha, should auto refresh. Maybe resend message? ~ ".date("H:i:s")."</mark>");
 }
@@ -106,7 +104,7 @@ animation-duration: 80s;animation-timing-function:linear}fieldset{border:2px sol
 for($i=0;$i<81;$i++){echo'.a'.$i.'{animation:t 1s linear;animation-delay:'.(80-$i).'s;opacity:0;font-size:0.1px}';}
 $r=mt_rand(0,999);
 echo'</style>
-<h2 id="a" style="margin:2em;color:#f8f;font-family:sans-serif;border:2px solid #6d6;border-radius:7px;padding:0.2em;width:69vw">:) poop code, <'.$tag[time()%3].' style="speak-as:spell-out">';
+<h2 id="a" style="margin:2em;color:#f8f;font-family:sans-serif;border:2px solid #6d6;border-radius:7px;padding:0.2em;width:69vw">:3 <'.$tag[time()%3].' style="speak-as:spell-out">';
 //Randomise whether CAPTCHA wants first or last letters
 $sl=(mt_rand()%3);
 if($sl==1){echo $text[mt_rand(0,4)].'<br>';
@@ -119,15 +117,15 @@ echo svg($a.base_convert(mt_rand(0,35),10,36),$cfi,$e).'</'.$tag[time()%3].'>';}
 file_put_contents($live.$r.'eep.txt',$a) or exit("<mark>Can't write</mark>");
 #The CAPTCHA form, now with name ready
 echo'<form action="g3.php" method="post"><br><input name="name" size="15" placeholder="Nick" value="'.($_POST['name']??$_COOKIE['name']??'').'" style="margin-left:2em"><span style="font-size:14px">&lt; Nick</span><br><input name="refresh" size="10" placeholder="Refresh" value="4" style="margin-left:2em"><span style="font-size:14px">&lt; Refresh</span><br>
-<input name="q'.base_convert(crc32($r."9u9dyi"),10,36).'" style="background:#dfd;margin-left:2em" size="6" maxlength="6" placeholder="Code" autofocus required><span style="font-size:12px">&lt; Solution. <mark>READ TITLE</mark></span><input type="color" name="col" value="'.$cfi.'"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next']??'28.php').'"><br><br><span style="font-size:16px;margin-left:1.3em">Invite code (30 on public chats):</a><br><input name="test" value="30" size="8" style="padding:0.3em;background:#dfd;margin-left:1.3em"><br><br><button name="audio" value="on">Enter with Audio</button><button name="audio" value="off">Enter without Audio</button></form>
+<input name="q'.base_convert(crc32($r."9u9dyi"),10,36).'" style="background:#dfd;margin-left:2em" size="6" maxlength="6" placeholder="Code" autofocus required><span style="font-size:12px">&lt; Solution. <mark>READ TITLE</mark></span><input type="color" name="col" value="'.$cfi.'"><input name="id" type="hidden" value="'.$r.'"><input name="next" type="hidden" value="'.($_REQUEST['next']??'28.php').'"><br><br><span style="font-size:16px;margin-left:1.3em">Invite code (30 on public chats):</a><br><input name="test" value="30" size="8" style="padding:0.3em;background:#dfd;margin-left:1.3em"><br><br><button name="audio" value="on">Enter with ping (enable autoplay?)</button><button name="audio" value="off">Enter without Audio</button></form>
 <p style="font-size:16px;margin-left:1.3em">Solve accessible crap within 80 seconds, <mark>COOKIES NEEDED</mark></p></h2>
 <div style="background:#dfd;width:70vw;display:inline-block;margin-left:2.8em"><div class="r"><center style="padding:20% !important" class="run">';
 for($i=0;$i<81;$i++){echo '<span class="a'.$i.'">'.$i.'</span>';} #Timer
 echo'</center></div></div><br>
 <br><mark style="margin-left:3em">';if($live!="old"){echo`uptime -p`;}echo'</mark></html>';if($live!="old"){include("70.php");}}
 else{
-$find=['^w^','^u^','^v^','^-^',':&#039;(','o-o','0-0','*v*','*-*','^.^','*.*',':P','(:','):',':|',':D',':3',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<', ':-)','miii',':<}','{>:'];
-$change=['<mark>^w^</mark>','<mark>^u^</mark>','<mark>^v^</mark>','<mark>^-^</mark>','<mark>:\'(</mark>','<mark>o-o</mark>','<mark>0-0</mark>','<mark>*v*</mark>','<mark>*-*</mark>','<mark>^.^</mark>','<mark>*.*</mark>','<mark>:P</mark>','<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
+$find=['xD',':v',':c','^^','^w^','^u^','^v^','^-^',':&#039;(','o-o','0-0','*v*','*-*','^.^','*.*',':P','(:','):',':|',':D',':3',':(',':)','&lt;b&gt;','&lt;i&gt;','&lt;em&gt;','&lt;strong&gt;','&lt;mark&gt;','&lt;/b&gt;','&lt;/i&gt;','&lt;/em&gt;','&lt;/strong&gt;','&lt;/mark&gt;','>1<','>2<','>3<','>4<','>5<','>6<','>7<','>8<','>9<','>0<',':-)','miii',':<}','{>:'];
+$change=['<mark>xD</mark>','<mark>:v</mark>','<mark>:c</mark>','<mark>^^</mark>','<mark>^w^</mark>','<mark>^u^</mark>','<mark>^v^</mark>','<mark>^-^</mark>','<mark>:\'(</mark>','<mark>o-o</mark>','<mark>0-0</mark>','<mark>*v*</mark>','<mark>*-*</mark>','<mark>^.^</mark>','<mark>*.*</mark>','<mark>:P</mark>','<mark>(:</mark>','<mark>):</mark>','<mark>:|</mark>','<mark>:D</mark>','<mark>:3</mark>','<mark>:(</mark>','<mark>:)</mark>','<b>','<i>','<em>','<strong>','<mark style="background:#f44">','</b>','</i>','</em>','</strong>','</mark>','>&#9856<','>&#9857<','>&#9858<','>&#9859<','>&#9860<','>&#9861<','>&#9856<','>&#9857<','>&#9858<','>&#9859<','<mark>:-)</mark>',date("B"),'<mark>:<}</mark>','<mark>{>:</mark>'];
 
 #Decompressing the random colours
 $k="'>$</span><span style='color:#";
