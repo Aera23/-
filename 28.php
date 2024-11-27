@@ -30,7 +30,7 @@ if(file_exists("1699686263.old.old")){
 $file=file("1699686263.old.old");foreach($file as $filter){$f=explode("|",str_replace("\n","",$filter));$ee[]=$f[0]??'&27;';$xx[]=substr($f[1]??'&27;',0,-1);}}
 if(isset($ee)){$e=str_replace($ee,$xx,$e);}return trim($e);}
 
-if(isset($_POST['audio'])){setcookie("audio",$_POST['audio'],time()+34060);}
+if(isset($_POST['audio'])){setcookie("audio",$_POST['audio'],time()+35060);}
 if(isset($_GET['a'])&&$_GET['a']=="a"){file_put_contents("crc.txt",crc().date(" jS H:i:s")."\n",8);}
 $hpu='unlock.txt';
 if(isset($_COOKIE['name'])&&file_exists($hpu)&&($_COOKIE['name']==file_get_contents($hpu)||safe($_COOKIE['name'])==file_get_contents($hpu))){file_put_contents("crc.txt",$_COOKIE['name'].date(".H:i:s.|"),8);exit('<meta http-equiv="refresh" content="4">');}
@@ -40,7 +40,7 @@ if(isset($_POST['name'])){setcookie("name",trim($_POST['name']),time()+76400);}
 if(isset($_COOKIE['name'])){$safe=safe($_COOKIE['name']);}
 
 #if(crc()==562){$_POST['name']="BOR47";$safe="BORDERLINER";}
-
+if(isset($_POST['ign'])){setcookie("ign",$_POST['ign'],time()+35000);}
 $v='<meta name="viewport" content="width=device-width, initial-scale=1">';
 if(isset($_POST['refresh'])){setcookie("refresh",$_POST['refresh'],time()+76400);}
 if(isset($_POST['col'])&&strlen($_POST['col'])==7){setcookie('col',$_POST['col'],time()+76400);}
@@ -99,7 +99,7 @@ if(!empty($_POST['comment'])){$token=crc32($_REQUEST['t']);
 
 if(isset($_GET['b'])&&$_GET['b']=="c"&&isset($_COOKIE['9u9dyi'])){
 $e=$_POST['del'];file_put_contents("whokicked.txt",htmlspecialchars($_COOKIE['name']));
-if(isset($e)){rename($e,$e.".ivisit");if(!empty($li)){unlink(''.$e.'.cache');}}
+if(isset($e)&&2==1){rename($e,$e.".ivisit");if(!empty($li)){unlink(''.$e.'.cache');}}
 $e=explode(".v",$e)[0];
 file_put_contents($hpu,$e);
 #Ideally, there will be a loop to clean all messages from that user, mark the lines as [redacted ###] and store it so it can be restored or read if needed. I won't implement it though
@@ -195,7 +195,7 @@ $x=['hild p','DM me','DM @','t.me','h i l d','nigge','i watch pedo','inces','paj
 'pedomom','bc1q2a','vwsb7j','young love b','oju4yn','be pedo','aiw invite','got some cp','6 to 13','14 is too old','i love kid','xnrpew','nypho','cuck','Cuck','fag ',' fag','knicker','bald slit','pomf2',
 'suckin ','dick for','have all age','ck and rape','oral sex','penis','little cock','femboy ass','rape u','panti','cum sh','jdiaz3','d cum','aman1shani','edgin','Goon','his crack',
 'pre cum','iifz7v','Who has CP','retard','pedo ever','fagg','fucker','films up woman','sexual acts','love cp','girls to play','cumm','mywrn4',' pubes ','am a pedo','rape you','take your draws d',
-'topics link','hitler','open to trade','Death to i','Death to pa','jews be','hamas','power of love'];
+'topics link','hitler','open to trade','Death to i','Death to pa','jews be','hamas','power of love','dumpliw'];
 if(is_dir('')){
 foreach(glob("*.visit.cache") as $cache){if(strpos(file_get_contents($cache),'*')!==false){$fo=1;}}
 if(empty($fo)){
@@ -415,7 +415,7 @@ echo'.r{color:#6f6}.g{width:15em;margin-right:8em;margin-left:0.5em;background:#
 @keyframes s{
  0%{'.$oc.'}0.0001%{'.$ob.'}0.0002%{'.$oa.'}4.1657%{'.$oa.'}4.1658%{'.$ob.'}4.1659%{'.$oc.'}}
 /*https://stackoverflow.com/questions/4148499/how-to-style-a-checkbox-using-css*/
-.l,.r{font-family:monospace}.l{font-size:1.1em}.l span:hover{border:2px solid #f0f}.l span{height:15px;width:15px;border:2px solid grey;background:'.$cfi.';display:inline-block;position:relative;margin-top:5px;}.l input{opacity:0.01}
+.l,.r{font-family:monospace}.l{font-size:1.1em}.l span:hover{border:2px solid #0a0}.l span{height:15px;width:15px;border:2px solid grey;background:'.$cfi.';display:inline-block;position:relative;margin-top:5px;}.l input{opacity:0.01}
 [type=checkbox]:checked+span:before{content:"✔️";position:absolute;top:-4px;left:0}</style>';
 
 if(isset($_GET['b'])&&$_GET['b']=='d'){
@@ -455,6 +455,7 @@ echo'<span>Emphasis (0.7-1.5em):</span>
 <input name="audio" size="3" value="'.htmlspecialchars($_POST['audio']??$_COOKIE['audio']??'').'">
 <span>Font</span><input name="f" value="'.htmlspecialchars($_REQUEST['f']??'').'" placeholder="Type s for fonts" list="f">
 <datalist id="f"><option value="monospace"><option value="sans-serif"><option value="serif"><option value="cursive"><option value="fantasy"></datalist>
+<input name="ign" value="'.htmlspecialchars($_POST['ign']??$_COOKIE['ign']??'').'" placeholder="Ignore (crc or keyword)">
 <!--span>Messages:</span><input name="lines" size="2" value="htmlspecialchars($l)" max="64"-->';}
 else{echo'<input type="hidden" name="f" value="'.htmlspecialchars($_REQUEST['f']??'').'"><input type="hidden" name="e" value="'.min(htmlspecialchars($_REQUEST['e']??1),1.5).'">';}
 
@@ -517,6 +518,7 @@ echo'<!DOCTYPE html><html>';$cfi=htmlspecialchars($_POST['col']??$_COOKIE['col']
 $b=(($config[4]-1)*2)??80;#(intval($_REQUEST['m'])*2)?:24;#$b=abs(min($b,48));
 function p($file,$b){
 for($i=count($file);$i>=max(0,count($file)-$b);$i-=2){if(isset($file[$i])){
+if(strpos($file[$i],($_COOKIE['ign']??'/x d'))!==false){$b+=2;}#Ignore
 if(isset($_COOKIE['9u9dyi'])&&strpos($file[$i],"/m ")!==false){return$i;}else{$b+=2;}
 #PM/CRC checks
 if(!preg_match("/\/pm ([0-9]{3})([0-9]{3})-\^!/i",strtolower($file[$i]),$matches)){
@@ -547,6 +549,7 @@ file_put_contents(''.$log.'.cache',$score.$output);}}
 
 $i=$time;
 while($i>=max(0,$time-$b)){
+if(strpos($file[$i],($_COOKIE['ign']??'/x '))!==false){$b+=2;$i-=2;continue;}
 #M/PM/CRC checks
 if(strpos($file[$i],"/m ")!==false){
 if(isset($_COOKIE['9u9dyi'])){echo str_replace('/m ','',preg_replace('|([0-9]{3}-)|i','<b><u>M</u></b>---$1',pt($file[$i],$i)));$i-=2;continue;}else{$b+=2;$i-=2;continue;}}
