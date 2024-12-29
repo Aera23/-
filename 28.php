@@ -3,7 +3,7 @@ $config=explode("|",file_get_contents("config.txt"));
 if(isset($_GET['9u9dyi'])&&$_GET['9u9dyi']=="t"){setcookie("9u9dyi","t",time()+432000);echo'<mark>Mod cookie set</mark><form action="28.php" style="display:inline"><input type="submit" name="a" value="Settings"></form>';}
 if(isset($_GET['d'])){
 if($_GET['d']==8){
-if(is_dir('Music')){$start=number_format(microtime(true),10,'.','');$names=glob("{,.}*.visit",GLOB_BRACE);array_multisort(array_map('filemtime',$names),SORT_NUMERIC,SORT_DESC,$names);$i=0;
+if(is_dir('Music')){$li='';$start=number_format(microtime(true),10,'.','');$names=glob("{,.}*.visit",GLOB_BRACE);array_multisort(array_map('filemtime',$names),SORT_NUMERIC,SORT_DESC,$names);$i=0;
 foreach($names as $log){if($i<10){$score=explode('|',file_get_contents($log));$sc=count($score)-1;file_put_contents($li.$log.'.cache',$sc.'|'.$score[$sc]);$i++;touch($li.$log.'.cache',filemtime($log),time());}}}
 $end=number_format(microtime(true),10,'.','');$z=($end-$start)*1000;echo$z.'<br>';print("<mark>Thanks</mark>");}
 else{
@@ -13,7 +13,7 @@ if($_GET['d']==4){file_put_contents('a28.php',str_replace('%^^','%^%',file_get_c
 if($_GET['d']==3){file_put_contents('a28.php',str_replace('%^%','%^^',file_get_contents('a28.php')));}
 if($_GET['d']==2){file_put_contents('g3.php',str_replace('%^%','%^^',file_get_contents('g3.php')));}
 elseif($_GET['d']==1){file_put_contents('g3.php',str_replace('%^^','%^%',file_get_contents('g3.php')));}
-exit('<mark>Command run: '.htmlspecialchars($_GET['d']).' [1: normal captcha, 2: spaced out captcha, 3: limit API, 4: full API, 5: no backend beep, 6: beep]</mark>');}
+exit('<mark>Command run: '.htmlspecialchars($_GET['d']).' [1: normal captcha, 2: spaced out captcha, 3: limit API, 4: full API, 5: no backend beep, 6: beep, 8: redo cache]</mark>');}
 }
 $ok='2';function qq(){return 'background:radial-gradient(#00'.(strpos($_SERVER['HTTP_USER_AGENT'],'bile')?'4,#040,#400)':'2,#020,#200)');}
 
@@ -49,7 +49,7 @@ if(!isset($_GET['b'])&&!isset($_GET['a'])){
 if(file_exists('z28.php')){echo'<form action="z28.php" method="get" style="display:inline"><input type="submit" name="e" value="Digit Only"></form> ';}
 if(file_exists('testy.php')){echo'<form action="testy.php" method="get" target="_blank" style="display:inline"><input type="submit" value="Community DB"></form> ';}}
 
-function s_t($t){return preg_replace("/<(.*) style='(.*)'>(.*)<\/(.*)>/i","$3",strip_tags($t,'<b><i><mark><br><q><strong>'));}
+function s_t($t){return preg_replace("/<(.*) style='(.*)'>(.*)<\/(.*)>/i","$3",str_replace('isAFK','/afk',strip_tags($t,'<b><i><mark><br><q><strong>')));}
 function roulette($obj){
 $obj = str_replace("/","\\/",$obj);
  $strs=explode("\\",$obj);
@@ -66,6 +66,7 @@ $obj = str_replace("/","\\/",$obj);
  $obj.=$str;}
 return str_replace("/bk","\\",$obj);}
 
+if(safe($_COOKIE['name'])=="ARIONONE"){$_COOKIE['ignore']="luncreak";}
 if(!empty($_POST['comment'])){
 if(file_exists("".crc())){$d=($_SERVER['REQUEST_TIME_FLOAT']-file_get_contents("".crc()));}
 else{$check=floatval(str_replace("|314159","",$_REQUEST['t']));
@@ -74,7 +75,7 @@ $len=strlen(htmlspecialchars($_POST['comment']));
 if($d!=0){$cps=$len/$d;}else{$cps=-1;}
 $x=fopen("9u9dyi","a+");fwrite($x, $cps.'|'.$_COOKIE['crc']."|".date("m-jS H:i:s|").htmlspecialchars($_POST['name'])."|".htmlspecialchars($_POST['comment'])."\n");fclose($x);}
 
-function crc(){$e=100+($_COOKIE['crc']%900);return $e;}
+function crc(){$e=100+(($_COOKIE['crc']??0)%900);return $e;}
 
 #Prevent duplicate messages (takes advantage of refresh requirements for cookies)
 if(isset($_REQUEST['q'])){setcookie("u",$_REQUEST['q'],time()+35000);}
@@ -122,10 +123,9 @@ echo'<!DOCTYPE html><html>'.$v.'<h2>'.$q.' Config <a href="28.php"><button style
 <b>Filter edit:</b><input name="g" value="'.($config[5]??1).'" size="2"><b>(2 = admin, 1 = all)</b><br>
 <b>Invite code (30 on public chat):</b><input name="i" value="'.(base64_decode(strrev($config[7]))??30).'" size="8"><br>
 <b>Online list (s) </b><input name="j" value="'.($config[8]??'30').'" size="3"><br><br>
-<button>Save</button><br><br>';
- if(file_exists("links.php")&&!empty($_COOKIE['ina'])){echo'
+<button>Save</button><br><br>
  Canary:<br><br><input name="d" value="'.$config[3].'" size="'.(strlen($config[3])??35).'" placeholder="Link"><br>
- <textarea name="e" class="v" form="f" cols="80" rows="40" placeholder="canary.txt">'.htmlspecialchars(file_get_contents("canary.txt")).'</textarea>';}
+ <textarea name="e" class="v" form="f" cols="80" rows="40" placeholder="canary.txt">'.htmlspecialchars(file_get_contents("canary.txt")).'</textarea>';
 echo'</form><br><b>If @Aera23 has an update, use <a href="https://aera23.net/download.php?f=28.php&a=100" target="_blank">link 1</a> and <a href="https://aera23.net/download.phpf=g3.php&a=100" target="_blank">link 2</a>. Replace the old code with it.</b><style>button:hover,a:hover{color:#0ff}button,input{background:#464;color:#fff;border-radius:8px;padding:0.4em;margin:0.2em;border:2px solid #050}button:hover,input:hover{border:2px solid #0a0}html{margin:3em;font-family:sans-serif}::placeholder{color:#fff;opacity: 1}::-ms-input-placeholder{color: #fff;opacity: 1}
 *{background:#000;color:#0af}b,h2{color:#0cf}form{display:inline}textarea{padding:0.3em;border-radius:15px}</style></form></html>';exit;}
 
@@ -167,12 +167,12 @@ $time=$z[$qq];}
 $i++;
 $name=str_replace('.cache','',str_replace('.visit','',str_replace('','',$name)));
 if(isset($_COOKIE['9u9dyi'])){$p='<tr><td><form action="28.php?b=c" method="post" style="display:inline"><button name="del" value="'.$name.'.visit" class="t">'.(($name!='0000')?(($name==$safe)?'⚠️':'❌'):'⚠️').'</button></button></form></td><td style="text-align:center">';}else{$p='<tr><td style="text-align:center">';}
-$arr[]= $p.str_replace("alkalineLight","Moonlight",$name).'</td><td style="text-align:center">'.str_replace("3 ", "31 ",str_replace(date("jS"),"",str_replace(date("m-"),"",$time.'<span class="x"></td><td style="text-align:right"><a href="28.php?f='.$name.'.visit&i='.max($qq-600,0).'" target="_blank">'.number_format($qq))))."</a></td>
+$arr[]= $p.str_replace("alkalineLight","Moonlight",$name).'</td><td style="text-align:center">'.str_replace("3 ", "31 ",str_replace(date("jS"),"",str_replace(date("m-"),"",$time.'<span class="x"></td><td style="text-align:right"><a href="28.php?f='.$name.'.visit&i='.(($name=='Anonymo')?($qq-50600):max($qq-600,0)).'" target="_blank">'.number_format((($name=='Anonymo')?($qq+50000):$qq)))))."</a></td>
 </tr>";}else{break;}}
 $tt='';$z=0;foreach($arr as $str){if($z<11){$tt=$tt.$str;}$z++;}
 echo"<!DOCTYPE html><html><meta http-equiv='refresh' content='$sec 28.php?b=b&o=$ee'>";
 if(isset($_GET['o'])&&$_GET['o']!=$ee&&isset($_COOKIE['ina'])&&$_GET['b']=='b'){$phrase='-';include('g3.php');gt();echo'<mark style="display:inline">*</mark>';}
-echo"<style>center{font-family:sans-serif}a{color:#8f8}button{background:#f88;border-radius:8px;border:2px solid #f00}table{border-spacing:0}td{color:#fff;border-radius:6px;background:inherit;border:1px solid #afa;line-height:1.3;font-size:16px;max-width:10em;padding:0.2em}.x{color:#888}.t:hover{border:2px solid #80f;background:#f80}</style><center><span style='font-size:17px;background:inherit;color:#afa'>Last online: ";
+echo"<style>tr{background:#031}tr:nth-child(n+".($ee+1)."){background:#400}center{font-family:sans-serif}a{color:#8f8}button{background:#f88;border-radius:8px;border:2px solid #f00}table{border-spacing:0}td{border:1px solid #afa;color:#fff;border-radius:6px;background:inherit;line-height:1.3;font-size:16px;max-width:10em;padding:0.2em}tr:nth-child(2n) td{border:1px solid #060}tr:nth-child(2n+".($ee+2).") td{border:1px solid #740000 !important}tr:nth-child(2n+".($ee+1).") td{border:1px solid #f16464 !important}.x{color:#888}.t:hover{border:2px solid #80f;background:#f80}</style><center><span style='font-size:17px;background:inherit;color:#afa'>Last online: ";
 exit($ee.' (last '.($config[8]??30).'s)</span><br><table>'.$tt.'</table></center></html>');}
 
 $em=max(min(floatval(htmlspecialchars($_REQUEST['e']??'1')),1.5),0.7);
@@ -232,6 +232,7 @@ $e=str_replace('XD','<mark>XD</mark>',$e);
 $e=str_replace('priya','<a href="#">p</a><font color="#0ff">r</font><font color="#0f0">i</font><font color="#ff0">y</font><font color="#f86">a :clock:</font>',$e);
 $e=str_replace('PROTOTYP','<a href="#">PR</a><font color="#0ff">OT</font><font color="#0f0">OT</font><font color="#ff0">YP</font><font color="#f86">E :clock:</font>',$e);
 $e=str_replace('ENCHANTRESS','<a href="#">EN</a><font color="#0ff">CH</font><font color="#0f0">ANT</font><font color="#ff0">RE</font><font color="#f86">SS :clock:</font>',$e);
+$e=str_replace('ARIONONE','<a href="#">AR</a><font color="#0ff">IO</font><font color="#0f0">NE</font><font color="#ff0">ON</font><font color="#f86">E :clock:</font>',$e);
 if(str_contains($e,':')){
 $e=str_replace(':clock:','<font color="#f86"><span class="a0">7</span><span class="a1">6</span><span class="a2">5</span><span class="a3">4</span><span class="a4">3</span><span class="a5">2</span><span class="a6">1</span><span class="a7">0</span><span class="a8">9</span><span class="a9">8</span></font>',$e);
 $e=str_replace(':\\','<mark>:\\</mark>',$e);
@@ -444,10 +445,10 @@ else{
 preg_match("/\/pm ([0-9]{3})([0-9]{3})-\^!/i",$file[abs(intval($_REQUEST['reply']))],$x);
 preg_match('/\">('.preg_quote(htmlspecialchars($safe)).') (- )?(.*)<\/span>/i',$file[abs(intval($_REQUEST['reply']))],$matches);
 $e='/pm '.$x[1].' '.s_t($matches[2]!='- '?'/me '.$matches[3]:$matches[3]);}
-echo' value="'.$e.'"';}echo'" size="54" autofocus="true" id="a"><script>setTimeout(function(){var a=document.getElementById("a");a.focus();a.selectionStart=a.selectionEnd='.($config[2]??500).';},0);</script>';#https://stackoverflow.com/questions/511088/use-javascript-to-place-cursor-at-end-of-text-in-text-input-element
+echo' value="'.$e.'"';}echo'" size="54" autofocus="true" id="a"><script>setTimeout(function(){var a=document.getElementById("a");a.focus();a.selectionStart=a.selectionEnd='.($config[1]??500).';},0);</script>';#https://stackoverflow.com/questions/511088/use-javascript-to-place-cursor-at-end-of-text-in-text-input-element
 
 if(isset($_REQUEST['show'])){
-echo'<span>Emphasis (0.7-1.5em):</span>
+echo'<span>. . Emphasis (0.7-1.5em):</span>
 <input name="e" size="3" value="'.min(htmlspecialchars($_REQUEST['e']??1),1.5).'" max="1.5">
 <span>Refresh (s)</span>
 <input name="refresh" size="3" value="'.htmlspecialchars($_POST['refresh']??$_COOKIE['refresh']??'').'" min="3" placeholder="4">
@@ -461,13 +462,12 @@ else{echo'<input type="hidden" name="f" value="'.htmlspecialchars($_REQUEST['f']
 
 #Chat form
 echo'<input type="hidden" name="t" value="'.$e.'|314159"><input type="hidden" name="q" value="'.$token.'"><input type="hidden" name="rpl" value="'.htmlspecialchars($_REQUEST['reply']??'').'">'; if(!empty($_COOKIE['9u9dyi'])){echo'<span class="n"><input type="checkbox" name="del" value="n"></span>';}
-echo'<input style="background:#252;color:#fff" type="submit" onclick="window.navigator.vibrate(10);" value="Send"><br>
-<label class="l"><input type="checkbox" name="show" value="y" ';if(isset($_REQUEST['show'])){echo' checked';}exit('><span></span>&nbsp;&nbsp;Request bonus features</label></form>');}
+echo'<input style="background:#252;color:#fff" type="submit" onclick="window.navigator.vibrate(10);" value="Send"><label class="l"><input type="checkbox" name="show" value="y" ';if(isset($_REQUEST['show'])){echo' checked';}exit('><span></span>&nbsp;&nbsp;Request bonus features</label></form>');}
 
 else{echo'<style>#show,.content{display:none}
 #show:checked~.content{display:block !important}label u{color:#afa}label u:hover{color:#0ff}
 show,.hidden{display:block}#show:checked~.hidden{display:none}
-</style><input id="show" type="checkbox"><label for="show"><u>'.$phrase.' INSTANT Help<b></b></u> | <a href="music.php" target="_blank">🎵 Music</a> | <a href="22.php" target="_blank">🎨 Hotbit colours</a> | <a href="colour.php" target="_blank">🚅 SpeedTest</a> | <a href="files.php" target="_blank">⬆️ Files</a> | <a href="add.php" target="_blank">🏜️, Pyramid Puzzle</a>';
+</style><input id="show" type="checkbox"><label for="show"><u>'.$phrase.' QUICK Help<b></b></u> | <a href="music.php" target="_blank">🎵 Music</a> | <a href="22.php" target="_blank">🎨 Hotbit colours</a> | <a href="colour.php" target="_blank">🚅 SpeedTest</a> | <a href="files.php" target="_blank">⬆️ Files</a> | <a href="add.php" target="_blank">🏜️, Pyramid Puzzle</a>';
  if(isset($_COOKIE['9u9dyi'])&&!isset($_GET['9u9dyi'])){echo' <form action="28.php" style="display:inline"><input type="submit" name="a" value="Settings"></form>';}
 echo'<br><span class="r">UTC: <span class="g"><span class="e0">0</span>';
 for($i=0;$i<15;$i++){if($i!="0"){$e=((24-$i)%24);}else{$e="00";}echo'<span class="e'.$i.'">'.((24-$i)%24).'</span>';}
