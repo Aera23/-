@@ -2,10 +2,9 @@ http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 
 https://aera23.net/
 
-# Notice
-I may not update this often.
-I won't archive the repository, since it's possible that there are oversights here which need to be fixed. I might check pull requests
-every few weeks, but you can speed up the process by letting me know in https://aera23.net/g3.php
+# WARNING
+* Use Find and Replace (Ctrl + H or Ctrl + R) to change these secrets 1id8sjl.txt and 9u9dyi in g3.php and 28.php
+* (please change $ad at the top of testx.php / files.php)
 
 # Chat and stopwatch
 * Included are the chat script, PHP stopwatch and the CAPTCHA.
