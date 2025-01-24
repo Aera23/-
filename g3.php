@@ -1,4 +1,5 @@
 <?php
+$grace=99999;#WARNING, set to 20
 if(strpos($_SERVER['REQUEST_URI'],"/g3.php/")!==false){exit('<meta http-equiv="refresh" content="0 /g3.php"/><mark style="font-size:1.2em;padding:0.3em">Auto redirect</mark>');}
 
 if(!function_exists('ini_parse_quantity')){echo '<mark>Upgrade your PHP for more features / security</mark>';}
@@ -45,7 +46,7 @@ function chkx(){
 if(isset($_COOKIE['crc'])&&isset($_COOKIE['o'])&&$_COOKIE['o']<time()&&crc32(base64_encode("127.0.0.1".$_COOKIE['o']))==$_COOKIE['crc']){
  return "1";}
  elseif(isset($_GET['apikey'])&&file_exists(".bashrc")&&$_GET['apikey']=="nrzknf.txt"){return "1";}
- elseif(file_exists(crc32("127.0.0.1").".dat")&&(filemtime(crc32("127.0.0.1").".dat")+20)>time()){return "1";}
+ elseif(file_exists(crc32("127.0.0.1").".dat")&&(filemtime(crc32("127.0.0.1").".dat")+$grace)>time()){return "1";}
 else{return "2";}}
 
 #Redirection
