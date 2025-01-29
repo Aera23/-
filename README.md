@@ -2,7 +2,7 @@ http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 
 https://aera23.net/
 
-# WARNING
+# IMPORTANT
 * Use Find and Replace (Ctrl + H or Ctrl + R) to change these secrets 1id8sjl.txt and 9u9dyi in g3.php and 28.php
 * reset $grace to 20 or similar in g3.php if you want the captcha to not be lazy (in testing it was too strict)
 * (please change $ad at the top of testx.php / files.php)
