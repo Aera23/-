@@ -1,5 +1,5 @@
 <?php
-$grace=99999;#WARNING, set to 20
+$grace=300;#To make captcha stricter, set to 20
 if(strpos($_SERVER['REQUEST_URI'],"/g3.php/")!==false){exit('<meta http-equiv="refresh" content="0 /g3.php"/><mark style="font-size:1.2em;padding:0.3em">Auto redirect</mark>');}
 
 if(!function_exists('ini_parse_quantity')){echo '<mark>Upgrade your PHP for more features / security</mark>';}
@@ -67,12 +67,20 @@ if(isset($_REQUEST['id'])){$e=file_get_contents($live.$_POST['id'].'eep.txt');}
 if(isset($e)&&$_REQUEST['q'.base_convert(crc32($_REQUEST['id']."9u9dyi"),10,36)]!=""&&strtolower(trim($_REQUEST['q'.base_convert(crc32($_REQUEST['id']."9u9dyi"),10,36)],' \\'))==$e)
 {#Invite check
   if(file_exists("config.txt")){$ic=base64_decode(strrev(explode('|',file_get_contents("config.txt"))[7]));}else{$ic=30;}
-  if(isset($_POST['test'])&&$_POST['test']!=$ic){echo("<mark>Bad invite code</mark>");}
+  if(isset($_POST['test'])&&$_POST['test']!=$ic){echo"<mark>Bad invite code</mark>";}
 else{
 setcookie("o",time(),time()+35000);setcookie("crc",crc32(base64_encode("127.0.0.1".time())),time()+35000);
 file_put_contents(crc32("127.0.0.1").".dat",crc32(strrev("127.0.0.1")));
  g($l);
-}}}
+}}elseif(isset($_REQUEST['id'])){echo"<mark>Invalid captcha solve,</mark>";
+$xxx=strlen($_REQUEST['q'.base_convert(crc32($_REQUEST['id']."9u9dyi"),10,36)]);
+if($xxx==4){echo"<mark>&nbsp;don't type 4 characters directly</mark>";}
+elseif($xxx==3&&strlen($e)!=3){echo"<mark>&nbsp;don't type 3 characters directly</mark>";}
+elseif($xxx<3&&$xxx!=0||$xxx==5){echo"<mark>&nbsp;wrong length</mark>";}
+elseif($xxx==0){echo"<mark>&nbsp;blank solution is never valid</mark>";}
+else{echo"<mark>&nbsp;maybe retry?</mark>";}
+}
+}
 $cf=["#ff33f",'#8800f','#ff334',"#11ffe","#eeaa0","#00dfd","#ff880","#ffff0","#00ff0","#0088f"];
 #Preset colours
 if(!isset($_POST['col'])){$cb=(mt_rand()%10);$cfi=$cf[$cb].$cb;}
