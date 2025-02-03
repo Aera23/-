@@ -1,5 +1,5 @@
 <?php
-$grace=300;#To make captcha stricter, set to 20
+$grace=250;#To make captcha stricter, set to 20
 if(strpos($_SERVER['REQUEST_URI'],"/g3.php/")!==false){exit('<meta http-equiv="refresh" content="0 /g3.php"/><mark style="font-size:1.2em;padding:0.3em">Auto redirect</mark>');}
 
 if(!function_exists('ini_parse_quantity')){echo '<mark>Upgrade your PHP for more features / security</mark>';}
@@ -18,8 +18,8 @@ if(isset($_POST['audio'])){setcookie("audio",$_POST['audio'],time()+35060);}
 if(isset($_POST['name'])){setcookie("name",$_POST['name'],time()+86400);}
 if(isset($_POST['refresh'])){setcookie("refresh",$_POST['refresh'],time()+86400);}
 if(isset($_POST['col'])){setcookie("col",$_POST['col'],time()+35000);}
-if(!isset($phrase)){$live='old';$l='Redirecting';
-if(file_get_contents("links.php")!=""){include("links.php");$live='Documents/';}
+if(!isset($phrase)){$live='';$l='Redirecting';
+if(file_exists("links.php")){include("links.php");$live='Documents/';}
 $old=glob($live.'*eep.txt');foreach($old as $eep){if((85+filectime($eep))<time()){unlink($eep);}}
 
 function s(){$s=mt_rand(0,2);if($s===0){return' ';}elseif($s===1){return'';}else{return'&nbsp;';}}
