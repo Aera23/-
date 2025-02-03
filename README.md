@@ -1,18 +1,15 @@
 http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 
-https://aera23.net/
+https://aera23.net/ (Ghost)
 
-# IMPORTANT
-* Use Find and Replace (Ctrl + H or Ctrl + R) to change these secrets 1id8sjl.txt and 9u9dyi in g3.php and 28.php
-* reset $grace to 20 or similar in g3.php if you want the captcha to not be lazy (in testing it was too strict)
-* (please change $ad at the top of testx.php / files.php)
+# SETUP
+* Use setup.php to change chat secrets.
+* maybe change $grace from 300 to 20?
 
 # Chat and stopwatch
 * Included are the chat script, PHP stopwatch and the CAPTCHA.
-* The stopwatch counts time since it was first run. To reset it, delete time2.txt
-* New: Admin can delete messages and send away bad chatters with one click!
-* Use Find and Replace (Ctrl + H or Ctrl + R) to change these secrets 1id8sjl.txt and 9u9dyi
-* if you cannot do that, obtain g3.php and 28.php from https://aera23.net/source.php
+* The chat has cookie support for bonus features!
+* The stopwatch counts time since it was first run in time2.txt
 # Latency test
 * To run the test, access colour.php
 * To view more data, add ?r=1 (or 2,3,4) when accessing data.php (shows from last day)
@@ -27,9 +24,7 @@ https://aera23.net/
 * ?delete=accesskey to be able to delete files via the upload page (please change $ad at the top of the script)
 # Installation
 * Copy the files into the directory you want to.
-* Run g3.php and solve CAPTCHA
-* Follow the prompts, and save
-* Click the button saying "BACK"
+* Run setup.php then use mod link
 * Optional: Check out stopwatch.php or colour.php :)
 Enjoy :)
 
