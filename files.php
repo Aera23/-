@@ -1,5 +1,5 @@
 <?php
-$ad='accesskey';
+$ad='9u9dyi';
 if($_GET['delete']==$ad){setcookie("delete",$ad);$_COOKIE['delete']=$ad;}
 
 function diff($t){
@@ -28,7 +28,6 @@ function getUploadedFiles() {
 
     // Close database connection
     $db->close();
-
     return $files;
 }
 
@@ -58,23 +57,17 @@ function createDatabaseAndTableIfNeeded() {
 function downloadFile($fileId) {
     // Database connection
     $db = new SQLite3('uploads.db');
-
     // Prepare SQL statement
     $stmt = $db->prepare('SELECT * FROM uploads WHERE id = :id');
     $stmt->bindValue(':id', $fileId, SQLITE3_INTEGER);
     $result = $stmt->execute();
-
     // Fetch file details
     $file = $result->fetchArray(SQLITE3_ASSOC);
-
     // Close database connection
     $db->close();
-
-    // Set headers for file download
+    // Set headers
     header('Content-Type: ' . $file['type']);
-   // header('Content-Disposition: attachment; filename="' . $file['name'] . '"');
     header('Content-Length: ' . $file['size']);
-
     // Output file content
     echo $file['content'];
 }
@@ -83,15 +76,12 @@ function downloadFile($fileId) {
 function deleteFile($fileId) {
     // Database connection
     $db = new SQLite3('uploads.db');
-
     // Prepare SQL statement
     $stmt = $db->prepare('DELETE FROM uploads WHERE id = :id');
     $stmt->bindValue(':id', $fileId, SQLITE3_INTEGER);
     $result = $stmt->execute();
-
     // Close database connection
     $db->close();
-
     return $result;
 }
 
