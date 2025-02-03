@@ -204,7 +204,7 @@ $x=['hild p','DM me','DM @','t.me','nigge','i watch pedo','inces','pajee','notbu
 'suckin ','dick for','have all age','ck and rape','oral sex','penis','little cock','femboy ass','rape u','panti','cum sh','jdiaz3','d cum','aman1shani','edgin','Goon','his crack','yunglove','for sex','telegram',
 'pre cum','iifz7v','Who has CP','retard','pedo ever','fagg','fucker','films up woman','sexual acts','love cp','girls to play','cummi','mywrn4',' pubes ','am a pedo','rape you','take your draws d',
 'topics link','hitler','open to trade','Death to i','Death to pa','jews be','hamas','power of love','dumpliw','cp free'];
-if(preg_match('/[a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9]/g',$e,$m)){$e='slut';}
+if(preg_match('/[a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9]/i',$e,$m)){$e='slut';}
 foreach($x as $y){
 if(stripos($e,$y)!==false){file_put_contents('unlock.txt',$_POST['name']);
 $write='000-<i>'.date("m-jS H:i:s").'</i> |<span style="color:'.htmlspecialchars($_COOKIE['col']??'#88ff88').'">/m Filter triggered: '.$y.'</span>'."
@@ -351,7 +351,7 @@ foreach($v as $z){$i++;$e.=$i.'&gt;'.$z.'<br>';}
 echo"<mark>$e</mark>";$z=4;}}}
 
 #Writing
-if($_COOKIE['u']!=$_REQUEST['q']&&$z==5){$e='';
+if(isset($_REQUEST['q'])&&$_COOKIE['u']!=$_REQUEST['q']&&$z==5){$e='';
 
 if(isset($_POST['rpl'])){$file=db("1id8sjl.txt");}
  #Find the message number that was replied to, cannot be more than 300 below the current message
