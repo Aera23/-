@@ -45,6 +45,14 @@ $v='<meta name="viewport" content="width=device-width, initial-scale=1">';
 if(isset($_POST['refresh'])){setcookie("refresh",$_POST['refresh'],time()+76400);}
 if(isset($_POST['col'])&&strlen($_POST['col'])==7){setcookie('col',$_POST['col'],time()+76400);}
 
+#Persist a bit
+if(!isset($_POST['show'])&&isset($_POST['t'])){setcookie('n',1,time());}
+elseif(isset($_POST['show'])){setcookie('n',99,time()+76400);}
+if(!isset($_POST['f'])&&isset($_POST['t'])){setcookie('f','',time());}
+elseif(isset($_POST['f'])){setcookie('f',$_POST['f'],time()+76400);}
+if(!isset($_POST['e'])&&isset($_POST['t'])){setcookie('e','',time());}
+elseif(isset($_POST['e'])){setcookie('e',$_POST['e'],time()+76400);}
+
 if(!isset($_GET['b'])&&!isset($_GET['a'])){
 if(file_exists('z28.php')){echo' <form action="z28.php" method="get" style="display:inline"><input type="submit" name="e" value="Notification Only"></form> ';}
 if(file_exists('testy.php')){echo'<form action="testy.php" method="get" target="_blank" style="display:inline"><input type="submit" value="Community DB"></form> ';}}
@@ -191,10 +199,10 @@ $x=['hild p','DM me','DM @','t.me','nigge','i watch pedo','inces','pajee','notbu
 'snapchat blackm','mega.nz/f','nipple','little boy','boobjob','blow job','favorite age','05b0f5bb','looking for porn','onlyfan','extreme porn','hairy cock','kinder p','Avenue','boys to play','have cp li',
 'young fun','dick swing','up your ass','hebe','any kids?','omgporn','c. P.','1096047','rape/forced vid','rape vid','kids pant','ids shorts down','fuck your li','have any cp','illegal porn','kiddie p',
 'cp or rape','buy cp','get cp','I find cp','hottie','fuck their','suck my','suck cock','cp pic','/UTTP','xplay','ofl4t','/ZTTP','loli','Hurt Core','fuck his','kill you','kill urs','cumlub','best CP',
-'pxl.que','5ety7tp','jwzze','toddler in di','jerk off','undress a','so horny','czrk3z','nudes','i like kid',
+'pxl.que','5ety7tp','jwzze','toddler in di','jerk off','undress a','so horny','czrk3z','nudes','i like kid','teeng','luvteen',
 'pedomom','bc1q2a','vwsb7j','young love b','oju4yn','be pedo','aiw invite','t some cp','6 to 13','14 is too old','i love kid','xnrpew','nypho','cuck','Cuck','fag ',' fag','knicker','bald slit','pomf2',
 'suckin ','dick for','have all age','ck and rape','oral sex','penis','little cock','femboy ass','rape u','panti','cum sh','jdiaz3','d cum','aman1shani','edgin','Goon','his crack','yunglove','for sex','telegram',
-'pre cum','iifz7v','Who has CP','retard','pedo ever','fagg','fucker','films up woman','sexual acts','love cp','girls to play','cumm','mywrn4',' pubes ','am a pedo','rape you','take your draws d',
+'pre cum','iifz7v','Who has CP','retard','pedo ever','fagg','fucker','films up woman','sexual acts','love cp','girls to play','cummi','mywrn4',' pubes ','am a pedo','rape you','take your draws d',
 'topics link','hitler','open to trade','Death to i','Death to pa','jews be','hamas','power of love','dumpliw','cp free'];
 if(preg_match('/[a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9][a-zA-Z0-9][^a-zA-Z0-9]/g',$e,$m)){$e='slut';}
 foreach($x as $y){
@@ -308,7 +316,7 @@ $me=strpos($_POST['comment'],'/me ');
 if($me!==0&&$me!==2&&$me!==3&&$me!==8){$txt=process($_POST["name"],$find,$change,$config)." - ".process($comment,$find,$change,$config);}
 else{$txt=process($_POST["name"],$find,$change,$config).str_replace('/me ',' ',process($comment,$find,$change,$config));}
 
-if(strpos($_POST['comment'],'/ai ')===0){$_POST['comment'] = str_replace('/ai ','<mark>></mark> ',$_POST['comment']);file_put_contents('Documents/ai.txt',$_POST['comment']);}
+if(strpos($_POST['comment'],'/ai ')===0){$_POST['comment'] = str_replace('/ai ','',$_POST['comment']);file_put_contents('Documents/ai.txt',$_POST['comment']);}
 #Nick protect
 if(strpos($_POST['comment'],'/np ')===0){$p=htmlspecialchars(str_replace('/np ','',str_replace('|','',nl2br($_POST['comment']))));$z=4;
 if(strlen($_POST['comment'])>5&&$safe==$_COOKIE['name']){$cf=fopen("1699686263.old.old","a") or die($m);$e=htmlspecialchars(str_replace("/np ","",$_POST['name']."|alkaline \n".$_POST['comment'].'|'.$_POST['name']." \n"));fwrite($cf, $e) or die("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=4;
@@ -354,7 +362,7 @@ $e='[Msg Quote]|<br><button style="background:inherit;font-size:0.99em;border:2p
 elseif(!empty($_POST['rpl'])&&$_POST['rpl']<0){$line=str_replace('-','',$_POST['rpl']);$reply=$file[$line];}
 #Prepend the CRC code to the message
 $e.=crc();
-if(isset($_POST["col"])&&strlen($_POST["col"])==7){$colour = htmlspecialchars($_POST['col']);}
+if(isset($_POST["col"])&&strlen($_POST["col"])==7){$colour=htmlspecialchars($_POST['col']);}
 else{$colour=htmlspecialchars($_COOKIE["col"]);}
 $write=$e.'-'.'<i>'.date("m-jS H:i:s").'</i> |<span style="color:'.$colour.';font-size:'.($em??'1').'em;font-family:'.(htmlspecialchars($_POST['f']??'inherit')).'">'.$txt."</span>";$nl="
 
@@ -447,12 +455,12 @@ echo' value="'.$e.'"';}echo'" size="54" autofocus="true" id="a"><script>setTimeo
 
 if(isset($_REQUEST['show'])){
 echo'<span>. . Emphasis (0.7-1.5em):</span>
-<input name="e" size="3" value="'.min(htmlspecialchars($_REQUEST['e']??1),1.5).'" max="1.5">
+<input name="e" size="3" value="'.min(htmlspecialchars($_COOKIE['e']??$_REQUEST['e']??1),1.5).'" max="1.5">
 <span>Refresh* (s)</span>
 <input name="refresh" size="3" value="'.htmlspecialchars($_POST['refresh']??$_COOKIE['refresh']??'').'" min="3" placeholder="4">
 <span>Audio (on|off)</span>
 <input name="audio" size="3" value="'.htmlspecialchars($_POST['audio']??$_COOKIE['audio']??'').'">
-<span>Font</span><input name="f" value="'.htmlspecialchars($_REQUEST['f']??'').'" placeholder="Type s for fonts" list="f">
+<span>Font</span><input name="f" value="'.htmlspecialchars($_COOKIE['f']??$_REQUEST['f']??'').'" placeholder="Type s for fonts" list="f">
 <datalist id="f"><option value="monospace"><option value="sans-serif"><option value="serif"><option value="cursive"><option value="fantasy"></datalist>
 <input name="ign" value="'.htmlspecialchars($_POST['ign']??$_COOKIE['ign']??'').'" placeholder="Ignore (crc or keyword)"> * [Min auto refresh delay]
 <!--span>Messages:</span><input name="lines" size="2" value="htmlspecialchars($l)" max="64"-->';}
@@ -495,19 +503,18 @@ echo'</div><div class="hidden"><p style="display:inline">Please be friendly (boo
 else{if(!isset($_COOKIE['col'])){$_COOKIE['col']='#88ff88';}function pt($a,$i,$j=null){
 $z='</button></form>';$e=crc()."-";$b='';if(strpos($_SERVER['HTTP_USER_AGENT'],'obile')!==false){$a=str_replace('float:right','',str_replace('<br><bu','<bu',$a));}
 if(isset($_COOKIE['ina'])){$v=$i;}else{$v=str_pad(strval($i%1000),3,"0",STR_PAD_LEFT);}
-if($i%2==0&&isset($j)){$b.='<form action="28.php?b=d" method="post" target="d"><button name="reply" title="Reply" value="'.$i.'" class="z">🗄️<b>'.$v.'</b></button></form>';}
-if($i%2==0&&!isset($j)){$b.='<form action="28.php?b=d" method="post" target="d"><button name="reply" title="Reply" value="'.$i.'" class="z">↩️<b>'.$v.'</b></button></form>';}
+if($i%2==0){$b.='<form action="28.php?b=d'.((isset($_COOKIE['n']))?'&show=1':'').'" method="post" target="d"><button name="reply" title="Reply" value="'.$i.'" class="z">'.(isset($j)?'🗄️':'↩️').'<b>'.$v.'</b></button></form>';}
 $btn=' <form action="" method="post"><button name="del" value="'.$i.'" class="';
 if(isset($e)&&strpos($a,$e)!==false){$b.=$btn.'y" title="Delete message">❌'.$z;}
 elseif(isset($_COOKIE['9u9dyi'])&&$i%2==0){$b.=$btn.'w" title="Remove message">❌'.$z;}
 elseif($i%2==0){$b.=$btn.'z" title="Delete (unavailable)">🗄️'.$z;}
 
-$btn='&nbsp;<form action="28.php?b=d" method="post" target="d"><button name="reply" value="-'.$i.'" class="';
+$btn='&nbsp;<form action="28.php?b=d'.((isset($_COOKIE['n']))?'&show=1':'').'" method="post" target="d"><button name="reply" value="-'.$i.'" class="';
 if(isset($e)&&strpos($a,$e)!==false){$b.=$btn.'v" title="Edit message">'.(strpos($_SERVER['HTTP_USER_AGENT'],'(Windows NT 10.0; Win64; x64; rv:1)')||strpos($_SERVER['HTTP_USER_AGENT'],'Edg')?'':'_').'🖌️'.$z;}
 elseif($i%2==0){
 #Preg match for PM id
 preg_match("/([0-9]{3})-/i",strtolower($a),$matches);
-$b.='&nbsp;<form action="28.php?b=d" target="d" method="post"><button class="v" title="Private message user" name="pm" value="/pm '.$matches[1].' "><span style="font-size:0.4em">&nbsp;</span><b>PM</b><span style="font-size:0.4em">&nbsp;</span></button></form>';}
+$b.='&nbsp;<form action="28.php?b=d'.((isset($_COOKIE['n']))?'&show=1':'').'" target="d" method="post"><button class="v" title="Private message user" name="pm" value="/pm '.$matches[1].' "><span style="font-size:0.4em">&nbsp;</span><b>PM</b><span style="font-size:0.4em">&nbsp;</span></button></form>';}
 echo$b.'[';return str_replace('float:right','margin-left:20em;float:left',str_replace('-3em">','-3em">[',str_replace(']|',']]',str_replace(' |<','] <',str_replace(date(">m-"),">",str_replace(date(">m-jS "),">",$a))))));}
 
 $sec=max(intval($_COOKIE['refresh']??'4'),4);$file=db("1id8sjl.txt");
@@ -516,7 +523,7 @@ echo'<!DOCTYPE html><html>';$cfi=htmlspecialchars($_POST['col']??$_COOKIE['col']
 $b=(($config[4]-1)*2)??80;#(intval($_REQUEST['m'])*2)?:24;#$b=abs(min($b,48));
 function p($file,$b){
 for($i=count($file);$i>=max(0,count($file)-$b);$i-=2){if(isset($file[$i])){
-if(strpos($file[$i],($_COOKIE['ign']??'/x d'))!==false){$b+=2;}#Ignore
+if(strpos($file[$i],($_COOKIE['ign']??'/x '))!==false){$b+=2;}#Ignore
 if(isset($_COOKIE['9u9dyi'])&&strpos($file[$i],"/m ")!==false){return$i;}else{$b+=2;}
 #PM/CRC checks
 if(!preg_match("/\/pm ([0-9]{3})([0-9]{3})-\^!/i",strtolower($file[$i]),$matches)){
@@ -557,4 +564,4 @@ else{if($matches[1]==crc()||$matches[2]==crc()){echo str_replace($matches[2].'-'
 $i-=2;}
 }
 #echo'<!--span class="w">Load: </span><a href="28.php?a=a&m='.min($b,64).'&refresh='.($sec*3).'">More</a> | <a href="28.php?a=a&m='.round($b/4).'&refresh='.max($sec/3,4).'">Less</a-->';
-?></pre></html>
+?></pre></html>preg_match("/\/pm ([0-9]{3}) ?/i",strtolower(process($_POST['comment'],$find,$change,$config)),$matches);
