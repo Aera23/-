@@ -380,7 +380,7 @@ elseif($z!=4){$cf=fopen("1id8sjl.txt", "a+") or die($m);
 fwrite($cf,$write) or die("Can't write");
 fclose($cf);}}
 
-elseif(isset($_POST['rpl'])&&!empty($e)&&strpos($file[$line],$e)!==false){
+elseif(isset($_POST['rpl'])&&!empty($e)&&!empty($line)&&strpos($file[$line],$e)!==false){
 for($i=0;$i<count($file);$i++){if($line!=$i){$prvt.=$file[$i];}else{$prvt.=$write."\n";}}file_put_contents("1id8sjl.txt",$prvt);}
 else{
 if(stripos($_POST['comment'],'system')!==false){
