@@ -1,5 +1,5 @@
 <?php
-$grace=250;#To make captcha stricter, set to 20
+$grace=20;#To disable captcha, set to 123446780
 if(strpos($_SERVER['REQUEST_URI'],"/g3.php/")!==false){exit('<meta http-equiv="refresh" content="0 /g3.php"/><mark style="font-size:1.2em;padding:0.3em">Auto redirect</mark>');}
 
 if(!function_exists('ini_parse_quantity')){echo '<mark>Upgrade your PHP for more features / security</mark>';}
