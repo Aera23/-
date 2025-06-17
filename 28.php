@@ -145,7 +145,7 @@ if($_POST['del']=="n"){for($i=0;$i<$count-max((($_POST['lines']??0)*2),2);$i++)
 {$prvt.=$file[$i];}file_put_contents("1id8sjl.txt",$prvt);}
 elseif(isset($e)&&strpos($file[$_POST['del']],$e.'-')!==false){$a=1;}
 elseif(isset($_COOKIE['9u9dyi'])){$a=1;}
-if($a==1){for($i=0;$i<$count;$i++){if($_POST['del']!=$i&&$_POST['del']!=$i-1){$prvt.=$file[$i];}}file_put_contents("1id8sjl.txt",$prvt);}}
+if($a==1&&abs($count-intval($_POST['delete']))<50){for($i=0;$i<$count;$i++){if($_POST['del']!=$i&&$_POST['del']!=$i-1){$prvt.=$file[$i];}}file_put_contents("1id8sjl.txt",$prvt);}}
 
 #Refresh List
 if(isset($_GET['b'])&&$_GET['b']=="b"){
