@@ -8,7 +8,7 @@ echo'<p>My latency tool measures the time to connect to this site. It was called
 <h3>It works by...</h3>
 <p>measuring the time between two requests. <br>Your PCs rendering latency can be added to the total. <br>Results are stored, so everyone can see how my site performs. Unfortunately, the table of data is misaligned.<br><br>
 
-<a href="timing.php">View results (:D)</a>';
+<a href="data.php">View results (:D)</a>';
 
 echo'
 <br><h3>What I changed in this tool:</h3>
