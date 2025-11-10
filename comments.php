@@ -17,7 +17,7 @@ else{$w='.</p>';}echo'<p style="color:yellow;margin-left:1em;font-size:15px">Thi
  if(isset($_GET['a'])){unlink('cache.txt');$cache=fopen('cache.txt','x');$g='';}
  if(isset($_POST['del'])&&isset($_COOKIE['9u9dyi'])){file_put_contents('hide.txt',$_POST['del'].'|',8);}
  $ignore=explode('|',file_get_contents('hide.txt'));
- if(!file_exists("comments.txt")){file_put_contents("comments.txt","<!---->",8);}
+ if(!file_exists("comments.txt")){file_put_contents("comments.txt",'',8);}
  #Send and/or retrieve comments
  if(!empty($_POST['name'])&&!empty($_POST['comment'])&&isset($_COOKIE['9u9dyi'])){file_put_contents("comments.txt",str_replace(["<br>\r\n","<br />\r\n"],' | ',nl2br(htmlspecialchars(date("y-m-jS H:i:s | ").$_POST['name'].' - '.$_POST['comment']))."\n"),8);}
 #Loop thru lines and extract messages
