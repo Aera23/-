@@ -24,7 +24,7 @@ else{$w='.</p>';}echo'<p style="color:yellow;margin-left:1em;font-size:15px">Thi
  $fi=file("comments.txt");$i=0;$j=0;$d=''; $max=count($fi);
 
 #Pagination
-$pv=min(max((($_GET['i']??($max-50))-50),0),$max-50);$nx=min((max(((($_GET['i']+50)??$max)-50),0)+50),$max);
+$pv=min(max((($_GET['i']??($max-50))-50),0),max($max-50,0));$nx=min((max(((($_GET['i']+50)??$max)-50),0)+50),$max);
 $pgn='';if(!isset($_GET['i'])||$_GET['i']!=0){$pgn.='<a href="/a/log.php?i='.$pv.'">Earlier records ['.$pv.']</a>';}
 if($nx>$pv&&$nx<$max){if(!isset($_GET['i'])||$_GET['i']!=0){$pgn.=' | ';}
   $pgn.='<a href="/a/log.php?i='.$nx.'">Newer records ['.$nx.']</a>';}echo$pgn.'<br><br>';
