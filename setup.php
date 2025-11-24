@@ -13,7 +13,9 @@ $b=['setup.php','g3.php','28.php','files.php','comments.php'];
 #$b=['setup.php'];
 foreach($b as $a){
 file_put_contents($a,str_replace('nrzknf.txt',htmlspecialchars($_POST['c']),str_replace('1id8sjl.txt',htmlspecialchars($_POST['b']),str_replace('9u9dyi',htmlspecialchars($_POST['a']),file_get_contents($a)))));}
-file_put_contents('.bashrc','#'.time(),FILE_APPEND);}# For allowing captcha bypass
+file_put_contents('.bashrc','#'.time(),FILE_APPEND);
+echo '<h2>Ctrl + S this page and go to the <a href="g3.php">chat</a>.</h2>';
+}# For allowing captcha bypass
 
 echo'<!DOCTYPE HTML><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <html lang="en"><title>Setup</title><h2>Setup</h2><p>Replace the secrets with your own, preferably using 4 or more characters from [. A-Z, a-z, 0-9]. Other characters may produce errors.</p><form action="setup.php" method="post"><table>
