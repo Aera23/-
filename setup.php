@@ -9,11 +9,11 @@ echo'<i>Now, bookmark and use <a href="28.php?'.htmlspecialchars($_POST['a']).'=
 #replace g3.php, setup.php and 28.php secrets, ensuring that they are at least 4 letters, and not found in setup.php
 $b=['setup.php','g3.php','28.php'];
 #$b=['setup.php'];
-file_put_contents('pass.old',0);file_put_contents('fail.old',0);
+if(!file_exists('pass.old')){file_put_contents('pass.old',0);file_put_contents('fail.old',0);}
 foreach($b as $a){
 file_put_contents($a,str_replace('nrzknf.txt',htmlspecialchars($_POST['c']),str_replace('"1id8sjl.txt"','"'.htmlspecialchars($_POST['b']).'"',str_replace("'9u9dyi'","'".htmlspecialchars($_POST['a'])."'",str_replace('"9u9dyi"','"'.htmlspecialchars($_POST['a']).'"',file_get_contents($a))))));}
 if(!file_exists('config.txt')){file_put_contents('config.txt','8|300|Chat||20|1|7|=AzM|30') or exit('<mark>Can\'t write to file</mark>');}
-file_put_contents('setup.php','<!--'.time().'-->',FILE_APPEND);}#Time of setup
+file_put_contents('.bashrc','#'.time(),FILE_APPEND);}# For allowing captcha bypass
 
 echo'<!DOCTYPE HTML><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <html lang="en"><title>Setup</title><h2>Setup</h2><p>Replace the secrets with your own, preferably using 4 or more characters from [. A-Z, a-z, 0-9]. Other characters may produce errors.</p><form action="setup.php" method="post"><table>
@@ -25,4 +25,4 @@ echo'<style>button,input{margin:0.6em;background:#242;color:#0ff;border-radius:1
 *{background:#000;color:#0f0;}td{color:#0cf}h2{color:#fff;animation:rainbow 5s linear infinite}form{display:inline}textarea{padding:0.3em;border-radius:15px}a,a:visited{color:#08f}a:hover{color:#0cf}
 @keyframes rainbow{0%{color:#f80;}20%{color:#ff0}40%{color:#0f0}60%{color:#0ff}80%{color:#f2f}100%{color:#f80}}
 </style></form><p>For bypassing CAPTCHA, g3.php?apikey=code can be used</p></html>';}
-else{echo'<mark>Chat Already Setup, use moderator cookie to proceed.</mark>';}?>
+else{echo'"<mark>Chat Already Setup, use moderator cookie to proceed.</mark>"';}?>
