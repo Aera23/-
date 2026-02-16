@@ -1,19 +1,18 @@
 <?php
 if('9u9dyi'=='9u9'.'dyi'||$_COOKIE['9u9dyi']=='t'){
 function check_input($c){
-if(empty($c)||(isset($c)&&strlen($c)<2)||preg_match('/[^a-z0-9.]/i',$c)){return false;}return true;}
+if(empty($c)||(strlen($c)<2)||preg_match('/[^a-z0-9.]/i',$c)){return false;}return true;}
 if(check_input($_POST['a'])){setcookie($_POST['a'],'t',time()+864000);$_COOKIE[$_POST['a']]='t';}
 
 if(check_input($_POST['a'])&&check_input($_POST['b'])&&check_input($_POST['c'])){
-echo'<i>Now, bookmark and use <a href="28.php?'.htmlspecialchars($_POST['a']).'=t" target="_blank">your mod cookie.</a> To change settings again, ensure you are logged into chat as moderator, then access setup.php</i>';
+echo'<i>Now, bookmark and use <a href="28.php?'.htmlspecialchars($_POST['a']).'=t" target="_blank">your mod cookie.</a> You may also want to <a href="move.php" target="_blank">move the files out of --main</a>. To change settings again, ensure you are logged into chat as moderator, then access setup.php</i>';
 #replace g3.php, setup.php and 28.php secrets, ensuring that they are at least 4 letters, and not found in setup.php
-$b=['setup.php','g3.php','28.php'];
-#$b=['setup.php'];
+$b=['setup.php','g3.php','28.php','comments.php','move.php'];
 if(!file_exists('pass.old')){file_put_contents('pass.old',0);file_put_contents('fail.old',0);}
 foreach($b as $a){
 file_put_contents($a,str_replace('nrzknf.txt',htmlspecialchars($_POST['c']),str_replace('"1id8sjl.txt"','"'.htmlspecialchars($_POST['b']).'"',str_replace("'9u9dyi'","'".htmlspecialchars($_POST['a'])."'",str_replace('"9u9dyi"','"'.htmlspecialchars($_POST['a']).'"',file_get_contents($a))))));}
 if(!file_exists('config.txt')){file_put_contents('config.txt','8|300|Chat||20|1|7|=AzM|30') or exit('<mark>Can\'t write to file</mark>');}
-file_put_contents('.bashrc','#'.time(),FILE_APPEND);}# For allowing captcha bypass
+file_put_contents('.setuptime','#'.time(),FILE_APPEND);}
 
 echo'<!DOCTYPE HTML><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <html lang="en"><title>Setup</title><h2>Setup</h2><p>Replace the secrets with your own, preferably using 4 or more characters from [. A-Z, a-z, 0-9]. Other characters may produce errors.</p><form action="setup.php" method="post"><table>
