@@ -3,8 +3,9 @@ http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 https://aera23.net/ (Ghost)
 
 # SETUP
+* rename --main.zip to main.zip if you want to extract the zip file (from github's green download button)
 * Use setup.php to change chat secrets.
-* maybe change $grace from 300 to 20?
+* if you extracted zip, move.php can put the page into the server home directory
 
 # Chat and stopwatch
 * Included are the chat script, PHP stopwatch and the CAPTCHA.
