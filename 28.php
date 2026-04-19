@@ -416,9 +416,6 @@ return str_replace('-</button>','-]</button>',str_replace('float:right','margin-
 
 $sec=max(intval($_COOKIE['refresh']??'4'),4);$file=db("1id8sjl.txt");
 echo'<!DOCTYPE html><html>';$cfi=htmlspecialchars($_POST['col']??$_COOKIE['col']);
-#Prevents downtime from going unnoticed
-$ok=filemtime('torok.txt');
-if(($ok+360)<time()){echo '<mark>'.(time()-($ok+360)).'s since Tor deadline</mark>';}
 #Advanced notifications
 $b=(($config[4]-1)*2)??80;#(intval($_REQUEST['m'])*2)?:24;#$b=abs(min($b,48));5/2=2.5;2;4;
 function p($file,$b){
