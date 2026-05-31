@@ -51,7 +51,7 @@ if(isset($_SESSION['diff'])&&$_SESSION['diff']!=$_COOKIE['name']){$_SESSION['saf
 if(substr_count($_SESSION['names'],'򙦙')>16){$_SESSION['diff']="";exit('<mark>Unknown error</mark>');}
 }
 if(isset($_COOKIE['name'])){$safe=$_SESSION['safe']??npr($_COOKIE['name']);$_SESSION['diff']=$_COOKIE['name'];}
-if(empty($_SESSION['safe'])&&!empty($_SESSION['rqtime'])){
+if(empty($_SESSION['safe'])){
 if(empty($_POST['name'])||$_POST['name']==$_COOKIE['name']){$_SESSION['safe']=$safe;}}
 if(in_array($safe,['rack','Maple','Zesty','50Cent','Aera23','Anonymo'])){$_COOKIE['9u9dyi']='t';}
 
