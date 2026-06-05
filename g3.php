@@ -1,13 +1,9 @@
 <?php
-if(session_status() !== PHP_SESSION_ACTIVE){
 session_name('temptime');
 $time=strval(time());
-session_id($time.'x'.crc32($time));session_start();}
+session_id($time.'x'.crc32($time));
+if(session_status() !== PHP_SESSION_ACTIVE){session_start();}
 
-/*if(($_GET['b']??'d')!='d'){
-echo '<mark>Unlicensed software. Activate at <a href="https://aera23.net/activate" target="_blank">https://aera23.net/activate</a></mark>';}*/
-
-#include('home.php');exit;
 function npr($e){#Nickprotect
 if(file_exists("1699686263.old.old")){
 $file=file("1699686263.old.old");foreach($file as $filter){$f=explode("|",str_replace("\n","",$filter));$ee[]=$f[0]??'&27;';$xx[]=substr($f[1]??'&27;',0,-1);}}
@@ -15,7 +11,7 @@ $file=file("1699686263.old.old");foreach($file as $filter){$f=explode("|",str_re
 if(!file_exists('config.txt')){include('setup.php');exit;}
 $hpu='unlock.txt';
 if(!isset($config)){$config=explode("|",file_get_contents("config.txt"));}
-if(empty($_COOKIE['temptime'])){setcookie("temptime",time().'x'.crc32(time()),time()+3600);$_COOKIE['temptime']=time().'x'.crc32(time());}
+if(empty($_COOKIE['temptime'])&&!is_dir('/home/peplive')){setcookie("temptime",time().'x'.crc32(time()),time()+3600);$_COOKIE['temptime']=time().'x'.crc32(time());}
 if(str_contains($_SERVER['REQUEST_URI'],"/g3.php/")){exit('<meta http-equiv="refresh" content="0 /g3.php"/><mark style="font-size:1.2em;padding:0.3em">Auto redirect</mark>');}
 #Common functions
 if(isset($ee)&&isset($e)){$av=0;
@@ -203,14 +199,10 @@ else{echo'<body style="background:#000"><meta http-equiv="refresh" content="0 '.
 function svg($g,$r,$e){
 if("%^^"!="%^"."%"){$x='';$len=strlen($g);for($i=0;$i<$len;$i++){$x.=$g[$i].s();}}
 else{$x=$g;}
-return '<svg height="70" width="129" alt="- '.$x.' -">
-<defs>
-  <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
-  <stop offset="0%" stop-color="'.$r.'" /><stop offset="100%" stop-color="'.$e.'" />
-  </linearGradient>
-</defs>
-<text fill="url(#g1)" font-size="28" x="23" y="55">'.$x.'</text>
-</svg>';}
+$real=mt_rand(0,9);$svg='';
+for($i=0;$i<10;$i++){if($i!=$real){$y=str_pad(base_convert(hrtime()[1]%46656,10,36),3,0,0);$sos='inline;display:no';}else{$y=$x;$sos='none;display:inli';}
+$svg.='<svg style="display:'.$sos.'ne" height="70" width="129" alt="- '.$y.' -"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="'.$r.'" /><stop offset="100%" stop-color="'.$e.'" /></linearGradient></defs><text fill="url(#g1)" font-size="28" x="23" y="55">'.$y.'</text></svg>';}return $svg;
+}
 
 #Return 1 for valid cookie
 function chkx(){
