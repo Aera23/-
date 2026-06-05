@@ -9,11 +9,12 @@ https://aera23.net/ (Ghost)
 
 # Chat and stopwatch
 * Included are the chat script, PHP stopwatch and the CAPTCHA.
-* The chat has cookie support for bonus features!
+* The chat has a typing indicator, if JS is used.
+* (note that disabling js and using the chat would work, only autofocus, vibrate on mobile, and typing indicator will stop)
 * The stopwatch counts time since it was first run in time2.txt
 # Latency test
 * To run the test, access colour.php
-* To view more data, add ?r=1 (or 2,3,4) when accessing data.php (shows from last day)
+* To view more data, add ?r=1 (or 2,3,4) when accessing data.php (shows from last day), or download [1-31]l.txt
 # Comment form
 * Type a comment, and press enter (this was made for people who want to see how simple PHP can be, and because I liked some CSS)
 * The comments are stored in "comments.txt", and can technically be edited (or specific comments can be removed, manually)
