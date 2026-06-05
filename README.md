@@ -1,6 +1,6 @@
 http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 
-https://aera23.net/ (Ghost)
+https://aera23.net/ (back, no JS needed on Tor, but JS needed to solve Cloudflare's anti DDoS)
 
 # SETUP
 * rename --main.zip to main.zip if you want to extract the zip file (from github's green download button)
