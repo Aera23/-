@@ -4,7 +4,8 @@ https://aera23.net/ (back, no JS needed on Tor, but JS needed to solve Cloudflar
 
 # SETUP
 * rename --main.zip to main.zip if you want to extract the zip file (from github's green download button)
-* Use setup.php to change chat secrets.
+* `` git clone https://github.com/Aera23/-;mv - w;cd w;php -S 0.0.0.0:1100 -t $(pwd)``
+* Use http://127.0.0.1:1100/setup.php (or setup.php in the directory) to change chat secrets.
 * if you extracted zip, move.php can put the page into the server home directory
 
 # Chat and stopwatch
