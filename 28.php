@@ -1,8 +1,8 @@
 <?php
-if(session_status() !== PHP_SESSION_ACTIVE){
 session_name('temptime');
 $time=strval(time());
-session_id($time.'x'.crc32($time));session_start();}
+session_id($time.'x'.crc32($time));
+if(session_status() !== PHP_SESSION_ACTIVE){session_start();}
 
 if(!isset($config)){$config=explode("|",file_get_contents("config.txt"));}
 $phrase=$config[2]??'Chat';
@@ -60,7 +60,7 @@ if(in_array($safe,['rack','Maple','Zesty','50Cent','Aera23','Anonymo'])){$_COOKI
 if(isset($_GET['b'])&&$_GET['b']=="d"){
 if($safe=="BinaryNyx"){echo '<p style="display:inline">Operator message: hi, if u wish, contact me at <a href="mailto:aera23@protonmail.com" style="color:#0f0">aera23@protonmail.com</a></p>';}}
 
-if(file_exists("hb.old")&&$_POST['crc']!=intval(file_get_contents("hb.old"))){$_COOKIE['ign']=str_replace($safe,'_S_',str_replace($_POST['crc'],'_C_',file_get_contents("hb.old")));}
+if(file_exists("hb.old")&&$_POST['crc']!=intval(file_get_contents("hb.old"))){$ignore=str_replace($safe,'_S_',str_replace($_POST['crc'],'_C_',file_get_contents("hb.old")));}
 if($_SESSION['safe']=="dove"){$_POST['col']="#ff88ff";$_COOKIE['col']="#ff88ff";echo'<p style="display:inline">Hi, long time no see! If u wish, contact me at <a href="mailto:aera23@protonmail.com" style="color:#0f0">aera23@protonmail.com</a></p>';}
 
 
@@ -116,7 +116,7 @@ $file=explode("|",@file_get_contents($_GET['f']));$r=count($file);if(empty($file
 echo'<br>Record created at: '.$file[1].'<br>Entries: <a href="28.php?f='.htmlspecialchars($_GET['f']).'&i='.(max($r-5000,1)).'">'.number_format($r-1).'</a><br>Estimated time: '.diff(round($r*4.14)).' (4.14s/rq)<br>Estimated time: '.diff(round($r*5.5)).' (5.5s/rq)<br>Estimated time: '.diff(round($r*6)).' (6s/rq)<br>';$form='<form action="" method="get"><input type="hidden" name="f" value="'.htmlspecialchars($_GET['f']).'"><input name="i" value="'.min(max($_GET['i']-5000,1),$r).'" size="6"><input type="submit" value="Previous"></form>||<form action="" method="get"><input type="hidden" name="f" value="'.htmlspecialchars($_GET['f']).'"><input name="i" value="'.min(max($r-1,1),($_GET['i']??0)+5000).'" size="6"><input type="submit" value="Next"></form>';echo$form.'<br><br>';
 for($i=($_GET['i']??1);$i<min($r,($_GET['i']??1)+5000);$i++){echo'|'.$file[$i];}exit('<br><br>'.$form.'</html>');}
 
-if(isset($_GET['b'])&&$_GET['b']=="d"){$t='';$file=db("1id8sjl.txt");$count=count($file);for($i=$count-1;$i>=max(0,$count-(($config[6]??8)*2));$i--){$t.=$file[$i];}$limit=substr_count($t,$_POST['crc']."-")-substr_count($t,'^!<')-substr_count($t,'\\'); if($limit>($config[6]??7)&&(isset($_POST['comment'])||isset($_POST['rpl']))){file_put_contents("9u9dyi","|m".time(),FILE_APPEND);
+if(isset($_GET['b'])&&$_GET['b']=="d"){$t='';$file=db("1id8sjl.txt");$count=count($file);for($i=$count-1;$i>=max(0,$count-(2+($config[6]??8)*2));$i--){$t.=$file[$i];}$limit=substr_count($t,$_POST['crc']."-")-substr_count($t,'^!<')-substr_count($t,'\\'); if($limit>($config[6]??5)&&(isset($_POST['comment']))){file_put_contents("9u9dyi","|m".time(),FILE_APPEND);
 
   preg_match("/\/pm ([0-9]{3}) ?/i",strtolower($_POST['comment']),$matches);
   if(isset($matches[1])){$_POST['comment']='/pm '.$matches[1].' ';}
@@ -173,7 +173,7 @@ echo'<!DOCTYPE html><html>'.$v.'<style>button:hover,a:hover{color:#0ff}button,in
 <tr><td><b>Name of chat:</b><input name="oc" type="hidden" value="'.$config[2].'"></td><td><input name="c" value="'.$config[2].'" size="22"></td></tr>
 <tr><td><b>Characters per second:</b><input name="oa" type="hidden" value="'.($config[0]??8).'"></td><td><input name="a" value="'.($config[0]??8).'" size="3"></td></tr>
 <tr><td><b>Message max length:</b><input name="ob" type="hidden" value="'.($config[1]??300).'"></td><td><input name="b" value="'.($config[1]??300).'" size="3"></td></tr>
-<tr><td><b>Max Messages in a row:</b><input name="oh" type="hidden" value="'.($config[6]??7).'"></td><td><input name="h" value="'.($config[6]??7).'" size="3"></td></tr>
+<tr><td><b>Max Messages in a row:</b><input name="oh" type="hidden" value="'.($config[6]??5).'"></td><td><input name="h" value="'.($config[6]??5).'" size="3"></td></tr>
 <tr><td><b>Messages to show:</b><input name="of" type="hidden" value="'.($config[4]??30).'"></td><td><input name="f" value="'.($config[4]??30).'" size="3"></td></tr>
 <tr><td><b style="background:#700">Two function system:</b><input name="og" type="hidden" value="'.($config[5]??3).'"></td><td><input name="g" value="'.($config[5]??3).'" size="2"><b>(see table below)</b></td></tr>
 <tr><td><b>Invite code (30 on public chat):</b><input name="oi" type="hidden" value="'.base64_decode(strrev($config[7]??'=AzM')).'"></td><td><input name="i" value="'.base64_decode(strrev($config[7]??'=AzM')).'" size="8"></td></tr>
@@ -527,7 +527,7 @@ $a=str_replace('http://http://','http://',$a);
 if(str_contains($a,'http')&&!str_contains($a,'!')){
 $a=str_replace('.http://','.',$a);
 $a=str_replace('https://192.168.43.169','auto23',str_replace('https://192.168.0.157','auto23',str_replace('https://aera23.net','auto23',str_replace('https://cockatoo-unified-implicitly.ngrok-free.app','auto23',str_replace('http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion','auto23',$a)))));
-$a=str_replace('https://fo','http://fo',str_replace('http','https',str_replace('auto23',htmlspecialchars($_SERVER['HTTP_ORIGIN']??''),$a)));}
+$a=str_replace('http://fo','http://fo',str_replace('http://192','https://192',str_replace('auto23',htmlspecialchars($_SERVER['HTTP_ORIGIN']??''),$a)));}
 return str_replace('-</button>','-]</button>',str_replace('float:right','margin-left:20em;float:left',str_replace(':3em">',':3em">[',str_replace(']|',']]',str_replace(' |<','] <',str_replace(date(">m-"),">",str_replace(date(">m-jS "),">",$a)))))));}
 
 $file=db("1id8sjl.txt");
@@ -540,7 +540,7 @@ $b=(($config[4]-1)*2)??80;#((int)$_REQUEST['m']*2)??24;#$b=abs(min($b,48));5/2=2
 function p($file,$b){
  if(empty($_GET['q'])){$j=count($file);}else{$j=round(($_GET['t']%count($file))/2)*2;echo'<mark>'.$j.'</mark>';}
 for($i=$j;$i>=max(0,$j-$b);$i-=2){if(isset($file[$i])){
-if(!empty($_COOKIE['ign'])&&strpos($file[$i],$_COOKIE['ign'])!==false){$b+=2;}#Ignore
+if((!empty($_COOKIE['ign'])&&strpos($file[$i],$_COOKIE['ign'])!==false)||(isset($ignore)&&strpos($file[$i],$ignore)!==false)){$b+=2;}#Ignore
 if(isset($_COOKIE['9u9dyi'])&&strpos($file[$i],"/m ")!==false){return$i;}else{$b+=2;}
 #PM/CRC checks
 if(!preg_match("/\/pm ([0-9]{3})([0-9]{3})-\^!/i",strtolower($file[$i]),$matches)){
@@ -592,9 +592,10 @@ if(is_dir('/tmp')){
 if(!file_exists(''.$log.'.cache')){$score=substr_count(file_get_contents($log),'|');}
 else{$score=(int)explode('|',file_get_contents(''.$log.'.cache'))[0]+1;}
 file_put_contents(''.$log.'.cache',$score.$output) or print('<mark>Write Fail!</mark>');}}
-$i=$time;$check = explode(',',$_COOKIE['ign']??'/x ');
+$i=$time;$check = explode(',',$_COOKIE['ign']??'/x ');$chkt=explode(',',$ignore??'kill ya');
 
 while($i>=max(0,$time-$b)){$ok=1;
+foreach($chkt as $ign){if(!empty($ign)&&isset($file[$i])&&strpos($file[$i],$ign)!==false){$ok=-1;}}
 foreach($check as $ign){if(!empty($ign)&&isset($file[$i])&&strpos($file[$i],$ign)!==false){$ok=-1;}}
 if($ok==-1){$b+=2;$i-=2;continue;}
 #M/PM/CRC checks
