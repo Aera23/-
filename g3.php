@@ -1,8 +1,8 @@
 <?php
-session_name('temptime');
+if(session_status() !== PHP_SESSION_ACTIVE){session_name('temptime');
 $time=strval(time());
 session_id($time.'x'.crc32($time));
-if(session_status() !== PHP_SESSION_ACTIVE){session_start();}
+session_start();}
 
 function npr($e){#Nickprotect
 if(file_exists("1699686263.old.old")){
@@ -197,12 +197,8 @@ function g($l){
 if(!isset($_REQUEST['next'])||isset($_REQUEST['next'])&&$_REQUEST['next']=="28.php"){include_once('28.php');exit;}
 else{echo'<body style="background:#000"><meta http-equiv="refresh" content="0 '.htmlspecialchars($_REQUEST['next']).'"/>';exit($l.'</body>');}}
 function svg($g,$r,$e){
-if("%^^"!="%^"."%"){$x='';$len=strlen($g);for($i=0;$i<$len;$i++){$x.=$g[$i].s();}}
-else{$x=$g;}
-$real=mt_rand(0,9);$svg='';
-for($i=0;$i<10;$i++){if($i!=$real){$y=str_pad(base_convert(hrtime()[1]%46656,10,36),3,0,0);$sos='inline;display:no';}else{$y=$x;$sos='none;display:inli';}
-$svg.='<svg style="display:'.$sos.'ne" height="70" width="129" alt="- '.$y.' -"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="'.$r.'" /><stop offset="100%" stop-color="'.$e.'" /></linearGradient></defs><text fill="url(#g1)" font-size="28" x="23" y="55">'.$y.'</text></svg>';}return $svg;
-}
+ if("%^^"!="%^"."%"){$x='';$len=strlen($g);for($i=0;$i<$len;$i++){$x.=$g[$i].s();}}else{$x=$g;}
+ return '<svg height="70" width="129" alt="- '.$x.' -"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="'.$r.'" /><stop offset="100%" stop-color="'.$e.'" /></linearGradient></defs><text fill="url(#g1)" font-size="28" x="23" y="55">'.$x.'</text></svg>';}
 
 #Return 1 for valid cookie
 function chkx(){
