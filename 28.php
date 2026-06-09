@@ -1,8 +1,9 @@
 <?php
+if(session_status() !== PHP_SESSION_ACTIVE){
 session_name('temptime');
 $time=strval(time());
 session_id($time.'x'.crc32($time));
-if(session_status() !== PHP_SESSION_ACTIVE){session_start();}
+session_start();}
 
 if(!isset($config)){$config=explode("|",file_get_contents("config.txt"));}
 $phrase=$config[2]??'Chat';
