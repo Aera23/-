@@ -3,7 +3,6 @@ if(session_status() !== PHP_SESSION_ACTIVE){session_name('temptime');
 $time=strval(time());
 session_id($time.'x'.crc32($time));
 session_start();}
-
 function npr($e){#Nickprotect
 if(file_exists("1699686263.old.old")){
 $file=file("1699686263.old.old");foreach($file as $filter){$f=explode("|",str_replace("\n","",$filter));$ee[]=$f[0]??'&27;';$xx[]=substr($f[1]??'&27;',0,-1);}}
@@ -126,15 +125,15 @@ $e=str_ireplace(':spacedock:','<span class="a4">8==>__<==8</span><span class="a3
 $e=str_ireplace(':docking:','<span class="a4">8==>__(|)</span><span class="a3">8==>_(|)</span><span class="a2">8==>(|)</span><span class="a1">8=~~~~~|)</span>'.$w,$e);
 $e=str_ireplace(':lovedock:','<span class="a4">(|)__(|)</span><span class="a3">(|)_(|)</span><span class="a2">(|)(|)</span><span class="a1">(|~~~~|)</span>'.$w,$e);
 $e=str_ireplace(':whirl:','<span class="a4">o--0-</span><span class="a3">oo-0-</span><span class="a2">-oo0-</span><span class="a1">--oo0</span><span class="a0">0--oo</span><span class="a9">00-oo</span>',$e);}
-/*$e=preg_replace('|([0-9]):3|i', '$1:__3', $e);
-$e=preg_replace('|([0-9]):0|i', '$1:__0', $e);
-$e=preg_replace('|([0-9])3:|i', '$13``:', $e);
-$e=preg_replace('|([0-9])0:|i', '$10``:', $e);
-*/$e=str_replace($find,$change,$e);
-/*$e=str_replace(':__3',':3',$e);
-$e=str_replace(':__0',':0',$e);
-$e=str_replace('3``:','3:',$e);
-$e=str_replace('0``:','0:',$e);*/
+$e=preg_replace('|([0-9]):3|i', '$1````3', $e);
+$e=preg_replace('|([0-9]):0|i', '$1````0', $e);
+$e=preg_replace('|3:([0-9])|i', '3````$1', $e);
+$e=preg_replace('|0:([0-9])|i', '0````$1', $e);
+$e=str_replace($find,$change,$e);
+$e=str_replace('````0',':0',$e);
+$e=str_replace('````3',':3',$e);
+$e=str_replace('3````','3:',$e);
+$e=str_replace('0````','0:',$e);
 $e=highlighter($e);
 $e=str_replace(';)','<mark>;)</mark>',$e);
 $e=str_replace('uot<mark>;)</mark>','uot;)',$e);
@@ -197,8 +196,16 @@ function g($l){
 if(!isset($_REQUEST['next'])||isset($_REQUEST['next'])&&$_REQUEST['next']=="28.php"){include_once('28.php');exit;}
 else{echo'<body style="background:#000"><meta http-equiv="refresh" content="0 '.htmlspecialchars($_REQUEST['next']).'"/>';exit($l.'</body>');}}
 function svg($g,$r,$e){
- if("%^^"!="%^"."%"){$x='';$len=strlen($g);for($i=0;$i<$len;$i++){$x.=$g[$i].s();}}else{$x=$g;}
- return '<svg height="70" width="129" alt="- '.$x.' -"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="'.$r.'" /><stop offset="100%" stop-color="'.$e.'" /></linearGradient></defs><text fill="url(#g1)" font-size="28" x="23" y="55">'.$x.'</text></svg>';}
+if("%^^"!="%^"."%"){$x='';$len=strlen($g);for($i=0;$i<$len;$i++){$x.=$g[$i].s();}}
+else{$x=$g;}
+return '<svg height="70" width="129" alt="- '.$x.' -">
+<defs>
+  <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+  <stop offset="0%" stop-color="'.$r.'" /><stop offset="100%" stop-color="'.$e.'" />
+  </linearGradient>
+</defs>
+<text fill="url(#g1)" font-size="28" x="23" y="55">'.$x.'</text>
+</svg>';}
 
 #Return 1 for valid cookie
 function chkx(){
