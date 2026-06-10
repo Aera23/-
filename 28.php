@@ -1,10 +1,8 @@
 <?php
-if(session_status() !== PHP_SESSION_ACTIVE){
-session_name('temptime');
+if(session_status() !== PHP_SESSION_ACTIVE){session_name('temptime');
 $time=strval(time());
 session_id($time.'x'.crc32($time));
 session_start();}
-
 if(!isset($config)){$config=explode("|",file_get_contents("config.txt"));}
 $phrase=$config[2]??'Chat';
 $_POST['crc']=100+(($_COOKIE['crc']??0)%900);
@@ -59,7 +57,7 @@ if(in_array($safe,['rack','Maple','Zesty','50Cent','Aera23','Anonymo'])){$_COOKI
 
 #HOTPATCHES!
 if(isset($_GET['b'])&&$_GET['b']=="d"){
-if($safe=="BinaryNyx"){echo '<p style="display:inline">Operator message: hi, if u wish, contact me at <a href="mailto:aera23@protonmail.com" style="color:#0f0">aera23@protonmail.com</a></p>';}}
+if($safe=="BinaryNyx"||$safe=="HackAlice"){echo '<p style="display:inline">Operator message: hi, if u wish, contact me at <a href="mailto:aera23@protonmail.com" style="color:#0f0">aera23@protonmail.com</a> or aera23_ on discord/reddit</p>';}}
 
 if(file_exists("hb.old")&&$_POST['crc']!=intval(file_get_contents("hb.old"))){$ignore=str_replace($safe,'_S_',str_replace($_POST['crc'],'_C_',file_get_contents("hb.old")));}
 if($_SESSION['safe']=="dove"){$_POST['col']="#ff88ff";$_COOKIE['col']="#ff88ff";echo'<p style="display:inline">Hi, long time no see! If u wish, contact me at <a href="mailto:aera23@protonmail.com" style="color:#0f0">aera23@protonmail.com</a></p>';}
@@ -81,7 +79,7 @@ if(!isset($_GET['b'])&&!isset($_GET['a'])){
 if(file_exists('z28.php')){echo' <form action="z28.php" method="get" style="display:inline"><input type="submit" name="e" value="Notification Only"></form> ';}
 if(file_exists('testy.php')){echo'<form action="testy.php" method="get" target="_blank" style="display:inline"><input type="submit" value="Community DB"></form> ';}}
 
-function s_t($t){return preg_replace("/<(.*) style='(.*)'>(.*)<\/(.*)>/i","$3",str_replace('isAFK','/afk',strip_tags(str_replace('"','&quot;',str_replace("'",'&#039;',$t)),'<i><mark><br><q><strong>')));}
+function s_t($t){return preg_replace("/<(.*) style='(.*)'>(.*)<\/(.*)>/i","$3",str_replace('isAFK','/afk',strip_tags(str_replace('"','&quot;',str_replace("'",'&#039;',$t)),'<i><br><q><strong>')));}
 
 function premium($qq){$col='';
 if($qq>10){$col='background:#223';}
@@ -117,7 +115,7 @@ $file=explode("|",@file_get_contents($_GET['f']));$r=count($file);if(empty($file
 echo'<br>Record created at: '.$file[1].'<br>Entries: <a href="28.php?f='.htmlspecialchars($_GET['f']).'&i='.(max($r-5000,1)).'">'.number_format($r-1).'</a><br>Estimated time: '.diff(round($r*4.14)).' (4.14s/rq)<br>Estimated time: '.diff(round($r*5.5)).' (5.5s/rq)<br>Estimated time: '.diff(round($r*6)).' (6s/rq)<br>';$form='<form action="" method="get"><input type="hidden" name="f" value="'.htmlspecialchars($_GET['f']).'"><input name="i" value="'.min(max($_GET['i']-5000,1),$r).'" size="6"><input type="submit" value="Previous"></form>||<form action="" method="get"><input type="hidden" name="f" value="'.htmlspecialchars($_GET['f']).'"><input name="i" value="'.min(max($r-1,1),($_GET['i']??0)+5000).'" size="6"><input type="submit" value="Next"></form>';echo$form.'<br><br>';
 for($i=($_GET['i']??1);$i<min($r,($_GET['i']??1)+5000);$i++){echo'|'.$file[$i];}exit('<br><br>'.$form.'</html>');}
 
-if(isset($_GET['b'])&&$_GET['b']=="d"){$t='';$file=db("1id8sjl.txt");$count=count($file);for($i=$count-1;$i>=max(0,$count-(2+($config[6]??8)*2));$i--){$t.=$file[$i];}$limit=substr_count($t,$_POST['crc']."-")-substr_count($t,'^!<')-substr_count($t,'\\'); if($limit>($config[6]??5)&&(isset($_POST['comment']))){file_put_contents("9u9dyi","|m".time(),FILE_APPEND);
+if(isset($_GET['b'])&&$_GET['b']=="d"){$t='';$file=db("1id8sjl.txt");$count=count($file);for($i=$count-1;$i>=max(0,$count-(2+($config[6]??8)*2));$i--){$t.=$file[$i];}$limit=substr_count($t,$_POST['crc']."-")-substr_count($t,'^!<')-substr_count($t,'\\'); if($limit>($config[6]??7)&&(isset($_POST['comment']))){file_put_contents("9u9dyi","|m".time(),FILE_APPEND);
 
   preg_match("/\/pm ([0-9]{3}) ?/i",strtolower($_POST['comment']),$matches);
   if(isset($matches[1])){$_POST['comment']='/pm '.$matches[1].' ';}
@@ -174,7 +172,7 @@ echo'<!DOCTYPE html><html>'.$v.'<style>button:hover,a:hover{color:#0ff}button,in
 <tr><td><b>Name of chat:</b><input name="oc" type="hidden" value="'.$config[2].'"></td><td><input name="c" value="'.$config[2].'" size="22"></td></tr>
 <tr><td><b>Characters per second:</b><input name="oa" type="hidden" value="'.($config[0]??8).'"></td><td><input name="a" value="'.($config[0]??8).'" size="3"></td></tr>
 <tr><td><b>Message max length:</b><input name="ob" type="hidden" value="'.($config[1]??300).'"></td><td><input name="b" value="'.($config[1]??300).'" size="3"></td></tr>
-<tr><td><b>Max Messages in a row:</b><input name="oh" type="hidden" value="'.($config[6]??5).'"></td><td><input name="h" value="'.($config[6]??5).'" size="3"></td></tr>
+<tr><td><b>Max Messages in a row:</b><input name="oh" type="hidden" value="'.($config[6]??7).'"></td><td><input name="h" value="'.($config[6]??7).'" size="3"></td></tr>
 <tr><td><b>Messages to show:</b><input name="of" type="hidden" value="'.($config[4]??30).'"></td><td><input name="f" value="'.($config[4]??30).'" size="3"></td></tr>
 <tr><td><b style="background:#700">Two function system:</b><input name="og" type="hidden" value="'.($config[5]??3).'"></td><td><input name="g" value="'.($config[5]??3).'" size="2"><b>(see table below)</b></td></tr>
 <tr><td><b>Invite code (30 on public chat):</b><input name="oi" type="hidden" value="'.base64_decode(strrev($config[7]??'=AzM')).'"></td><td><input name="i" value="'.base64_decode(strrev($config[7]??'=AzM')).'" size="8"></td></tr>
@@ -289,7 +287,7 @@ $p=htmlspecialchars(str_replace('/np ','',str_replace('|','',nl2br($_POST['comme
 if($p==$_COOKIE['name']||$p=="alkaline"||$_COOKIE['name']=="alkaline"){echo"<mark>Nickname and codename cannot be the same, nor can either be alkaline</mark>";}
 $npf=file_get_contents('1699686263.old.old');
 
-if(strlen($_POST['comment'])>3&&$safe==$_COOKIE['name']&&$p!=$_COOKIE['name']){$cf=fopen("1699686263.old.old","a") or die($m);$e=htmlspecialchars(str_replace("/np ","",$_POST['name']."|alkaline \n".$_POST['comment'].'|'.$_POST['name']." \n"));fwrite($cf, $e) or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=4;
+if(strlen($_POST['comment'])>3&&$safe==$_COOKIE['name']&&$p!=$_COOKIE['name']){$cf=fopen("1699686263.old.old","a") or print($m);$e=htmlspecialchars(str_replace("/np ","",$_POST['name']."|alkaline \n".$_POST['comment'].'|'.$_POST['name']." \n"));fwrite($cf, $e) or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=4;
 echo"<mark>Protection added for ".htmlspecialchars($_POST['name']).", use $p instead</mark>";$_POST['name']=$p;$_COOKIE['name']=$p;setcookie("name",htmlspecialchars_decode($p),time()+35000);}
 #New, editing nickprotect!
 elseif(strlen($_POST['comment'])>3&&npr($_COOKIE['name'])!="alkaline"&&strpos($npf,'|'.npr($_COOKIE['name']))!==false){
@@ -298,35 +296,37 @@ echo"<mark>Protection edited for ".npr($p).", use $p instead</mark>";$_POST['nam
 setcookie('name',htmlspecialchars_decode($p),time()+35000);
 }}}
 #Topic
-if(strpos($_POST['comment'],'/bm ')===0&&(($config[5]&1)==1||!empty($_COOKIE['9u9dyi']))){
+if(str_starts_with($_POST['comment'],'/bm ')&&(($config[5]&1)==1||!empty($_COOKIE['9u9dyi']))){
 $bm=str_replace("/bm ","",process($_POST['comment'],$find,$change,$config));
-$cf=fopen("load.txt", "w") or die($m);fwrite($cf, $bm) or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=3;}
-if(isset($_COOKIE['9u9dyi'])){
+$cf=fopen("load.txt", "w") or print($m);fwrite($cf, $bm) or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=3;}
+if(isset($_COOKIE['9u9dyi'])&&str_starts_with($_POST['comment'],'/')){
 #Whitelist
-if(strpos($_POST['comment'],'/w ')===0){
+if(str_starts_with($_POST['comment'],'/w ')){
 $bm=str_replace("/w ","",$_POST['comment']);
-$cf=fopen("whitelist.txt", "w") or die($m);fwrite($cf, $bm) or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=3;}
+$cf=fopen("whitelist.txt", "w") or print($m);fwrite($cf, $bm) or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=3;}
 #Blacklist
-if(strpos($_POST['comment'],'/hb ')===0){
+elseif(str_starts_with($_POST['comment'],'/hb ')){
 $bm=str_replace("/hb ","",$_POST['comment']);
-$cf=fopen("hb.old", "w") or die($m);fwrite($cf, $bm) or die("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=3;}
+$cf=fopen('hb.old', "w") or print($m);fwrite($cf, htmlspecialchars($bm)) or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=3;}
+#Read blacklist
+elseif(str_starts_with($_POST['comment'],'/hb')){echo '<mark>'.@file_get_contents('hb.old').'</mark>';$z=3;}
 #Kick
-if(strpos($_POST['comment'],"/k ")===0){$cf=fopen($hpu,"w") or die($m);$e=htmlspecialchars(str_replace("/k ","",$_POST['comment']));fwrite($cf, $e) or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=4;echo"<mark>Kicked $e</mark>";file_put_contents("whokicked.txt",htmlspecialchars($_COOKIE['name'])) or print('<mark>Write Fail!</mark>');
+elseif(str_starts_with($_POST['comment'],"/k ")){$cf=fopen($hpu,"w") or print($m);$e=htmlspecialchars(str_replace("/k ","",$_POST['comment']));fwrite($cf, $e) or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=4;echo"<mark>Kicked $e</mark>";file_put_contents("whokicked.txt",htmlspecialchars($_COOKIE['name'])) or print('<mark>Write Fail!</mark>');
 unlink(''.str_replace("/k ","",$_POST['comment']).'.visit.cache');$_POST['comment']=' ';}
 #AntiRaid
-if(strpos($_POST['comment'],"/r")===0){if(file_get_contents($hpu)=='"'){unlink($hpu);echo"<mark>Anti-Raid off</mark>";}else{$cf=fopen($hpu,"w") or die($m);fwrite($cf,'"') or print("<mark>Can't write</mark>");fclose($cf);echo"<mark>Anti-Raid on</mark>";}$z=4;file_put_contents("whokicked.txt",htmlspecialchars($_COOKIE['name'])) or print('<mark>Write Fail!</mark>');}}
+elseif(str_starts_with($_POST['comment'],"/r")){if(file_get_contents($hpu)=='"'){unlink($hpu);echo"<mark>Anti-Raid off</mark>";}else{$cf=fopen($hpu,"w") or die($m);fwrite($cf,'"') or print("<mark>Can't write</mark>");fclose($cf);echo"<mark>Anti-Raid on</mark>";}$z=4;file_put_contents("whokicked.txt",htmlspecialchars($_COOKIE['name'])) or print('<mark>Write Fail!</mark>');}}
 if(($config[5]&1)==1||isset($_COOKIE['9u9dyi'])){
 #Filter add
-if(strpos($_POST['comment'],"/fa ")===0){$cf=fopen("3.html","a") or die($m);$e=htmlspecialchars(str_replace("/fa ","",$_POST['comment']));fwrite($cf, $e."\n") or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=4;echo"<mark>Filter added: $e</mark>";}
+if(str_starts_with($_POST['comment'],"/fa ")){$cf=fopen("3.html","a") or die($m);$e=htmlspecialchars(str_replace("/fa ","",$_POST['comment']));fwrite($cf, $e."\n") or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=4;echo"<mark>Filter added: $e</mark>";}
 #Emoji add
-if(strpos($_POST['comment'],"/ea ")===0){$cf=fopen("3.html","a") or die($m);$e=htmlspecialchars(str_replace("/ea ","",$_POST['comment']));fwrite($cf, $e.'|<mark>'.$e."</mark> \n") or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=4;echo"<mark>Emoji added: <b>$e</b></mark>";}
+if(str_starts_with($_POST['comment'],"/ea ")){$cf=fopen("3.html","a") or die($m);$e=htmlspecialchars(str_replace("/ea ","",$_POST['comment']));fwrite($cf, $e.'|<mark>'.$e."</mark> \n") or print("<a href='28.php?b=d'><mark>Can't write</mark></a>");fclose($cf);$z=4;echo"<mark>Emoji added: <b>$e</b></mark>";}
 #Filter remove
-if(strpos($_POST['comment'],"/fr ")===0){$file=db("3.html");$e=str_replace("/fr ","",$_POST['comment']);
+if(str_starts_with($_POST['comment'],"/fr ")){$file=db("3.html");$e=str_replace("/fr ","",$_POST['comment']);
 for($i=0;$i<count($file);$i++){if($e!=($i+1)){$p.=$file[$i];}}file_put_contents("3.html",$p) or print('<mark>Write Fail!</mark>');
 $z=4;echo"<mark>Filter $e removed</mark>";}
-if(strpos($_POST['comment'],"/t")===0){if(file_exists('beep.txt')){system("ffplay '/media/peplive/1844AEA344AE82DC/Aera23/Downloads/files/X-guitar.mp3' -autoexit -nodisp");echo"<mark>Triggered beep</mark>";}else{echo"<mark>Beep disabled</mark>";}$z=4;}
+if(str_starts_with($_POST['comment'],"/t")){if(file_exists('beep.txt')){system("ffplay '/media/peplive/1844AEA344AE82DC/Aera23/Downloads/files/X-guitar.mp3' -autoexit -nodisp");echo"<mark>Triggered beep</mark>";}else{echo"<mark>Beep disabled</mark>";}$z=4;}
 #Filter list
-if(strpos($_POST['comment'],"/fl")===0){
+if(str_starts_with($_POST['comment'],"/fl")){
 $v=db("3.html");$i=0;
 foreach($v as $z){$i++;$e.=$i.'&gt;'.$z.'<br>';}
 echo"<mark>$e</mark>";$z=4;}}}
@@ -350,23 +350,23 @@ $write=$e.'-'.'<i>'.date("m-jS H:i:s").'</i> |<span style="color:'.$colour.';fon
 ";preg_match("/\/pm ([0-9]{3}) ?/i",strtolower(process($_POST['comment'],$find,$change,$config)),$matches);
 #Check for PM command, before writing somewhere.
 
-if(isset($matches[1])&&strpos($_POST['comment'],"/pm")===0){
-$write=str_replace($matches[0],'',$write.$nl); $m="The comments aren't working due to a server error. ";
+if(isset($matches[1])&&strpos($_POST['comment'],'/pm')===0){
+$write=str_replace($matches[0],'',$write.$nl); $m='<mark>Can\'t write</mark>';
 if(strlen($_POST['comment'])==8||strlen($_POST['comment'])==7){$z=4;}
 $write="/pm ".$matches[1].$_POST['crc']."-^!<b><u>PM</u></b>--".$write;
 
 if(isset($_POST['rpl'])&&isset($e)&&!empty($line)&&strpos($file[$line],$e)!==false){
-for($i=0;$i<count($file);$i++){if($line!=$i){$prvt.=$file[$i];}else{$prvt.=$write."\n";}}file_put_contents("1id8sjl.txt",$prvt) or print('<mark>Write Fail!</mark>');}
-elseif($z!=4){$cf=fopen("1id8sjl.txt", "a+") or print($m);
-fwrite($cf,$write) or print("Can't write");
+for($i=0;$i<count($file);$i++){if($line!=$i){$prvt.=$file[$i];}else{$prvt.=$write."\n";}}file_put_contents('1id8sjl.txt',$prvt) or print($m);}
+elseif($z!=4){$cf=fopen('1id8sjl.txt', 'a+') or print($m);
+fwrite($cf,$write) or print($m);
 fclose($cf);}}
 
 elseif(isset($_POST['rpl'])&&!empty($e)&&!empty($line)&&strpos($file[$line],$e)!==false){
-for($i=0;$i<count($file);$i++){if($line!=$i){$prvt.=$file[$i];}else{$prvt.=$write."\n";}}file_put_contents("1id8sjl.txt",$prvt) or print('<mark>Write Fail!</mark>');}
+for($i=0;$i<count($file);$i++){if($line!=$i){$prvt.=$file[$i];}else{$prvt.=$write."\n";}}file_put_contents("1id8sjl.txt",$prvt) or print($m);}
 else{
 if(stripos($_POST['comment'],'system')!==false){
 $sys=$nl.$e.'-'.'<i>'.date("m-jS H:i:s").'</i> |<span style="color:'.$colour.';font-size:'.($em??'1').'em;font-family:'.(htmlspecialchars($_POST['f']??'inherit')).'">System: '.$change[time()%158]."</span>$nl";}
-$cf=fopen("1id8sjl.txt", "a+") or print($m);fwrite($cf, $write.($sys??$nl)) or print("<mark>Can't write</mark>");fclose($cf);}}}
+$cf=fopen('1id8sjl.txt','a+');fwrite($cf, $write.($sys??$nl)) or print($m);fclose($cf);}}}
 
 if(!isset($_GET['b'])||$_GET['b']!="d"){echo'<!DOCTYPE html><html id="f"><title>'.$phrase.'</title>';}
 #if(empty($_REQUEST['lines'])){$l=12;}else{$l=min($_REQUEST['lines'],48);}
@@ -548,11 +548,10 @@ if(!preg_match("/\/pm ([0-9]{3})([0-9]{3})-\^!/i",strtolower($file[$i]),$matches
 if(strlen($file[$i])>3){return$i;}}
 else{if($matches[1]==$_POST['crc']||$matches[2]==$_POST['crc']){return$i;}else{$b+=2;}}}}}
 $time=p($file,$b);if(!empty($_GET['q'])){$time=(($_GET['t']??0)+4)%count($file);}
-if(file_exists("load.old")&&!empty($_COOKIE['9u9dyi'])){
-$e='><mark style="display:inline;background:#000;color:'.$cfi.';padding:0.3em;font-family:monospace;font-size:14px">'.file_get_contents("load.old").'</mark>';}
-elseif(file_exists("load.txt")&&file_get_contents("load.txt")!=" "){
-$e='><mark style="display:inline;background:#000;color:'.$cfi.';padding:0.3em;font-family:monospace;font-size:14px">'.file_get_contents("load.txt").'</mark>';}
-else{$e='>';}
+if(file_exists("load.old")&&!empty($_COOKIE['9u9dyi'])){$e=file_get_contents("load.old");}
+elseif(file_exists("load.txt")&&file_get_contents("load.txt")!=" "){$e=file_get_contents("load.txt");}
+else{$e='';}
+$e='><mark style="display:inline;background:#000;color:'.$cfi.';padding:0.3em;font-family:monospace;font-size:14px;word-wrap:break-word">'.$e.'</mark>';
 $e.='<mark class="ref" style="background:#000;color:'.$cfi.'">'.(time()%60).'<span style="color:#000">Refresh manually?</span></mark>';
 #&m='.htmlspecialchars(($_REQUEST['m']??'0')).'
 echo'<meta http-equiv="refresh" content="'.$sec.' ?a=a&t='.$time.'&q='.($_GET['q']??'').'">';
@@ -596,7 +595,8 @@ file_put_contents(''.$log.'.cache',$score.$output) or print('<mark>Write Fail!</
 $i=$time;$check = explode(',',$_COOKIE['ign']??'/x ');$chkt=explode(',',$ignore??'kill ya');
 
 while($i>=max(0,$time-$b)){$ok=1;
-foreach($chkt as $ign){if(!empty($ign)&&isset($file[$i])&&strpos($file[$i],$ign)!==false){$ok=-1;}}
+#Ensure the blacklist doesn't apply to self, then apply it
+foreach($chkt as $ign){if(!empty($ign)&&isset($file[$i])&&strpos($file[$i],$ign)!==false&&strpos($file[$i],crc().'-')===false){$ok=-1;}}
 foreach($check as $ign){if(!empty($ign)&&isset($file[$i])&&strpos($file[$i],$ign)!==false){$ok=-1;}}
 if($ok==-1){$b+=2;$i-=2;continue;}
 #M/PM/CRC checks
