@@ -2,6 +2,8 @@ http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/
 
 https://aera23.net/ (back, no JS needed on Tor, but JS needed to solve Cloudflare's anti DDoS)
 
+https://pastebin.com/DzV4AFQn (PM replies fixed with ClaudeAI, edited from https://github.com/Aera23/-/commit/d6bba788ca789d21a613321f12679651b3251ad5 )
+
 # SETUP
 * rename --main.zip to main.zip if you want to extract the zip file (from github's green download button)
 * `` git clone https://github.com/Aera23/-;mv - w;cd w;php -S 0.0.0.0:1100 -t $(pwd)``
