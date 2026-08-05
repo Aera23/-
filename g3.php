@@ -3,6 +3,8 @@ if(session_status() !== PHP_SESSION_ACTIVE){session_name('temptime');
 $time=strval(time());
 session_id($time.'x'.crc32($time));
 session_start();}
+#Modded from https://stackoverflow.com/questions/1141848/regex-to-match-url-where-scheme-is-optional-without-http
+$_POST['regex']='#((https?://)?((?:[^\s(<>]+\.)+([a-z]{1}[a-z\.]{1,11}|\d{1,3})(/?[a-z0-9\._/~%\-\+&\#\?!=\(\)@]*)?)(\S{0,})?)#i';
 function npr($e){#Nickprotect
 if(file_exists("1699686263.old.old")){
 $file=file("1699686263.old.old");foreach($file as $filter){$f=explode("|",str_replace("\n","",$filter));$ee[]=$f[0]??'&27;';$xx[]=substr($f[1]??'&27;',0,-1);}}
@@ -10,9 +12,10 @@ $file=file("1699686263.old.old");foreach($file as $filter){$f=explode("|",str_re
 if(!file_exists('config.txt')){include('setup.php');exit;}
 $hpu='unlock.txt';
 if(!isset($config)){$config=explode("|",file_get_contents("config.txt"));}
-if(empty($_COOKIE['temptime'])&&!is_dir('/home/peplive')){setcookie("temptime",time().'x'.crc32(time()),time()+3600);$_COOKIE['temptime']=time().'x'.crc32(time());}
+if(empty($_COOKIE['tempted'])&&!is_dir('/home/peplive')){setcookie("tempted",time().'x'.crc32(time()),time()+3600);$_COOKIE['tempted']=time().'x'.crc32(time());}
 if(str_contains($_SERVER['REQUEST_URI'],"/g3.php/")){exit('<meta http-equiv="refresh" content="0 /g3.php"/><mark style="font-size:1.2em;padding:0.3em">Auto redirect</mark>');}
-#Common functions
+#Common functions, etc
+
 if(isset($ee)&&isset($e)){$av=0;
 foreach($ee as $ees){if(strlen($e)===strlen($ees)){$e=str_replace($ees,$xx[$av],$e);}$av+=1;}
 }return trim($e);}
@@ -59,8 +62,13 @@ $change=[
 function checkuser($n){return true;
  if(file_exists(strtr(npr($n),":?/\\*|<> '","_________").'.visit')){return true;}return false;}
 
-function chkb($n){
-$m=$n[1];$end='';$last=substr($m,-1,1);
+function chkb($n){$m=$n[1];$c=substr_count($m,'.');
+if(!str_contains($m,'http')){
+if($c==1&&!str_ends_with($m,'.php')&&!str_ends_with($m,'.html')){$m='http://'.$m;}
+elseif($c>1){$m='http://'.$m;}
+}
+#$slash=substr_count($m,'/');if($slash<2){return $m;}
+$end='';$last=substr($m,-1,1);
 if(in_array($last,['!','.',',',':'])){$m=substr($m,0,-1);$end=$last;}
 $m=htmlspecialchars(urldecode(htmlspecialchars_decode($m)));
 $b='<a href="'.$m.'" target="_blank">'.$m.'</a>'.$end;
@@ -71,15 +79,17 @@ $ok=substr_count($m,'(')-substr_count($m,')');
 
 function process($e,$find,$change,$config)
 {if(isset($_POST['name'])&&$e==$_POST['name']){$e=substr($e,0,min(strlen($e),50));}
+$e=str_replace(';)','*WINKY',$e);
 $e=htmlspecialchars($e);
 if(isset($_POST['name'])&&$e==$_POST['name']){$e=npr($e);}
 $e=str_replace("\n","<br>",$e);
 $e=str_replace("\r","",$e);
 $e=substr($e,0,min(strlen($e),($config[1]??500)));
+$e=str_replace('plmm','http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/',$e);
 #Complex way of preserving url and highlights
-if(str_contains($e,'.on')){$e=deeplink($e);}
-$pattern="/http[^\s]*\s?/i";preg_match_all($pattern,$e,$cache);
-$e=preg_replace($pattern,'󛱟',$e);
+#if(str_contains($e,'.on')){$e=deeplink($e);}
+preg_match_all($_POST['regex'],$e,$cache);
+$e=preg_replace($_POST['regex'],'󛱟',$e);
 $e=str_ireplace('@Aera23','@aera',$e);
 $e=str_replace('@lunchbreak','@<span class="lunchhamstyle1"><span class="lunchbox1"><span class="lunchbreak1">lunchbreak</span></span></span>',$e);
 $e=str_replace('@pp','@<font color="#0ff">p</font><font color="#f40">p :clock:</font>',$e);
@@ -94,7 +104,7 @@ $e=str_replace('/afk','<span style="animation:AERA 6s infinite !important;">isAF
 $e=str_replace('era23@','er\\a23@',$e);
 $e=str_replace('ra23.n','r\\a23.n',$e);
 $e=str_replace('&lt;3','<mark style="background:red;">♥</mark>',$e);
-$e=str_replace('aera','<a href="mailto:aera23@protonmail.com">A</a><font color="#0ff">e</font><font color="#0f0">r</font><font color="#ff0">a</font><font color="#f86">2:clock:</font>',$e);
+$e=str_replace('aera','<a href="#">A</a><font color="#0ff">e</font><font color="#0f0">r</font><font color="#ff0">a</font><font color="#f86">2:clock:</font>',$e);
 $e=str_replace('nt>23','nt>',$e);
 $e=str_replace('/shrug',':shrug:',$e);
 $e=str_replace('XD','<mark>XD</mark>',$e);
@@ -135,9 +145,8 @@ $e=str_replace('````3',':3',$e);
 $e=str_replace('3````','3:',$e);
 $e=str_replace('0````','0:',$e);
 $e=highlighter($e);
-$e=str_replace(';)','<mark>;)</mark>',$e);
+$e=str_replace('*WINKY','<mark>;)</mark>',$e);
 $e=str_replace('uot<mark>;)</mark>','uot;)',$e);
-$e=str_replace('plmm','http://forwhoallvglhpsx6dhycfb4fu4a2lqkvxtwlivruw765qxofyns7wqd.onion/',$e);
 $e=str_ireplace('&lt;q&gt;','<q>',$e);
 $e=str_ireplace('&lt;/q&gt;','</q>',$e);
 $e=str_ireplace('magic','<font color="#0ff">m</font><font color="#0f0">a</font><font color="#ff0">g</font><font color="#f86">i<span class="a0">c</span><span class="a1">C</span><span class="a2">c</span><span class="a3">C</span><span class="a4">c</span><span class="a5">C</span><span class="a6">c</span><span class="a7">C</span><span class="a8">c</span><span class="a9">C</span></font>',$e);
@@ -150,8 +159,7 @@ $a=explode('󛱟',$e);#Restores urls
 $j=0;$e='';if(!isset($cache[0][0])){$cache[0][0]='';}
 foreach($a as $b){$e.=$b.$cache[0][$j];$j+=1;}
 #wow this callback took a while!
-$e=preg_replace_callback('/(http[^\s]*[^\s])/i', 'chkb', $e);
-$e=str_replace('<a href="https" target="_blank">https</a>','https',$e);
+$e=preg_replace_callback($_POST['regex'], 'chkb', $e);
 #Code highlight
 $e=preg_replace('|``([^`]*)``|i','``<span style="font-family:monospace;background:#040;color:#0f0;font-size:1.2em">$1</span>``',$e);
 $e=roulette($e);
@@ -172,14 +180,14 @@ if(preg_match('/(\d+\/)?\d+[A-F]?\s[A-z]+\s(St|Av|Dr|Rd|Ct|Cr|Tce|La|Street|Ave|
 foreach($x as $y){
 if(stripos($e,$y)!==false){
 if(isset($_COOKIE['9u9dyi'])){$a=0;}else{$a=3;}
-if($config[5]<$a){echo '<mark>3</mark>';
+if($config[5]<$a){
 file_put_contents('unlock.txt',$_POST['name']);$prod=1;
 $y.=' | <a href="/z0.php.php?lmi=202040" target="blank" style="color:'.htmlspecialchars($_COOKIE['col']??$_POST['col']??'#88ff88').'">Undo</a></span>';}
 else{$y.=' [TEST]';$prod=2;}
 $write='000-<i>'.date("m-jS H:i:s").'</i> |<span style="color:'.htmlspecialchars($_COOKIE['col']??$_POST['col']??'#88ff88').'">/m Filter triggered: '.$y."</span>
   
 ";file_put_contents("1id8sjl.txt",$write,FILE_APPEND);
-if($prod==1){unset($_POST['comment'],$_POST['name']);}break;}}
+if($prod==1&&isset($write)){unset($_POST['comment'],$_POST['name']);}break;}}
 }
 
 #Cookies; Strum if user got CAPTCHAd mid chat
@@ -219,8 +227,8 @@ else{return "2";}}
 if(chkx()=="1"){if(isset($_POST['name'])){filter($_POST['name'],$config);}#else{include_once('28.php');exit;}
 if(!isset($_COOKIE['crc'])){
 $j=crc32(base64_encode("9u9dyi".time()));
-setcookie("crc", $j, time()+35000);$_COOKIE['crc']=$j;
-setcookie("o",time(),time()+35000);$_COOKIE['o']=time();
+setcookie("crc", $j, time()+35000,'/','',false,true);$_COOKIE['crc']=$j;
+setcookie("o",time(),time()+35000,'/','',false,true);$_COOKIE['o']=time();
 file_put_contents("".makesum($j),$_SERVER['REQUEST_TIME_FLOAT']);
 }
 g($l);#Redirect if valid cookie exist
@@ -235,8 +243,8 @@ if(!empty($_POST['comment'])&&isset($e)&&$_REQUEST['q'.base_convert(crc32($_REQU
   if(file_exists("config.txt")){$ic=base64_decode(strrev(explode('|',file_get_contents("config.txt"))[7]));}else{$ic=30;}
   if(isset($_POST['test'])&&$_POST['test']!=$ic&&empty($_REQUEST['9u9dyi'])&&empty($_COOKIE['9u9dyi'])||!checkuser($_POST['name'])){echo"<mark>License expired, contact Aera23 for assistance. <meta http-equiv='refresh' content='0 /a/sp?utm_source=license_renew'></mark>";}
 else{filter($_POST['name'],$config);
-setcookie("o",time(),time()+35000);setcookie("crc",crc32(base64_encode("9u9dyi".time())),time()+35000);
-file_put_contents(crc32("9u9dyi").".dat",$_COOKIE['temptime']);
+setcookie("o",time(),time()+35000,'/','',false,true);setcookie("crc",crc32(base64_encode("9u9dyi".time())),time()+35000,'/','',false,true);
+file_put_contents(crc32("9u9dyi").".dat",$_COOKIE['tempted']);
 file_put_contents("pass.old",(int)file_get_contents("pass.old")+1);
 $output='<mark>'.date('Y-m-d H:i:s').' | </mark><span style="color:'.htmlspecialchars($_POST['col']).'">'.htmlspecialchars($_POST['name']).' - '.htmlspecialchars($_POST['comment']).'</span>';
 file_put_contents("greeting.html.old",$output.'<br>',8);
