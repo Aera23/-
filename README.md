@@ -33,6 +33,16 @@ https://pastebin.com/DzV4AFQn (PM replies fixed with ClaudeAI, edited from https
 * Optional: Check out stopwatch.php or colour.php :)
 Enjoy :)
 
+# Configuration
+* Characters per second - Controls how fast a user can send messages, validated by server timestamps. Lower is stricter, values below a certain point would block all messages due to captcha expiry or backwards-in-time impossibilities. (If a user sends a 100 character message in 20 seconds, they sent it at 5 characters a second)
+* Message max length - Prevents overly long messages from being sent (and is checked before characters per second).
+* Max messages in a row - Helps prevents a stream of messages from flooding chat. Example, if it's set to 4, and it sees more than 4 messages from a user when checking the last 5/6 messages, it will block messages exceeding that threshold.
+* Two Function system - odd numbers allow users to add emoji, and add/edit/remove string replacements. numbers below 3 enable kickfilter (see table in settings menu)
+* Online list (s) - how recent a user has to be active (eg auto refresh) to be marked as online.
+* Last online (max users) - the maximum amount of users to list. Note: If there are more users online than the setting, they won't be included in the count, too high and there could be lag.
+* PSV filter file - The file that has filters, eg "*FILTER_PHONE_NUM|badword|*FILTER_ADDR|*FILTER_SPACED_OUT|*FILTER_3REP", for auto kicking. the * filters in the example refer to my regex filters. I cannot provide an editor inside the chat, because if a mod calls the filter file 28.php, they can delete the chat or tamper with the code.
+
+
 # Extra
 If you need to deal with a spammer,  typing "/k spammerNick" will help stop @spammerNick from spamming for a while
 (there's a cool trick used when they are denied)
