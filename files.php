@@ -19,16 +19,6 @@ elseif(!empty($_COOKIE['9u9dyi'])){return "1";}return "2";}
 if(ipcheck()==2&&empty($_GET['file_id'])){echo"<meta http-equiv='refresh' content='0 g3.php?next=testx.php'/>";exit('Redirect');}
 if($_GET['9u9dyi']=="t"){setcookie("9u9dyi","t");$_COOKIE['9u9dyi']='t';}$x=0;
 
-function diff($t){
-#This function calculates the difference between filetime and now, using D/H/M/S.
-$s = time() - $t;
-if($s<60){return 'Uploaded';}
-elseif($s<3600){$z = (($s-($s%60))/60).'m';}
-elseif($s<86400){$z = (($s-($s%3600))/3600).'h '.((($s-($s%60))/60)%60).'m ';}
-elseif(1==1){$z = (($s-($s%86400))/86400)."d ".((($s-($s%3600))/3600)%24).'h '.((($s-($s%60))/60)%60).'m';}
-return $z;
-}
-
 // Function to fetch uploaded files from the database
 function getUploadedFiles() {
     $db = new SQLite3('uploads.db');
