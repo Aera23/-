@@ -1,12 +1,20 @@
 <!DOCTYPE html><html><meta http-equiv="refresh" content="30"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Second Counter</title><style>body{font-family:consolas,sans-serif; font-size:50px;margin-top:60px}#time{border:2px solid #d80; border-radius:12px; width: 8em;padding:0.2em;color:#930;}#s{font-size:16px;margin-left:60px}#days{font-size:30px}</style><body><p id="s">
 <?php
-//$file = 1671579350; (The timestamp on my site)
+#$file = 1671579350; (backup timestamp)
 if(!file_exists('time2.txt')){$timed = time(); file_put_contents('time2.txt', $timed) or exit("<mark>Can't write</mark>");}
 $file = file_get_contents('time2.txt');
 echo (time() - $file);?>
 
-</p><center><p id="time"></p><p id="days"></p></center>
-<p style="font-family:corbel;font-size:18px;margin:0px 60px 0px 60px">This stopwatch, counts up since the time it was started. The time is the difference between the time file, and the current server time. That number is seen on the top left. Javascript increments the time and displays the time in the center.</p>
+</p><center><p id="time">
+<?php
+$diff = abs($file - time());
+ $mins =  floor($diff / 60);
+ $hours =  floor($mins / 60);
+ $days = floor($hours / 24);
+ echo $days . "d " . ($hours%24)."h ".($mins%60)."m <br>"; 
+?>
+</p><p id="days"></p></center>
+<p style="font-family:corbel,sans-serif;font-size:18px;margin:0px 60px 0px 60px">This stopwatch, counts up since the time it was started. The time is the difference between the time file, and the current server time. That number is seen on the top left. If enabled, javascript increments the time and displays the time in the center. Otherwise a static time (without seconds) is shown. Additionally a CSS equivalent clock is available below for comparison.</p>
 <script>setInterval(add(),1000); function add(){var t = document.getElementById('s').innerHTML * 1;t+=1; document.getElementById('s').innerHTML = t;
 
 var s = t%60;
@@ -35,4 +43,4 @@ if(ms>950){add();setInterval(add,1000);}
 else{setTimeout(check,50);}
 }
 check();
-</script></body></html>
+</script><?php include('css-stopwatch.php');?></body></html>
