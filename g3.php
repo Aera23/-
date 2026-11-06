@@ -3,11 +3,17 @@ if(session_status()!==PHP_SESSION_ACTIVE){session_name('temptime');
 $time=strval(time());
 session_id($time.'x'.crc32($time));
 session_start();}
-$_POST['regex']='/(http[^\s]*[^\s])/i';
+header('Cache-Control: must-revalidate');
+function hex(){return"<style>html{background:#000;/*https://heropatterns.com/*/
+background-image:url('heroicons-com-outline-cloud3.svg');background-size: 20px 20px;}</style>";}
+
+#Modded from https://stackoverflow.com/questions/1141848/regex-to-match-url-where-scheme-is-optional-without-http
+#'#((https?://)?((?:[^\s(<>]+\.)+([a-z]{1}[a-z]{1,11}|\d{1,3})(/?[a-z0-9\._/~%\-\+&\#\?!=\(\)@]*)?)(\S{0,})?)#i';
+$_POST['regex']='/(http[^\s<]*[^\s<])/i';
 
 function npr($e){#Nickprotect
-if(file_exists("1699686263.old.old")){
-$file=file("1699686263.old.old");foreach($file as $filter){$f=explode("|",str_replace("\n","",$filter));$ee[]=$f[0]??'&27;';$xx[]=substr($f[1]??'&27;',0,-1);}}
+trim($e);if(file_exists("1id8sjl.txt.old")){
+$file=file("1id8sjl.txt.old");foreach($file as $filter){$f=explode("|",str_replace("\n","",$filter));$ee[]=$f[0]??'&27;';$xx[]=substr($f[1]??'&27;',0,-1);}}
 
 if(!file_exists('config.txt')){include('setup.php');exit;}
 $hpu='unlock.txt';
@@ -32,11 +38,11 @@ elseif(file_exists($ma[1].'.visit')){
  touch(''.$ma[1].'.visit.cache',filemtime($log),time());clearstatcache();
 }
 if(isset($n)){$p=strpos($n,"color:");
- $c.=str_replace('@'.$ma[1],"@<b style='color:".substr($n,$p+6,7).";'>".$ma[1]."</b>",$a);}
+ $c.=str_replace('@'.$ma[1],"@<b style='color:".substr($n,$p+6,7)."'>".$ma[1]."</b>",$a);}
 else{$c.=str_replace('@'.$ma[1],"@<b>".$ma[1]."</b>",$a);}}
  else{$c.=$a;}}
 return str_replace(chr(31),'&#039;',$c);}
-if(!function_exists('roulette')){function roulette($obj){
+function roulette($obj){
 $obj = str_replace("/","\\/",$obj);
  $strs=explode("\\",$obj);
  if(count($strs)==1){return $obj;}$obj='';
@@ -50,7 +56,8 @@ $obj = str_replace("/","\\/",$obj);
  $str=str_replace("/wow",$cc,$str);
  $str=str_replace("/fc",$dd,$str);
  $obj.=$str;}
-return str_replace("/bk","\\",$obj);}}
+return str_replace("/bk","\\",$obj);}
+
 function deeplink($e){
 $onion='/([2-7a-z]{56}\.onion)/i';
 return str_replace('.online/http://','.online/',str_replace('http://http://','http://',preg_replace($onion,'http://$1',$e)));}
@@ -64,11 +71,8 @@ function checkuser($n){
    if(!file_exists(strtr(str_replace('alkaline',chr(29),npr($n)),":?/\\*|<> '","_________").'.visit')){return false;}}
  return true;}
 
-function chkb($n){$m=$n[1];$c=substr_count($m,'.');
-if(!str_contains($m,'http')){
-if($c==1&&!str_ends_with($m,'.php')&&!str_ends_with($m,'.html')){$m='http://'.$m;}
-elseif($c>1){$m='http://'.$m;}
-}if($c<1){return $m;}
+function chkb($n){$m=$n[1];$c=substr_count($m,'/');
+if($c<1){return $m;}
 #$slash=substr_count($m,'/');if($slash<2){return $m;}
 $end='';$last=substr($m,-1,1);
 if(in_array($last,['!','.',',',':'])){$m=substr($m,0,-1);$end=$last;}
@@ -105,7 +109,10 @@ $e=str_replace('aera','<a href="#">A</a><font color="#0ff">e</font><font color="
 $e=str_replace('nt>23','nt>',$e);
 $e=str_replace('/shrug',':shrug:',$e);
 $e=str_replace('XD','<mark>XD</mark>',$e);
+$e=str_replace('0x00','<font color="#0ff" class="mv">0</font><font color="#0f0" class="mv">x</font><font color="#ff0" class="mv">0</font><font color="#f86" class="mv">0 :clock:</font>',$e);
 $e=str_replace('flyp','<font color="#0ff" class="mv">f</font><font color="#0f0" class="mv">l</font><font color="#ff0" class="mv">y</font><font color="#f86" class="mv">p :clock:</font>',$e);
+$e=str_replace('Bad','<font color="#0ff" class="mv">B</font><font color="#ff0" class="mv">a</font><font color="#f86" class="mv">d</font>',$e);
+$e=str_replace('truee','<font color="#0ff" class="mv">t</font><font color="#0f0" class="mv">r</font><font color="#ff0" class="mv">u</font><font color="#f86" class="mv">ee</font>',$e);
 $e=str_replace('priya','<a href="#">p</a><font color="#0ff">r</font><font color="#0f0">i</font><font color="#ff0">y</font><font color="#f86">a :clock:</font>',$e);
 $e=str_replace('PROTOTYP','<a href="#">PR</a><font color="#0ff">OT</font><font color="#0f0">OT</font><font color="#ff0">YP</font><font color="#f86">E :clock:</font>',$e);
 $e=str_replace('HIGHTABLE','<a href="#">HI</a><font color="#0ff">GH</font><font color="#0f0">TA</font><font color="#ff0">BL</font><font color="#f86">E :clock:</font>',$e);
@@ -138,6 +145,7 @@ $e=preg_replace('|([0-9]):0|i', '$1````0', $e);
 $e=preg_replace('|3:([0-9])|i', '3````$1', $e);
 $e=preg_replace('|0:([0-9])|i', '0````$1', $e);
 $e=str_replace($find,$change,$e);
+$e=str_replace('background<mark>:3</mark>f44','background:#f44',$e);
 $e=str_replace('````0',':0',$e);
 $e=str_replace('````3',':3',$e);
 $e=str_replace('3````','3:',$e);
@@ -150,7 +158,7 @@ $e=str_ireplace('&lt;/q&gt;','</q>',$e);
 $e=str_ireplace('magic','<font color="#0ff">m</font><font color="#0f0">a</font><font color="#ff0">g</font><font color="#f86">i<span class="a0">c</span><span class="a1">C</span><span class="a2">c</span><span class="a3">C</span><span class="a4">c</span><span class="a5">C</span><span class="a6">c</span><span class="a7">C</span><span class="a8">c</span><span class="a9">C</span></font>',$e);
 $e=str_replace('!.','!',$e);$e=str_replace('<mark>0.0</mark>.','0.0.',$e);
 $e=str_replace('.<mark>0.0</mark>','.0.0',$e);$e=str_replace('<mark>:3</mark>)','<mark>:3)</mark>',$e);
-$e=str_replace('&lt;br&gt;','<br>',$e);
+$e=str_ireplace('&lt;br&gt;','<br>',$e);
 $e=str_ireplace('/help','/[dice, chess, symbols, me, pmhelp, wow, shrug, help, fl] &lt;&lt; Current commands',$e);
 $e=nl2br($e);
 $a=explode('󛱟',$e);#Restores urls
@@ -180,8 +188,9 @@ function makesum($j){$e=100+($j%900);return $e;}
 function filter($e,$config){unset($config);$config=explode("|",file_get_contents("config.txt"));
 if(file_exists($config[10]??'../filter')){$x=explode("|",file_get_contents($config[10]??'../filter'));}
 else{$x=[];}
+if($e=='pedo'||$e=='sex'){$e='*FILTER_3REP';}
 if(preg_match('/([a-zA-Z0-9][ -]){5,}/i',$e,$m)){$e='*FILTER_SPACED_OUT';}
-if(preg_match('/[0-9 ]{9,}/i',$e,$m)&&!str_contains($e,'/')){$e='*FILTER_PHONE_NUM';}
+if(preg_match('/[0-9 ]{10}/i',$e,$m)&&!str_contains($e,'/')&&!preg_match('/[0-9 ]{14}/i',$e,$m)){$e='*FILTER_PHONE_NUM';}
 if(preg_match('/(\d+\/)?\d+[A-F]?\s[A-z]+\s(St|Av|Dr|Rd|Ct|Cr|Tce|Blvd|Street|Ave|Avenue|Drive|Court|Crescent|Crt|Lane|Terrace|Boulevard) /i',$e,$m)&&!str_contains($e," to la")){$e='*FILTER_ADDR';}
 if(preg_match('/(.{20,})\g{1}\g{1}/i',$e,$m)){$e='*FILTER_3REP';}$prod=0;
 foreach($x as $y){
@@ -227,7 +236,7 @@ function chkx(){
 #Fixed poor validation ++
 if(isset($_COOKIE['crc'])&&isset($_COOKIE['o'])&&$_COOKIE['o']<time()&&crc32(base64_encode("9u9dyi".$_COOKIE['o']))==$_COOKIE['crc']){
  return "1";}
- elseif(isset($_GET['apikey'])&&$_GET['apikey']=="9u9dyi.txt"){return "1";}
+ elseif(isset($_GET['apikey'])&&$_GET['apikey']=="nrzknf.txt"){return "1";}
 else{return "2";}}
 
 #Redirection
@@ -290,10 +299,10 @@ $tag=['i','span','b'];
 $text=['Type the final 3 letters/digits','Final 3 letters & numbers','Gimme those characters, ignoring 1<sup>st</sup> one','Recall the last three characters','Last three letters/digits please'];
 $texta=['Type the initial 3 letters/digits','First 3 letters & numbers','Gimme those characters, ignoring 4<sup>th</sup> one','Recall the first three characters','First three letters/digits please'];
 $textb=['Type those characters twice','Enter the characters below 2x','Input the characters below two times','Double type the characters into the box','Enter the characters below twice'];
-echo'<!DOCTYPE html><html style="background:linear-gradient(45deg,#0A1520,#0A2015,#200A15)"><meta http-equiv="refresh" content="70">
+echo'<!DOCTYPE html><html><meta http-equiv="refresh" content="72">
 <style>input,button{background:#dfd;border:2px solid #060;padding:0.3em}::placeholder{color:#060}button:hover,input:hover{border:2px solid #a66 !important}svg{border:2px solid '.$cfi.'}
 .r{width:50px;height:50px;background:red;position:relative;animation-name:o;
-animation-duration: 80s;animation-timing-function:linear}fieldset{border:2px solid #7f7}button{margin-left:25px;padding:0.3em;border-radius:8px;border:2px solid #8f8;background:linear-gradient(45deg,#0A1520,#0A2015,#200A15);color:#8f8}
+animation-duration: 80s;animation-timing-function:linear}fieldset{border:2px solid #7f7}button{margin-left:25px;padding:0.3em;border-radius:8px;border:2px solid #8f8;color:#8f8}html,button{background:linear-gradient(45deg,#023,#032,#302)}
 @keyframes o{
 0%   {background:#0f0;left:89%;top:0px}
 50%  {background:#ff0;left:44.5%;top:0px}
@@ -340,6 +349,8 @@ $k="'>$</span><span style='color:#";
 $t="<span style='color:#1794BA$k 325EAE$k E117F6$k 662191$k 703B3C$k F3BD07$k 11C04F$k 4E2714$k C6C1DE$k 9A1775$k 96C7E6$k 3AEC8D$k C78432$k C5062C$k 80788B$k 8BB64E$k 0115A9$k 298002$k 715DB8$k 71DDBD$k 762946$k 0A4DC2$k 888EDD$k A20E87$k 93110B$k 06B799$k F8E4B4$k 28F57F$k 89355A$k EA6090$k 48CBDD$k 0B36A6$k 064FBA$k CCB91E'>$</span>";
 $t=str_replace(" ","",$t);$tx=str_replace("ns","n s", $t);$txt=explode("<span",$tx.$tx);
 $max=count($txt);
+if(!isset($config)){$config=explode("|",file_get_contents("config.txt"));}
+$phrase=$config[2]??'Chat';
 $phrase=htmlspecialchars_decode($phrase);$q="<b style='text-shadow:0.5px 0.5px #090,-0.5px -0.5px #090'>";
 $mt=time()%20;
 if(function_exists('mb_str_split')){$split = mb_str_split($phrase,1);$i=0;
